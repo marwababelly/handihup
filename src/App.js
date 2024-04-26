@@ -1,14 +1,14 @@
 import "./App.css";
-import wool from "../src/assets/wool1.webp";
-import logo from "../src/assets/logo.jpg";
+import { Fragment } from "react";
+import Header from "./component/Header/Header";
 
 function App() {
   return (
-    <div className="App-header">
-      <img alt="logo" src={logo} />
-      <p>Hi React</p>
-      <img alt="woolImg" src={wool} />
-    </div>
+    <Fragment>
+      <div className="App">
+        <Header />
+      </div>
+    </Fragment>
   );
 }
 
