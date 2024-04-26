@@ -1,15 +1,14 @@
 import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import logo from "../../assets/logo.jpg";
-import SignUp from "./SignUp";
-import LogIn from "./LogIn";
+import RegisterNav from "./RegisterNav";
 import CollapseNav from "./CollapseNav";
 
 const Header = () => {
   return (
     <Navbar collapseOnSelect expand="lg">
       <Container>
-        <Navbar.Brand href="#home">
+        <Navbar.Brand href="/">
           <img
             src={logo}
             width="50"
@@ -21,12 +20,8 @@ const Header = () => {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <CollapseNav />
-        <Nav
-          activeKey="/home"
-          onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
-        >
-          <SignUp />
-          <LogIn />
+        <Nav defaultActiveKey="/" as="ul">
+          <RegisterNav />
         </Nav>
       </Container>
     </Navbar>
