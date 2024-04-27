@@ -1,0 +1,29 @@
+.btn {
+  background: #4d4c47;
+  color: #eee8d6;
+  border: #4d4c47 1px solid;
+  font-size: large;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  background: #eee8d6;
+  color: #4d4c47;
+  border: 2px solid #4d4c47;
+}
+
+.card {
+  padding: 0px 4px;
+  background: #fef8e5;
+}
+
+.card:hover {
+  border: 2px solid #4d4c47;
+}
+
+.formControl:focus {
+  border-color: #4d4c47;
+  box-shadow: 0 0 0 0.1rem #4d4c47;
+}
