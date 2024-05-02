@@ -87,6 +87,21 @@ const SignUpPage = () => {
                     <Form onSubmit={submitFormHandler}>
                       <Form.Group className="mb-3" controlId="Name">
                         <Form.Label className="text-center">
+                          Username
+                        </Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter Username"
+                          className={style.formControl}
+                          required
+                          ref={fullnameRef}
+                          value={fullname}
+                          onChange={fullnameHandler}
+                        />
+                      </Form.Group>
+
+                      <Form.Group className="mb-3" controlId="Name">
+                        <Form.Label className="text-center">
                           Full Name
                         </Form.Label>
                         <Form.Control
@@ -102,13 +117,12 @@ const SignUpPage = () => {
 
                       <Form.Group className="mb-3" controlId="Name">
                         <Form.Label className="text-center">
-                          Username
+                          Birth Date
                         </Form.Label>
                         <Form.Control
-                          type="text"
+                          type="Date"
                           className={style.formControl}
-                          placeholder="Enter username"
-                          required
+                          placeholder="Enter Your Date"
                           ref={usernameRef}
                           value={username}
                           onChange={usernameHandler}
@@ -122,6 +136,34 @@ const SignUpPage = () => {
                         <Form.Control
                           type="email"
                           placeholder="Enter email"
+                          className={style.formControl}
+                          required
+                          ref={emailRef}
+                          value={email}
+                          onChange={emailHandler}
+                        />
+                      </Form.Group>
+
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label className="text-center">Address</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Enter Your Address"
+                          className={style.formControl}
+                          required
+                          ref={emailRef}
+                          value={email}
+                          onChange={emailHandler}
+                        />
+                      </Form.Group>
+
+                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                        <Form.Label className="text-center">
+                          Phone Number
+                        </Form.Label>
+                        <Form.Control
+                          type="number"
+                          placeholder="Enter Your Number"
                           className={style.formControl}
                           required
                           ref={emailRef}
@@ -156,6 +198,21 @@ const SignUpPage = () => {
                           placeholder="Confirm Password"
                           className={style.formControl}
                           required
+                          ref={comfirmPasswordRef}
+                          value={comfirmPassword}
+                          onChange={comfirmPasswordHandler}
+                        />
+                      </Form.Group>
+
+                      <Form.Group
+                        className="mb-3"
+                        controlId="formBasicPassword"
+                      >
+                        <Form.Label>Your Type</Form.Label>
+                        <Form.Control
+                          type="password"
+                          placeholder="Enter Your Type"
+                          className={style.formControl}
                           ref={comfirmPasswordRef}
                           value={comfirmPassword}
                           onChange={comfirmPasswordHandler}
