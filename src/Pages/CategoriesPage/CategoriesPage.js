@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './Categories.module.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import art from '../../assets/artboxes.jpg';
-import knitting from '../../assets/knitting.jpg';
+import knitting from '../../assets/knit.jpg';
 import pastry from '../../assets/pastry.jpg';
 import hamburger from '../../assets/hamburger.jpg';
 import phonecase from '../../assets/mobile.jpg';
