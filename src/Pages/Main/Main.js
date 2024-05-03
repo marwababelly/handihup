@@ -1,7 +1,12 @@
 import React from "react";
+import Overview from "../../component/Overview/Overview";
 
 const Main = () => {
-  return <div className="fs-2">Main</div>;
+  return (
+    <>
+      <Overview />
+    </>
+  );
 };
 
 export default Main;

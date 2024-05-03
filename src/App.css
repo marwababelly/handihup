@@ -11,9 +11,13 @@
   --main-font: "Cormorant Garamond", serif;
 }
 
+body {
+  background-color: var(--background-color);
+}
+
 .App {
   background-color: var(--background-color);
   font-family: var(--main-font);
-  min-height: 100vh;
+  /* min-height: 100vh; */
   flex-direction: column;
 }
