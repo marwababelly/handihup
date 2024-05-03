@@ -1,0 +1,45 @@
+/* Define the container as a grid */
+.list-group {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates three equal-width columns */
+    gap: 20px; /* Space between grid items */
+  }
+  
+  /* Style the grid items */
+  .list-group-item {
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding inside the item */
+    background-color: #f8f9fa; /* Light background */
+  }
+  
+  /* Responsive images */
+  .list-group-item img {
+    width: 100%; /* Full width of the item */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  /* Adjust text margins for better alignment */
+  .list-group-item h1,
+  .list-group-item h3 {
+    margin: 0; /* Remove default margins */
+  }
+  .grid-container {
+    display: grid;
+    column-gap: 50px;
+  }
+  .category-item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .category-item img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    margin-bottom: 10px;
+  }
+  
