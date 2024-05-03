@@ -54,7 +54,7 @@ const CategoriesPage = () => {
         <form onSubmit={handleSearchSubmit}>
         <input type="text" placeholder="Search..." style={{ padding: '10px', fontSize: '16px', borderRadius: '5px', width: '100%', marginBottom: '10px' }} 
          onChange={handleSearchChange} />
-        <button type='submit' style={{ padding: '10px 20px', fontSize: '16px', borderRadius: '5px', backgroundColor: '#007bff', color: 'white', cursor: 'pointer' }}>Search</button>
+        <button type='submit' style={{ padding: '10px 20px', fontSize: '16px', borderRadius: '5px', backgroundColor: '#88857c', color: 'white', cursor: 'pointer' }}>Search</button>
         </form>
       </div>
     </div>
@@ -71,15 +71,15 @@ const CategoriesPage = () => {
         </div>
       )}
       <div>
-        <Row>
+        <Row >
       {showMore? (
         items.map((item, index) => (
           <div key={index} className="category-item">
              <Col key={index} xs={12} sm={6} md={6} lg={6}>
             <Link to={`/Categories/${item.id}`}>
               <img src={item.imageUrl} alt={item.title} style={{width: '200px', height: '200px'}} />
-              <h2>{item.title}</h2>
-              <h3>{item.description}</h3>
+              <h2  style={{fontPalette: '#88857c'}}>{item.title}</h2>
+              <h3  style={{fontPalette: '#88857c'}}>{item.description}</h3>
             </Link>
              </Col>
           </div>
@@ -90,15 +90,15 @@ const CategoriesPage = () => {
              <Col key={index} xs={12} sm={6} md={6} lg={6}>
             <Link to={`/Categories/${item.id}`}> 
             <img src={item.imageUrl} alt={item.title} style={{width: '200px' , height: '200px'}}/>
-            <h2>{item.title}</h2>
-            <h3>{item.description}</h3>
+            <h2 style={{fontPalette: '#88857c'}}>{item.title}</h2>
+            <h3 style={{fontPalette: '#88857c'}}>{item.description}</h3>
             </Link>
             </Col>
           </div>
         ))
       )}
       </Row>
-      <Button onClick={toggleShowMore}>{showMore?'View Less': 'View More'}</Button>
+    <Button onClick={toggleShowMore} style={{backgroundColor: '#88857c'}}>{showMore?'View Less': 'View More'}</Button>
     </div>
     </div>
     </Container>
