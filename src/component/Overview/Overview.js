@@ -19,75 +19,85 @@ const Overview = () => {
     setIndex(selectedIndex);
   };
   return (
-    <Carousel
-      variant="dark"
-      interval={1000}
-      className={style.overview}
-      activeIndex={index}
-      onSelect={handleSelect}
-    >
-      <Carousel.Item className={style.item}>
-        <Container className={style.imgContainer}>
-          <img src={pottery} alt="first img" className={style.imageOverview} />
-          <img src={sweet} alt="second img" className={style.imageOverview} />
-          <img src={wool} alt="third img" className={style.imageOverview} />
-        </Container>
-        <Container>
-          <Carousel.Caption className={style.caption}>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Container>
-      </Carousel.Item>
-
-      <Carousel.Item className={style.item}>
-        <Container className={style.imgContainer}>
-          <img
-            src={White_Vases}
-            alt="first img"
-            className={style.imageOverview}
-          />
-          <img
-            src={Female_Jeweler}
-            alt="second img"
-            className={style.imageOverview}
-          />
-          <img
-            src={work_Hand}
-            alt="third img"
-            className={style.imageOverview}
-          />
-        </Container>
-        <Carousel.Caption className={style.caption}>
-          <Container>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    <>
+      <Carousel
+        variant="dark"
+        interval={1000}
+        className={style.overview}
+        activeIndex={index}
+        onSelect={handleSelect}
+      >
+        <Carousel.Item className={style.item}>
+          <Container className={style.imgContainer}>
+            <img
+              src={pottery}
+              alt="first img"
+              className={style.imageOverview}
+            />
+            <img src={sweet} alt="second img" className={style.imageOverview} />
+            <img src={wool} alt="third img" className={style.imageOverview} />
           </Container>
-        </Carousel.Caption>
-      </Carousel.Item>
+          <Container>
+            <Carousel.Caption className={style.caption}>
+              <h3>First slide label</h3>
+              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+          </Container>
+        </Carousel.Item>
 
-      <Carousel.Item className={style.item}>
-        <Container className={style.imgContainer}>
-          <img src={Knitting} alt="first img" className={style.imageOverview} />
-          <img
-            src={Pottery_Wheel}
-            alt="second img"
-            className={style.imageOverview}
-          />
-          <img
-            src={Woven_Bag}
-            alt="third img"
-            className={style.imageOverview}
-          />
-        </Container>
-        <Carousel.Caption className={style.caption}>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
+        <Carousel.Item className={style.item}>
+          <Container className={style.imgContainer}>
+            <img
+              src={White_Vases}
+              alt="fourth img"
+              className={style.imageOverview}
+            />
+            <img
+              src={Female_Jeweler}
+              alt="fifth img"
+              className={style.imageOverview}
+            />
+            <img
+              src={work_Hand}
+              alt="sixth img"
+              className={style.imageOverview}
+            />
+          </Container>
+          <Carousel.Caption className={style.caption}>
+            <Container>
+              <h3>Second slide label</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            </Container>
+          </Carousel.Caption>
+        </Carousel.Item>
+
+        <Carousel.Item className={style.item}>
+          <Container className={style.imgContainer}>
+            <img
+              src={Knitting}
+              alt="seventh img"
+              className={style.imageOverview}
+            />
+            <img
+              src={Pottery_Wheel}
+              alt="eighth img"
+              className={style.imageOverview}
+            />
+            <img
+              src={Woven_Bag}
+              alt="ninth img"
+              className={style.imageOverview}
+            />
+          </Container>
+          <Carousel.Caption className={style.caption}>
+            <h3>Third slide label</h3>
+            <p>
+              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+    </>
   );
 };
 
