@@ -105,7 +105,7 @@ const LogInPage = () => {
                     </Form>
                     <div className="mt-3">
                       <p className="mb-0  text-center">
-                        Don't have an account?
+                        Don't have an account?{" "}
                         <Link to="/SignUp" className="text-primary fw-bold">
                           Sign Up
                         </Link>

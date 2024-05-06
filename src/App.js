@@ -10,6 +10,7 @@ import CategoriesPage from "./Pages/CategoriesPage/CategoriesPage";
 import DashbordPage from "./Pages/DashbordPage/DashbordPage";
 import OtherPage from "./Pages/OtherPage";
 import AddProject from "./component/AddProject/AddProject";
+import Footer from "./component/Footer/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/Other" element={<OtherPage />} />
           <Route path="/add-project" element={<AddProject />} />
         </Routes>
+        <Footer />
       </div>
     </Fragment>
   );

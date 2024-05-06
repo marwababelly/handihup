@@ -1,0 +1,86 @@
+.h3pFooter {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.accounts {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+ul > li {
+  margin-bottom: 5rem;
+  list-style: none;
+  display: inline;
+}
+
+.Semicircle {
+  transform: translate(-50%, -50%);
+  height: 225px;
+  width: 450px;
+  border-radius: 150px 150px 0 0;
+  background-color: #88857c;
+  margin-top: 5rem;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 215px;
+  z-index: 0;
+  top: 290px;
+}
+
+.endDiv {
+  position: relative;
+  z-index: 100;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  background: inherit;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 17px;
+  color: #88857c91;
+}
+
+/* .endFooter {
+  background-color: aquamarine;
+  height: 300px;
+  display: flow;
+} */
+
+.endP {
+  z-index: 100;
+  display: flex;
+  background: inherit;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 17px;
+  color: #88857c91;
+}
+
+Form {
+  z-index: 100;
+  font-family: monospace;
+  color: #88857c91;
+  font-size: 17px;
+  background-color: inherit;
+}
+
+.customInput {
+  z-index: 100;
+  border: none;
+  border-bottom: 2px solid #4d4c47;
+  border-radius: unset;
+  width: 200px;
+  margin: auto;
+  background-color: inherit;
+}

@@ -20,6 +20,7 @@ const Overview = () => {
   };
   return (
     <>
+      <h2 className={style.h2Overview}>Overview</h2>
       <Carousel
         variant="dark"
         interval={1000}

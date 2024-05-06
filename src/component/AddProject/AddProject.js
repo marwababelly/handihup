@@ -82,7 +82,7 @@ const AddProject = () => {
                   </h2>
                   <div>
                     <Form onSubmit={submitFormHandler} className={style.form}>
-                      <Form.Group className="mb-3" controlId="Name">
+                      <Form.Group className="mb-3" controlId="username">
                         <Form.Label className="text-center">
                           UserName
                         </Form.Label>
@@ -125,7 +125,7 @@ const AddProject = () => {
                         />
                       </Form.Group>
 
-                      <Form.Group className="mb-3" controlId="Name">
+                      <Form.Group className="mb-3" controlId="projectName">
                         <Form.Label className="text-center">
                           Project Name
                         </Form.Label>
@@ -139,7 +139,7 @@ const AddProject = () => {
                         />
                       </Form.Group>
 
-                      <Form.Group className="mb-3" controlId="Name">
+                      <Form.Group className="mb-3" controlId="categoryName">
                         <Form.Label className="text-center">
                           Project Category
                         </Form.Label>
