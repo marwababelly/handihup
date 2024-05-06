@@ -83,7 +83,7 @@ const AddProject = () => {
                   <div>
                     <Form onSubmit={submitFormHandler} className={style.form}>
                       <Form.Group className="mb-3" controlId="username">
-                        <Form.Label className="text-center">
+                        <Form.Label className={style.label}>
                           UserName
                         </Form.Label>
                         <Form.Control
@@ -97,7 +97,7 @@ const AddProject = () => {
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label className="text-center">
+                        <Form.Label className={style.label}>
                           Email address
                         </Form.Label>
                         <Form.Control
@@ -114,7 +114,9 @@ const AddProject = () => {
                         className="mb-3"
                         controlId="formBasicPassword"
                       >
-                        <Form.Label>Password</Form.Label>
+                        <Form.Label className={style.label}>
+                          Password
+                        </Form.Label>
                         <Form.Control
                           className={style.customInput}
                           type="password"
@@ -126,7 +128,7 @@ const AddProject = () => {
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="projectName">
-                        <Form.Label className="text-center">
+                        <Form.Label className={style.label}>
                           Project Name
                         </Form.Label>
                         <Form.Control
@@ -140,7 +142,7 @@ const AddProject = () => {
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="categoryName">
-                        <Form.Label className="text-center">
+                        <Form.Label className={style.label}>
                           Project Category
                         </Form.Label>
                         <Form.Control
@@ -157,7 +159,7 @@ const AddProject = () => {
                         className="mb-3"
                         controlId="descriptionTextarea"
                       >
-                        <Form.Label className="text-center">
+                        <Form.Label className={style.label}>
                           Project Description
                         </Form.Label>
                         <Form.Control
@@ -172,7 +174,9 @@ const AddProject = () => {
                       </Form.Group>
 
                       <Form.Group controlId="formImageUpload">
-                        <Form.Label>Upload Project Image</Form.Label>
+                        <Form.Label className={style.label}>
+                          Upload Project Image
+                        </Form.Label>
                         <Form.Control
                           type="file"
                           accept="image/*"
@@ -185,7 +189,9 @@ const AddProject = () => {
                       </Form.Group>
 
                       <Form.Group controlId="InstagramProfileUrl">
-                        <Form.Label>Instagram Profile URL</Form.Label>
+                        <Form.Label className={style.label}>
+                          Instagram Profile URL
+                        </Form.Label>
                         <Form.Control
                           type="url"
                           className={style.customInput}
@@ -197,7 +203,9 @@ const AddProject = () => {
                       </Form.Group>
 
                       <Form.Group controlId="FacebookProfileUrl">
-                        <Form.Label>Facebook Profile URL</Form.Label>
+                        <Form.Label className={style.label}>
+                          Facebook Profile URL
+                        </Form.Label>
                         <Form.Control
                           type="url"
                           className={style.customInput}

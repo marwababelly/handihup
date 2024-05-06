@@ -4,41 +4,50 @@
   display: inline-flex;
   flex-wrap: wrap;
   flex-direction: row;
-  background-color: #4d4c47;
+  background-color: #88857c;
   max-width: none;
   justify-content: space-between;
+  width: -webkit-fill-available;
 }
 
 .formRow {
   display: flex;
-  /* border: 1px solid black; */
-  width: 580px;
-  margin: 1rem;
+  width: fit-content;
+  margin-left: 10rem;
 }
 
 .formCol {
-  /* background-color: rgb(90, 95, 144); */
   width: 100%;
 }
 
 Form {
   font-family: "Courier New", Courier, monospace;
-  color: #88857c;
   font-size: 18px;
-  background-color: #fef8e5;
+  background-color: inherit;
   padding-top: 0.5rem;
   font-weight: 550;
 }
 
+.label {
+  color: #121212;
+  font-family: "Cormorant Garamond";
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
 .card {
-  background-color: #fef8e5;
+  background-color: inherit;
+  border: none;
+}
+h2 {
+  color: red;
 }
 
 .customInput {
   border: none;
-  background-color: #fef8e5;
+  background-color: inherit;
   font-family: unset;
-  /* color: red; */
   width: 290px;
   border-bottom: 1.5px black solid;
   border-radius: unset;
@@ -46,14 +55,11 @@ Form {
 
 .imgRow {
   display: flex;
-  /* border: 1px solid black; */
   width: 50%;
-  margin: 1rem;
 }
 
 .imageCol {
   width: 100%;
-  /* background-color: rgb(154, 93, 211); */
 }
 
 .img {
@@ -74,7 +80,7 @@ Form {
   border: 2px solid #4d4c47;
   width: fit-content;
   margin: 1rem;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Cormorant Garamond";
   font-size: 18px;
   font-weight: 600;
 }
