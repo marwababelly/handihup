@@ -11,9 +11,16 @@
   --main-font: "Cormorant Garamond", serif;
 }
 
-body {
+body,
+html {
   background-color: var(--background-color);
+  /* max-width: 100%; */
+  width: 100vw;
 }
+/* html,
+body {
+  overflow-x: hidden;
+} */
 
 .App {
   background-color: var(--background-color);

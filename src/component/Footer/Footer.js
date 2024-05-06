@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import style from "./Footer.module.css";
 import { Link } from "react-router-dom";
-import { Form } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import youTube from "../../assets/youTube.png";
 import instagram from "../../assets/instagram.png";
 import facebook from "../../assets/facebook.png";
@@ -14,6 +14,7 @@ const Footer = () => {
   const emailHandler = (event) => {
     setEmail(event.target.value);
   };
+
   return (
     <>
       <div className={style.h3pFooter}>
@@ -73,6 +74,15 @@ const Footer = () => {
                 required
               />
             </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="formBasicCheckbox"
+            ></Form.Group>
+            <div className={style.divBtn}>
+              <Button className={style.btn} type="submit">
+                Submit
+              </Button>
+            </div>
           </Form>
         </div>
       </div>

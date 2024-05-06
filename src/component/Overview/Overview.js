@@ -19,7 +19,7 @@ const Overview = () => {
     setIndex(selectedIndex);
   };
   return (
-    <>
+    <div className={style.container}>
       <h2 className={style.h2Overview}>Overview</h2>
       <Carousel
         variant="dark"
@@ -98,7 +98,7 @@ const Overview = () => {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-    </>
+    </div>
   );
 };
 

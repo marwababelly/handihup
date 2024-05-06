@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
+import { Col, Button, Row, Card, Form } from "react-bootstrap";
 import style from "./AddProject.module.css";
 import AddProjectImage from "../../assets/AddProjectImage.jpg";
 
@@ -71,7 +71,7 @@ const AddProject = () => {
 
   return (
     <div>
-      <Container className={style.Container} expand="md">
+      <div className={style.Container} expand="md">
         <Row className={style.formRow}>
           <Col md={8} lg={6} xs={12} className={style.formCol}>
             <Card className={style.card}>
@@ -234,7 +234,7 @@ const AddProject = () => {
             />
           </Col>
         </Row>
-      </Container>
+      </div>
     </div>
   );
 };
