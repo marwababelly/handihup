@@ -9,6 +9,7 @@ import ProjectsPage from "./Pages/Projects/ProjectsPage";
 import CategoriesPage from "./Pages/CategoriesPage/CategoriesPage";
 import DashbordPage from "./Pages/DashbordPage/DashbordPage";
 import OtherPage from "./Pages/OtherPage";
+import AddProject from "./component/AddProject/AddProject";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/Categories" element={<CategoriesPage />} />
           <Route path="/Dashbord" element={<DashbordPage />} />
           <Route path="/Other" element={<OtherPage />} />
+          <Route path="/add-project" element={<AddProject />} />
         </Routes>
       </div>
     </Fragment>
