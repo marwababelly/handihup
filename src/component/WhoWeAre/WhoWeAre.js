@@ -10,8 +10,8 @@ const WhoWeAre = () => {
       <Row className={style.Row}>
         <Col>
           <div className={style.imageContainer}>
-            <img src={handMade} className={style.backgroundImage} />
-            <img src={whitevases} className={style.overlayImage} />
+            <img src={handMade} className={style.backgroundImage} alt="" />
+            <img src={whitevases} className={style.overlayImage} alt="" />
           </div>
         </Col>
         <Col>

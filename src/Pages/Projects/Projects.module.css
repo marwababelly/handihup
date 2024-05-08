@@ -1,15 +1,10 @@
 .hr {
-  /* border-color: #000000;
-  border-width: 2px;
-  width: 500px;
-  margin-bottom: 3rem; */
   display: block;
   height: 2px;
   width: 1169px;
   position: absolute;
-  top: 101%;
-  left: 50px;
   background: #000000;
+  translate: 0 353px;
 }
 
 .title {
