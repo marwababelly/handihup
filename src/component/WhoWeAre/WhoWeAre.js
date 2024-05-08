@@ -1,7 +1,7 @@
 import React from "react";
 import handMade from "../../assets/Handmade.jpg";
 import whitevases from "../../assets/white_Vases.jpg";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import style from "./WhoWeAre.module.css";
 import { Link } from "react-router-dom";
 const WhoWeAre = () => {

@@ -1,0 +1,87 @@
+.hr {
+  /* border-color: #000000;
+  border-width: 2px;
+  width: 500px;
+  margin-bottom: 3rem; */
+  display: block;
+  height: 2px;
+  width: 1169px;
+  position: absolute;
+  top: 101%;
+  left: 50px;
+  background: #000000;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: 55px;
+  color: #4d4c47;
+  width: 100vw;
+}
+.container {
+  margin: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.projects {
+  margin: 3rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.project {
+  display: flex;
+  margin-top: 3rem;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+/* .project::after {
+  content: " ";
+  display: block;
+  height: 2px;
+  width: 130px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: #000000;
+} */
+
+.content {
+  margin-left: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.content h3,
+h2 {
+  color: #4d4c47;
+  font-size: 35px;
+}
+
+.content p {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  width: 30rem;
+}
+
+.img {
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .project {
+    flex-wrap: wrap;
+  }
+}
