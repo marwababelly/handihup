@@ -4,7 +4,7 @@ import chocolate from "../../assets/chocolate2.jpg";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
-
+import rings from '../../assets/Rings.jpg'
 const ProjectDetails = () => {
   const projectsDetails = [
     {
@@ -46,6 +46,18 @@ const ProjectDetails = () => {
     {
       dProjectName: "Chocolate",
       dProjectImg: chocolate,
+      dProjectDescription:
+        "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
+      dProjectContents: {
+        a1: "1",
+        a2: "2",
+      },
+      dProjectReviews:
+        "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start",
+    },
+    {
+      dProjectName: "Accessories",
+      dProjectImg: rings,
       dProjectDescription:
         "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
       dProjectContents: {

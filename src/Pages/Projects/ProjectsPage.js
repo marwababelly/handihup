@@ -4,6 +4,7 @@ import chocolate from "../../assets/chocolate2.jpg";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
+import rings from '../../assets/beadRings.jpg'
 import { NavLink } from "react-bootstrap";
 
 const ProjectsPage = () => {
@@ -39,6 +40,14 @@ const ProjectsPage = () => {
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: chocolate,
       link: "chocolate",
+    },
+    {
+      id: 5,
+      projectName: "Accessories",
+      projectDescription:
+        'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
+      img: rings,
+      link: "accessories",
     },
   ];
 
