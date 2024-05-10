@@ -1,3 +1,61 @@
+.container {
+  /* backgroundImage: `url(${backgroundImage})`, */
+  background-color: #88857c;
+  background-size: "cover";
+  height: "200px";
+  display: "flex";
+  justify-content: "center";
+  align-items: "center";
+}
+
+.content {
+  background-color: "#fef8e5";
+  padding: "20px";
+  border-radius: "10px";
+  box-shadow: "0 4px 8px rgba(0,0,0,0.1)";
+}
+
+.input {
+  padding: "10px";
+  font-size: "16px";
+  border-radius: "5px";
+  width: "100%";
+  margin-bottom: "10px";
+}
+
+.button {
+  padding: "10px 20px";
+  font-size: "16px";
+  border-radius: "5px";
+  background-color: "#88857c";
+  color: "white";
+  cursor: "pointer";
+}
+
+.img1 {
+  width: "200px";
+  height: "200px";
+  margin: "200px";
+}
+
+.img2 {
+  width: "200px";
+  height: "200px";
+  margin: "200px";
+}
+
+.img3 {
+  width: "200px";
+  height: "200px";
+  margin: "200px";
+}
+
+.img4 {
+  width: "200px";
+  height: "200px";
+  margin: "200px";
+}
+
 .categoryItem {
   display: flex;
   flex-direction: row;
@@ -5,40 +63,37 @@
   width: 80vw;
   height: 60vh;
   max-width: 80vw;
+}
 
-  }
-  
-  .categoryImage {
-    margin-left: 100px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    width: 20%;
-    height: 20%;
-    object-fit: cover;
-  }
-  
-  .categoryText {
-    width: 60%;
-    height: 60%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content:space-between;
-    color: #88857c;
-    text-align: center; 
-    margin-top: 220px;
-    margin-left: -90px;
-  }
-  .categoryText1 {
-    height: 30vh;
+.categoryImage {
+  margin-left: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 20%;
+  height: 20%;
+  object-fit: cover;
+}
+
+.categoryText {
+  width: 60%;
+  height: 60%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: #88857c;
+  text-align: center;
+  margin-top: 220px;
+  margin-left: -90px;
+}
+.categoryText1 {
+  height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-    color: #88857c;
-    text-align: center; 
-    margin-top: 250px;
-  }
-  
-  
+  color: #88857c;
+  text-align: center;
+  margin-top: 250px;
+}
