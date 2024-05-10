@@ -43,7 +43,6 @@ const ProjectsPage = () => {
       <div className={style.projects}>
         {projects.map((project) => (
           <div className={style.project}>
-            <hr className={style.hr} />
             <img
               className={style.img}
               src={project.img}
@@ -57,6 +56,7 @@ const ProjectsPage = () => {
               <h2>{project.projectName}</h2>
               <p>{project.projectDescription}</p>
             </div>
+            <hr className={style.hr} />
           </div>
         ))}
       </div>
