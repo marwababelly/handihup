@@ -1,59 +1,57 @@
 .container {
   /* backgroundImage: `url(${backgroundImage})`, */
   background-color: #88857c;
-  background-size: "cover";
-  height: "200px";
-  display: "flex";
-  justify-content: "center";
-  align-items: "center";
+  background-size: cover;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .content {
-  background-color: "#fef8e5";
-  padding: "20px";
-  border-radius: "10px";
-  box-shadow: "0 4px 8px rgba(0,0,0,0.1)";
+  background-color: #fef8e5;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .input {
-  padding: "10px";
-  font-size: "16px";
-  border-radius: "5px";
-  width: "100%";
-  margin-bottom: "10px";
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
 }
-
-.button {
-  padding: "10px 20px";
-  font-size: "16px";
-  border-radius: "5px";
-  background-color: "#88857c";
-  color: "white";
-  cursor: "pointer";
+.button{
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #88857c;
+  color: white;
+  cursor: pointer;
+}
+.btn{
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: #88857c;
+  color: white;
+  cursor: pointer;
+  font-family: "Cormorant Garamond";
+  margin-left: 230px;
+  margin-top: 50px;
+}
+.btn:hover {
+  background-color: #fef8e5;
+  color:#88857c;
+  border: 2px solid #fef8e5;
+  border-color: #4d4c47;
 }
 
 .img1 {
-  width: "200px";
-  height: "200px";
-  margin: "200px";
-}
-
-.img2 {
-  width: "200px";
-  height: "200px";
-  margin: "200px";
-}
-
-.img3 {
-  width: "200px";
-  height: "200px";
-  margin: "200px";
-}
-
-.img4 {
-  width: "200px";
-  height: "200px";
-  margin: "200px";
+  width: 200px;
+  height: 200px;
+  margin: 200px;
 }
 
 .categoryItem {
@@ -83,7 +81,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  color: #88857c;
   text-align: center;
   margin-top: 220px;
   margin-left: -90px;
@@ -93,7 +90,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #88857c;
   text-align: center;
   margin-top: 250px;
+}
+
+.categoryText1 h2 , h5 {
+  color: #88857c;
 }
