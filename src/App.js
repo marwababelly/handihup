@@ -11,6 +11,7 @@ import DashbordPage from "./Pages/DashbordPage/DashbordPage";
 import OtherPage from "./Pages/OtherPage";
 import AddProject from "./component/AddProject/AddProject";
 import Footer from "./component/Footer/Footer";
+import ProjectDetails from "./Pages/Projects/ProjectDetails";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
           <Route path="/Dashbord" element={<DashbordPage />} />
           <Route path="/Other" element={<OtherPage />} />
           <Route path="/add-project" element={<AddProject />} />
+          <Route path="/pottery" element={<ProjectDetails />} />
+          <Route path="/skinCare" element={<ProjectDetails />} />
+          <Route path="/fontArt" element={<ProjectDetails />} />
+          <Route path="/chocolate" element={<ProjectDetails />} />
         </Routes>
         <Footer />
       </div>

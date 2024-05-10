@@ -4,36 +4,41 @@ import chocolate from "../../assets/chocolate2.jpg";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
+import { NavLink } from "react-bootstrap";
 
 const ProjectsPage = () => {
   const projects = [
     {
       id: 1,
-      projectName: "pottery",
+      projectName: "Pottery",
       projectDescription:
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: pottery,
+      link: "pottery",
     },
     {
       id: 2,
-      projectName: "skinCare",
+      projectName: "SkinCare",
       projectDescription:
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: skinCare,
+      link: "skinCare",
     },
     {
       id: 3,
-      projectName: "fontArt",
+      projectName: "FontArt",
       projectDescription:
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: fontArt,
+      link: "fontArt",
     },
     {
       id: 4,
-      projectName: "chocolate",
+      projectName: "Chocolate",
       projectDescription:
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: chocolate,
+      link: "chocolate",
     },
   ];
 
@@ -42,22 +47,24 @@ const ProjectsPage = () => {
       <h2 className={style.title}>Projects</h2>
       <div className={style.projects}>
         {projects.map((project) => (
-          <div className={style.project}>
-            <img
-              className={style.img}
-              src={project.img}
-              alt={project.projectName}
-            />
-            <div className={style.content}>
-              <h3>
-                {"0"}
-                {project.id}
-              </h3>
-              <h2>{project.projectName}</h2>
-              <p>{project.projectDescription}</p>
+          <NavLink href={`${project.link}`}>
+            <div className={style.project}>
+              <img
+                className={style.img}
+                src={project.img}
+                alt={project.projectName}
+              />
+              <div className={style.content}>
+                <h3>
+                  {"0"}
+                  {project.id}
+                </h3>
+                <h2>{project.projectName}</h2>
+                <p>{project.projectDescription}</p>
+              </div>
+              <hr className={style.hr} />
             </div>
-            <hr className={style.hr} />
-          </div>
+          </NavLink>
         ))}
       </div>
     </div>
