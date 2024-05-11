@@ -39,17 +39,6 @@
   margin-bottom: 1rem;
 }
 
-/* .project::after {
-  content: " ";
-  display: block;
-  height: 2px;
-  width: 130px;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  background: #000000;
-} */
-
 .content {
   margin-left: 3rem;
   display: flex;

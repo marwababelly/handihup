@@ -4,7 +4,7 @@ import chocolate from "../../assets/chocolate2.jpg";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
-import rings from '../../assets/beadRings.jpg'
+import rings from "../../assets/beadRings.jpg";
 import { NavLink } from "react-bootstrap";
 
 const ProjectsPage = () => {
@@ -56,7 +56,7 @@ const ProjectsPage = () => {
       <h2 className={style.title}>Projects</h2>
       <div className={style.projects}>
         {projects.map((project) => (
-          <NavLink href={`${project.link}`}>
+          <NavLink href={`/project/${project.link}`}>
             <div className={style.project}>
               <img
                 className={style.img}

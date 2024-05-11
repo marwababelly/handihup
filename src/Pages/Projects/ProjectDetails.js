@@ -4,7 +4,7 @@ import chocolate from "../../assets/chocolate2.jpg";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
-import rings from '../../assets/Rings.jpg'
+import rings from "../../assets/Rings.jpg";
 const ProjectDetails = () => {
   const projectsDetails = [
     {
@@ -73,7 +73,7 @@ const ProjectDetails = () => {
     <div className={style.content}>
       {projectsDetails.map((projectDetails) => (
         <div className={style.container}>
-          <img src={projectDetails.dProjectImg} />
+          <img src={projectDetails.dProjectImg} alt="alt" />
           <h2>{projectDetails.dProjectName}</h2>
           <p>{projectDetails.dProjectDescription}</p>
           <ul>
