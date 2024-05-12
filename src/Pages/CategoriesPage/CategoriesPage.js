@@ -5,7 +5,7 @@ import art from '../../assets/fontArt.jpeg';
 import skinCare from "../../assets/skincareness.jpg";
 import choco from "../../assets/choco.jpg";
 import pottery from '../../assets/PotteryWheel.jpg'
-import accessories from "../../assets/Accessories.jpg";
+import accessories from "../../assets/beadRings.jpg";
 import backgroundImage from "../../assets/background.jpg";
 import { Button, Form, Col, Row, Image, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -20,7 +20,7 @@ const CategoriesPage = () => {
     {
       id: "2",
       title: "Skin care products",
-      description: "Looking for clear skin , let's dive in !",
+      description: "Looking for a clear skin , let's dive in !",
       imageUrl: skinCare,
     },
     {
@@ -105,8 +105,8 @@ const CategoriesPage = () => {
               <button className={style.btn}><Link to="/Projects">Read More</Link></button>
             </div>
             <div className={style.element}><div className={style.text}>
-              <h5>Looking for clear skin , let's dive in !</h5>
-              <h2>Skin Care Product</h2>
+              <h5>Looking for a clear skin , let's dive in !</h5>
+              <h2>Skin Care Products</h2>
               </div>
               <img src= {skinCare} className={style.image}></img>
               <button className={style.btn}><Link to="/Projects">Read More</Link></button>
@@ -119,7 +119,7 @@ const CategoriesPage = () => {
               <button className={style.btn}><Link to="/Projects">Read More</Link></button>
               </div>
             <div className={style.element}><div className={style.text}>
-              <h5>If you interested in pottery , <br/> this is your right place!</h5>
+              <h5>If you're interested in pottery , <br/> this is your right place!</h5>
               <h2>Pottery</h2>
               </div>
               <img src= {pottery} className={style.image}></img>

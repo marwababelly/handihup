@@ -64,21 +64,25 @@
 }
 @media (max-width: 768px) {
   .imageContainer {
-    width: 100%; /* Full width on small screens */
-    height: auto; /* Auto height to maintain aspect ratio */
-  }
-
-  .backgroundImage,
+     width: 100%;
+     height: auto;
+   }
+ 
   .overlayImage {
-    width: 100%; /* Full width */
-    height: auto; /* Auto height */
-    top: 20px;
-  }
-
-  .overlayImage {
-    top: 90px; /* Adjust position for smaller screens */
-    left: 60px; /* Adjust position for smaller screens */
-    width: 70%; /* Adjust width for smaller screens */
-    height: 80%; /* Adjust height for smaller screens */
-  }
-}
+     top: 40px;
+     left: 75px;
+     width: 60%;
+     height: 60%;
+   }
+ 
+  .backgroundImage {
+     top: -20px;
+     left: -5px;
+     clip-path: ellipse(50% 70% at 50% 70%);
+   }
+ 
+  .contactButton {
+     padding: 5px 10px;
+     font-size: 12px;
+   }
+ }
