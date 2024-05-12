@@ -1,5 +1,13 @@
 .container {
-  /* backgroundImage: `url(${backgroundImage})`, */
+  display: flex;
+  justify-content: space-between;
+  background-color :blanchedalmond;
+  font-size: 40px;
+  padding-left: 2rem;
+  flex-wrap: wrap;
+  margin: 100px;
+}
+.container1{
   background-color: #88857c;
   background-size: cover;
   height: 200px;
@@ -7,7 +15,32 @@
   justify-content: center;
   align-items: center;
 }
+.element {
+  width: 50%;
+  height: 50%;
+  margin-bottom: 20px;
+}
+.image {
+  height: 200px;
+  width: 200px; 
+  float: left;
+  margin-top: 10px;
+  border-radius: 2%;
+}
 
+.text {
+  display: inline-block;
+  vertical-align: top; 
+  margin-top: 20px;
+  margin-left: 10px;
+  font-weight: 300;
+}
+.text h2{
+  color:#88857c;
+}
+.text h5{
+  color:#88857c;
+}
 .content {
   background-color: #fef8e5;
   padding: 20px;
@@ -44,8 +77,14 @@
   color: white;
   cursor: pointer;
   font-family: "Cormorant Garamond";
-  margin-left: 230px;
+  margin-left: 20px;
   margin-top: 50px;
+}
+.btn a {
+  color: white;
+}
+.btn :hover , a {
+  color: #88857c;
 }
 .btn:hover {
   background-color: #fef8e5;
@@ -54,52 +93,3 @@
   border-color: #4d4c47;
 }
 
-.img1 {
-  width: 200px;
-  height: 200px;
-  margin: 200px;
-}
-
-.categoryItem {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 80vw;
-  height: 60vh;
-  max-width: 80vw;
-}
-
-.categoryImage {
-  margin-left: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  width: 20%;
-  height: 20%;
-  object-fit: cover;
-}
-
-.categoryText {
-  width: 60%;
-  height: 60%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  text-align: center;
-  margin-top: 220px;
-  margin-left: -90px;
-}
-.categoryText1 {
-  height: 30vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-top: 250px;
-}
-
-.categoryText1 h2 , h5 {
-  color: #88857c;
-}

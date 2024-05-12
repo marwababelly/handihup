@@ -54,9 +54,14 @@
 }
 
 .contactButton:hover {
-  background-color: #444; /* Darker color on hover */
+  background-color: #444; 
 }
-
+.contactButton :hover , a {
+  color: #fef8e5;
+}
+.contactButton a {
+  color: #3f424b;
+}
 @media (max-width: 768px) {
   .imageContainer {
     width: 100%; /* Full width on small screens */

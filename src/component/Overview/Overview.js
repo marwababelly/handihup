@@ -9,7 +9,7 @@ import White_Vases from "../../assets/white_Vases.jpg";
 import Female_Jeweler from "../../assets/Female Jeweler.jpg";
 import work_Hand from "../../assets/work_Hand.jpg";
 import Knitting from "../../assets/Knitting.jpg";
-import Pottery_Wheel from "../../assets/Pottery Wheel.jpg";
+import Pottery_Wheel from "../../assets/PotteryWheel.jpg";
 import Woven_Bag from "../../assets/Woven_Bag.jpg";
 
 const Overview = () => {

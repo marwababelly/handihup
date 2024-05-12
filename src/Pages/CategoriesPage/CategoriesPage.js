@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import style from "./Categories.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import art from "../../assets/artboxes.jpg";
+import art from '../../assets/fontArt.jpeg';
 import skinCare from "../../assets/skincareness.jpg";
 import choco from "../../assets/choco.jpg";
-import hamburger from "../../assets/hamburger.jpg";
-import phonecase from "../../assets/mobile.jpg";
-import stickers from "../../assets/stickers.jpg";
-import beauty from "../../assets/beauty.jpg";
+import pottery from '../../assets/PotteryWheel.jpg'
 import accessories from "../../assets/Accessories.jpg";
 import backgroundImage from "../../assets/background.jpg";
 import { Button, Form, Col, Row, Image, Container } from "react-bootstrap";
@@ -28,30 +25,22 @@ const CategoriesPage = () => {
     },
     {
       id: "3",
-      title: "Desserts",
-      description: "This is the right place for your sweet tooth!",
-      imageUrl: choco,
+      title: "Accessories",
+      description:'Let\'s dive into aesthetic collections of handmade accessories!',
+      imageUrl: accessories,
     },
     {
       id: "4",
-      title: "Accessories",
-      description:
-        "Let's dive into aesthetic collections of handmade accessories!",
-      imageUrl: accessories,
+      title: "Pottery",
+      description: "If you interested in pottery , this is your right place!",
+      imageUrl: pottery,
     },
   ];
 
-  const uniqueItems = [
-    ...new Set(items.map((item) => JSON.stringify(item))),
-  ].map((item) => JSON.parse(item));
 
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [showMore, setShowMore] = useState(false);
 
-  const toggleShowMore = () => {
-    setShowMore(!showMore);
-  };
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -71,10 +60,10 @@ const CategoriesPage = () => {
     <div>
       <div
         style={{ backgroundImage: `url(${backgroundImage})` }}
-        className={style.container}
+        className={style.container1}
       >
         <div className={style.content}>
-          <h2>Categories</h2>
+          <h2 style={{color: '#88857c'}}>Categories</h2>
           <form onSubmit={handleSearchSubmit}>
             <input
               type="text"
@@ -106,72 +95,38 @@ const CategoriesPage = () => {
           </div>
         </div>
       )}
-      <div>
-        {showMore
-          ? uniqueItems.map((item, index) => (
-              <div className={style.categoryItem} key={item.id || index}>
-                <div className={style.categoryImage}>
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className={style.img1}
-                  />
-                  {index < uniqueItems.length - 1 && (
-                    <img
-                      src={uniqueItems[index + 1].imageUrl}
-                      alt={uniqueItems[index + 1].title}
-                      className={style.img1}
-                    />
-                  )}
-                </div>
-                <div className={style.categoryText}>
-                  <div className={style.categoryText1}>
-                    <h2>{item.title} </h2>
-                    <h5>{item.description}</h5>
-                  </div>
-                  {index < uniqueItems.length - 1 && (
-                    <div className={style.categoryText1}>
-                      <h2>{uniqueItems[index + 1].title}</h2>
-                      <h5>{uniqueItems[index + 1].description}</h5>
-                    </div>
-                  )}
-                </div>
+          <div className={style.container}>
+            <div className={style.element}>
+              <div className={style.text}>
+              <h5>Let's dive into some interesting art projects!</h5>
+              <h2>Art</h2>
               </div>
-            ))
-          : uniqueItems.slice(0, 2).map((item, index) => (
-              <div className={style.categoryItem} key={item.id || index}>
-                <div className={style.categoryImage}>
-                  <img
-                    src={item.imageUrl}
-                    alt={item.title}
-                    className={style.img1}
-                  />
-                  {index < uniqueItems.slice(0, 2).length - 1 && (
-                    <img
-                      src={uniqueItems.slice(0, 2)[index + 1].imageUrl}
-                      alt={uniqueItems.slice(0, 2)[index + 1].title}
-                      className={style.img1}
-                    />
-                  )}
-                </div>
-                <div className={style.categoryText}>
-                  <div className={style.categoryText1}>
-                    <h2>{item.title}</h2>
-                    <h5>{item.description}</h5>
-                  </div>
-                  {index < uniqueItems.slice(0, 2).length - 1 && (
-                    <div className={style.categoryText1}>
-                      <h2>{uniqueItems.slice(0, 2)[index + 1].title} </h2>
-                      <h5>{uniqueItems.slice(0, 2)[index + 1].description}</h5>
-                    </div>
-                  )}
-                </div>
+              <img src= {art} className={style.image}></img>
+              <button className={style.btn}><Link to="/Projects">Read More</Link></button>
+            </div>
+            <div className={style.element}><div className={style.text}>
+              <h5>Looking for clear skin , let's dive in !</h5>
+              <h2>Skin Care Product</h2>
               </div>
-            ))}
-        <Button className={style.btn} onClick={toggleShowMore}>
-          {showMore ? "View Less" : "View More"}
-        </Button>
-      </div>
+              <img src= {skinCare} className={style.image}></img>
+              <button className={style.btn}><Link to="/Projects">Read More</Link></button>
+              </div>
+            <div className={style.element}><div className={style.text}>
+              <h5>Let's dive into aesthetic collections <br/> of handmade accessories!</h5>
+              <h2>Accessories</h2>
+              </div>
+              <img src= {accessories} className={style.image}></img>
+              <button className={style.btn}><Link to="/Projects">Read More</Link></button>
+              </div>
+            <div className={style.element}><div className={style.text}>
+              <h5>If you interested in pottery , <br/> this is your right place!</h5>
+              <h2>Pottery</h2>
+              </div>
+              <img src= {pottery} className={style.image}></img>
+              <button className={style.btn}><Link to="/Projects">Read More</Link></button>
+              </div>
+          </div>
+
     </div>
   );
 };
