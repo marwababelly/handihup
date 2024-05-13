@@ -7,6 +7,15 @@
   translate: 0 353px;
 }
 
+.h2Hr {
+  display: block;
+  height: 2px;
+  width: 1640px;
+  position: absolute;
+  background: #000000;
+  translate: 0 200px;
+}
+
 .title {
   display: flex;
   align-items: center;

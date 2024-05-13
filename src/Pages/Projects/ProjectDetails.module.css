@@ -1,0 +1,116 @@
+.allContent {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  /* background-color: rgb(194, 232, 232); */
+}
+
+.container {
+  /* background-color: rgb(70, 96, 96); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+}
+
+.backgroundContainer {
+  display: flex;
+  flex-direction: column;
+  width: 93%;
+  height: 40rem;
+  background-color: #88857c;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+h2 {
+  margin: 2rem 0 4rem;
+  font-size: 56px;
+  font-family: "Cormorant Garamond", serif;
+  color: #eee8d6;
+}
+
+img {
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.description {
+  font-family: "Cormorant Garamond", serif;
+  padding: 2rem;
+  color: #121212;
+  font-size: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  /* background-color: burlywood; */
+}
+
+.contentDiv {
+  /* background-color: rgb(108, 108, 176); */
+  width: 100%;
+  margin-bottom: 4rem;
+  display: block;
+}
+
+.contentDiv h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 40px;
+  color: #4d4c47;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  padding-left: 4rem;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* background-color: #4d4c47; */
+  color: #121212;
+  font-size: 30px;
+  flex-wrap: wrap;
+}
+
+.element {
+  font-family: "Cormorant Garamond", serif;
+  /* background-color: #3a2c6b; */
+  width: 50%;
+  padding-left: 5rem;
+}
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #b2a5e3; */
+  color: #121212;
+  margin-top: 5rem;
+  height: 20rem;
+  width: 80rem;
+  margin: auto;
+  margin-bottom: 2rem;
+}
+
+.carouselItem {
+  /* background-color: rgb(148, 215, 215); */
+  color: blanchedalmond;
+}
+
+.carouselItem p {
+  color: #4d4c47;
+  font-size: 27px;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  font-style: normal;
+  width: 70%;
+  margin: auto;
+}

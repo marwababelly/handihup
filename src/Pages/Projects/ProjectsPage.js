@@ -34,14 +34,6 @@ const ProjectsPage = () => {
       link: "fontArt",
     },
     {
-      id: 4,
-      projectName: "Chocolate",
-      projectDescription:
-        'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
-      img: chocolate,
-      link: "chocolate",
-    },
-    {
       id: 5,
       projectName: "Accessories",
       projectDescription:
@@ -54,9 +46,10 @@ const ProjectsPage = () => {
   return (
     <div className={style.container}>
       <h2 className={style.title}>Projects</h2>
+      <hr className={style.h2Hr} />
       <div className={style.projects}>
         {projects.map((project) => (
-          <NavLink href={`/project/${project.link}`}>
+          <NavLink href={`/${project.link}`}>
             <div className={style.project}>
               <img
                 className={style.img}
