@@ -1,6 +1,5 @@
 import React from "react";
 import style from "./Projects.module.css";
-import chocolate from "../../assets/chocolate2.jpg";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";

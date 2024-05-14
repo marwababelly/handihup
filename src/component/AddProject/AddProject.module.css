@@ -1,19 +1,18 @@
 .Container {
   position: relative;
   margin-top: 5rem;
-  display: inline-flex;
+  display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   background-color: #88857c;
-  max-width: none;
+  max-width: 100%;
   justify-content: space-between;
-  width: -webkit-fill-available;
+  width: 91%;
 }
 
 .formRow {
   display: flex;
-  width: fit-content;
-  margin-left: 10rem;
+  width: 50%;
 }
 
 .formCol {
@@ -40,9 +39,6 @@ Form {
   background-color: inherit;
   border: none;
 }
-h2 {
-  color: red;
-}
 
 .customInput {
   border: none;
@@ -63,8 +59,9 @@ h2 {
 }
 
 .img {
-  width: 755px;
+  width: 880px;
   border-radius: 3px;
+  width: fit-content;
   height: -webkit-fill-available;
 }
 
@@ -89,4 +86,40 @@ h2 {
   background-color: #4d4c47;
   color: #fef8e5;
   border: 2px solid #fef8e5;
+}
+
+@media (max-width: 1420px) {
+  .Container {
+    width: fit-content;
+  }
+  .imgRow {
+    display: flex;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .imageCol {
+    width: 100%;
+    margin: auto;
+    display: flex;
+  }
+
+  .img {
+    width: 100%;
+    border-radius: 3px;
+    height: -webkit-fill-available;
+  }
+
+  .formRow {
+    display: flex;
+    width: 100%;
+    margin: auto;
+  }
+
+  .formCol {
+    width: 100%;
+  }
 }

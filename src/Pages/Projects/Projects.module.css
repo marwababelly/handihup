@@ -10,10 +10,10 @@
 .h2Hr {
   display: block;
   height: 2px;
-  width: 1640px;
+  width: 1463px;
   position: absolute;
   background: #000000;
-  translate: 0 200px;
+  translate: 0 125px;
 }
 
 .title {
