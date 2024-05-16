@@ -1,12 +1,14 @@
-import React from "react";
+import {React , useState} from "react";
 import style from "./Projects.module.css";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
-import rings from "../../assets/beadRings.jpg";
+import rings from "../../assets/necklace.jpg";
 import { NavLink } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const ProjectsPage = () => {
+  const [selectedProductId, setSelectedProductId] = useState(null);
   const projects = [
     {
       id: 1,
@@ -33,7 +35,7 @@ const ProjectsPage = () => {
       link: "fontArt",
     },
     {
-      id: 5,
+      id: 4,
       projectName: "Accessories",
       projectDescription:
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
@@ -48,7 +50,6 @@ const ProjectsPage = () => {
       <hr className={style.h2Hr} />
       <div className={style.projects}>
         {projects.map((project) => (
-          <NavLink href={`/${project.link}`}>
             <div className={style.project}>
               <img
                 className={style.img}
@@ -63,9 +64,9 @@ const ProjectsPage = () => {
                 <h2>{project.projectName}</h2>
                 <p>{project.projectDescription}</p>
               </div>
+              <button><Link to={`/products/${project.id}`}>View Products</Link></button>
               <hr className={style.hr} />
             </div>
-          </NavLink>
         ))}
       </div>
     </div>
