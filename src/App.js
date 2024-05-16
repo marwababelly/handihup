@@ -7,7 +7,7 @@ import LogInPage from "./Pages/LogInPage/LogInPage";
 import SignUpPage from "./Pages/SIgnUpPage/SignUpPage";
 import ProjectsPage from "./Pages/Projects/ProjectsPage";
 import CategoriesPage from "./Pages/CategoriesPage/CategoriesPage";
-import DashbordPage from "./Pages/DashbordPage/DashbordPage";
+import DashboardPage from "./Pages/DashboardPage/DashboardPage";
 import OtherPage from "./Pages/OtherPage";
 import AddProject from "./component/AddProject/AddProject";
 import Footer from "./component/Footer/Footer";
@@ -25,15 +25,15 @@ function App() {
           <Route path="/SignUp" element={<SignUpPage />} />
           <Route path="/Projects" element={<ProjectsPage />} />
           <Route path="/Categories" element={<CategoriesPage />} />
-          <Route path="/Dashbord" element={<DashbordPage />} />
+          <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/Other" element={<OtherPage />} />
           <Route path="/add-project" element={<AddProject />} />
-          <Route path="/pottery" element={<ProjectDetails />} />
+          {/* <Route path="/pottery" element={<ProjectDetails />} />
           <Route path="/skinCare" element={<ProjectDetails />} />
           <Route path="/fontArt" element={<ProjectDetails />} />
-          <Route path="/chocolate" element={<ProjectDetails />} />
-          <Route path='/accessories' element={<ProjectDetails/>}/>
-          <Route path="/products/:productId" element={<Products/>} />
+          <Route path="/accessories" element={<ProjectDetails />} /> */}
+          <Route path="/Products/:productLink" element={<Products />} />
+          {/* <Route path="/Projects/:productId" element={<Products />} /> */}
         </Routes>
         <Footer />
       </div>

@@ -1,4 +1,4 @@
-import {React , useState} from "react";
+import { React, useState } from "react";
 import style from "./Projects.module.css";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
@@ -49,7 +49,7 @@ const ProjectsPage = () => {
       <hr className={style.h2Hr} />
       <div className={style.projects}>
         {projects.map((project) => (
-          <NavLink href={`${project.link}`}>
+          <NavLink href={`Products/${project.link}`}>
             <div className={style.project}>
               <img
                 className={style.img}
@@ -64,10 +64,14 @@ const ProjectsPage = () => {
                 <h2>{project.projectName}</h2>
                 <p>{project.projectDescription}</p>
               </div>
-              <button className={style.button} ><Link to={`/products/${project.id}`}>View Products</Link></button>
+              <button className={style.button}>
+                <NavLink href={`Products/${project.link}`}>
+                  View Products
+                </NavLink>
+              </button>
               <hr className={style.hr} />
             </div>
-            </NavLink>
+          </NavLink>
         ))}
       </div>
     </div>
