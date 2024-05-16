@@ -75,6 +75,28 @@ h2 {
   width: 500px;
   margin-top: 20px;
 }
+.button {
+  background-color:#88857c;
+  font-size: 12px;
+  padding: 10px 30px;
+  line-height: 1.2;
+  height: 60px; 
+  margin-top: 250px;
+  margin-left: -480px;
+  border-radius: 5%;
+}
+.button a {
+  color: white;
+}
+.button :hover , a {
+  color: #88857c;
+}
+.button:hover {
+  background-color: #fef8e5;
+  color:#88857c;
+  border: 2px solid #fef8e5;
+  border-color: #4d4c47;
+}
 
 @media (max-width: 768px) {
   .project {

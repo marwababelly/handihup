@@ -8,7 +8,6 @@ import { NavLink } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const ProjectsPage = () => {
-  const [selectedProductId, setSelectedProductId] = useState(null);
   const projects = [
     {
       id: 1,
@@ -64,7 +63,7 @@ const ProjectsPage = () => {
                 <h2>{project.projectName}</h2>
                 <p>{project.projectDescription}</p>
               </div>
-              <button><Link to={`/products/${project.id}`}>View Products</Link></button>
+              <button className={style.button} ><Link to={`/products/${project.id}`}>View Products</Link></button>
               <hr className={style.hr} />
             </div>
         ))}
