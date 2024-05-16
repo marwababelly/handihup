@@ -49,6 +49,7 @@ const ProjectsPage = () => {
       <hr className={style.h2Hr} />
       <div className={style.projects}>
         {projects.map((project) => (
+          <NavLink href={`${project.link}`}>
             <div className={style.project}>
               <img
                 className={style.img}
@@ -66,6 +67,7 @@ const ProjectsPage = () => {
               <button className={style.button} ><Link to={`/products/${project.id}`}>View Products</Link></button>
               <hr className={style.hr} />
             </div>
+            </NavLink>
         ))}
       </div>
     </div>
