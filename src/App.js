@@ -28,12 +28,11 @@ function App() {
           <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/Other" element={<OtherPage />} />
           <Route path="/add-project" element={<AddProject />} />
-          {/* <Route path="/pottery" element={<ProjectDetails />} />
-          <Route path="/skinCare" element={<ProjectDetails />} />
-          <Route path="/fontArt" element={<ProjectDetails />} />
-          <Route path="/accessories" element={<ProjectDetails />} /> */}
-          <Route path="/Products/:productLink" element={<Products />} />
-          {/* <Route path="/Projects/:productId" element={<Products />} /> */}
+          <Route path="/Projects/:projectLink/Product" element={<Products />} />
+          <Route
+            path="/Projects/:projectLink/Product/:productLink"
+            element={<ProjectDetails />}
+          />
         </Routes>
         <Footer />
       </div>

@@ -43,12 +43,15 @@ img {
   font-family: "Cormorant Garamond", serif;
   padding: 2rem;
   color: #121212;
-  font-size: 18px;
+  font-size: 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   width: 70%;
+  border: 1px #4d4c47 inset;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   /* background-color: burlywood; */
 }
 
@@ -61,7 +64,7 @@ img {
 
 .contentDiv h3 {
   font-family: "Cormorant Garamond", serif;
-  font-size: 40px;
+  font-size: 45px;
   color: #4d4c47;
   display: flex;
   align-items: flex-start;
@@ -74,10 +77,22 @@ img {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  /* background-color: #4d4c47; */
+  background-color: #eee8d6;
   color: #121212;
   font-size: 30px;
   flex-wrap: wrap;
+}
+
+.numberP {
+  color: #4d4c47;
+}
+
+.detailP {
+  color: #121212;
+}
+
+.hrContents {
+  width: 90%;
 }
 
 .element {

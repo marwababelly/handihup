@@ -6,6 +6,7 @@ import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
 import rings from "../../assets/accessoriesRing.jpg";
+import { useParams } from "react-router";
 const ProjectDetails = () => {
   const projectsDetails = [
     {
@@ -15,8 +16,11 @@ const ProjectDetails = () => {
       dProjectDescription:
         "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
       dProjectContents: ["pottery", "pen", "ink", "clay"],
-      dProjectReviews:
+      dProjectReviews: [
         "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+        "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+      ],
+      link: "Pottery",
     },
     {
       id: 2,
@@ -25,8 +29,11 @@ const ProjectDetails = () => {
       dProjectDescription:
         "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
       dProjectContents: ["pottery", "pen", "ink", "clay"],
-      dProjectReviews:
+      dProjectReviews: [
         "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+        "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+      ],
+      link: "SkinCare",
     },
     {
       id: 3,
@@ -35,8 +42,11 @@ const ProjectDetails = () => {
       dProjectDescription:
         "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
       dProjectContents: ["pottery", "pen", "ink", "clay"],
-      dProjectReviews:
+      dProjectReviews: [
         "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+        "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+      ],
+      link: "FontArt",
     },
     {
       id: 4,
@@ -45,8 +55,11 @@ const ProjectDetails = () => {
       dProjectDescription:
         "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
       dProjectContents: ["pottery", "pen", "ink", "clay"],
-      dProjectReviews:
+      dProjectReviews: [
         "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+        "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+      ],
+      link: "Accessories",
     },
   ];
 
@@ -55,46 +68,53 @@ const ProjectDetails = () => {
     setIndex(selectedIndex);
   };
 
+  const { projectLink, productLink } = useParams();
+  const productsDetailPage =
+    projectsDetails.find((p) => p.link === String(projectLink)) &&
+    projectsDetails.find((p) => p.link === String(productLink));
+
+  if (!productsDetailPage) return <div>Product Detail not found</div>;
+
   return (
     <div className={style.allContent}>
-      {projectsDetails.map((projectDetails, index) => (
-        <div className={style.container} key={index}>
-          <div className={style.backgroundContainer}>
-            <h2>{projectDetails.dProjectName}</h2>
-            <img src={projectDetails.dProjectImg} alt="alt" />
-          </div>
-          <p className={style.description}>
-            {projectDetails.dProjectDescription}
-          </p>
-          <div className={style.contentDiv}>
-            <h3>project contents:</h3>
-            <div className={style.content}>
-              {projectDetails.dProjectContents.map((detail, detailIndex) => (
-                <div key={detailIndex} className={style.element}>
-                  <p>
-                    {"0"}
-                    {detailIndex}
-                    {":"}
-                  </p>
-                  <p>{detail}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <Carousel
-            className={style.carousel}
-            variant="dark"
-            interval={2500}
-            onSelect={handleSelect}
-          >
-            {projectsDetails.map((review) => (
-              <Carousel.Item className={style.carouselItem}>
-                <p>{review.dProjectReviews}</p>
-              </Carousel.Item>
-            ))}
-          </Carousel>
+      <div className={style.container}>
+        <div className={style.backgroundContainer}>
+          <h2>{productsDetailPage.dProjectName}</h2>
+          <img src={productsDetailPage.dProjectImg} alt="product Img" />
         </div>
-      ))}
+        <p className={style.description}>
+          {productsDetailPage.dProjectDescription}
+        </p>
+        <div className={style.contentDiv}>
+          <h3>project contents:</h3>
+          <div className={style.content}>
+            {productsDetailPage.dProjectContents.map((detail, detailIndex) => (
+              <div className={style.element}>
+                <p className={style.numberP}>
+                  {"0"}
+                  {detailIndex}
+                  {":"}
+                </p>
+                <p className={style.detailP}>{detail}</p>
+                <hr className={style.hrContents} />
+              </div>
+            ))}
+          </div>
+        </div>
+        <Carousel
+          className={style.carousel}
+          activeIndex={index}
+          variant="dark"
+          interval={2500}
+          onSelect={handleSelect}
+        >
+          {productsDetailPage.dProjectReviews.map((review) => (
+            <Carousel.Item className={style.carouselItem}>
+              <p>{review}</p>
+            </Carousel.Item>
+          ))}
+        </Carousel>
+      </div>
     </div>
   );
 };
