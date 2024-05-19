@@ -7,7 +7,7 @@ import LogInPage from "./Pages/LogInPage/LogInPage";
 import SignUpPage from "./Pages/SIgnUpPage/SignUpPage";
 import ProjectsPage from "./Pages/Projects/ProjectsPage";
 import CategoriesPage from "./Pages/CategoriesPage/CategoriesPage";
-import DashboardPage from "./Pages/DashbordPage/DashbordPage";
+import DashboardPage from "./Pages/DashboardPage/DashboardPage";
 import OtherPage from "./Pages/OtherPage";
 import AddProject from "./component/AddProject/AddProject";
 import Footer from "./component/Footer/Footer";
