@@ -7,9 +7,11 @@ import choco from "../../assets/choco.jpg";
 import pottery from '../../assets/PotteryWheel.jpg'
 import accessories from "../../assets/beadRings.jpg";
 import backgroundImage from "../../assets/background.jpg";
-import { Button, Form, Col, Row, Image, Container } from "react-bootstrap";
+import { Button, Form, Card,Col, Row, Image, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const CategoriesPage = () => {
+  
   const items = [
     {
       id: "1",
@@ -78,23 +80,28 @@ const CategoriesPage = () => {
         </div>
       </div>
       {filteredItems.length > 0 && (
-        <div role="tabpanel">
-          <div className={style.listGroup} role="tablist">
-            {filteredItems.map((item) => (
-              <a
-                key={item.id}
-                className={style.listGroupItem}
-                data-bs-toggle="list"
-                href={`#${item.id}`}
-                role="tab"
-              >
-                <h1>{item.title}</h1>
-                <h3>{item.description}</h3>
-              </a>
-            ))}
-          </div>
+  <Card className={style.card}>
+    <div className="card-body">
+      <div role="tabpanel">
+        <div className={style.listGroup} role="tablist">
+          {filteredItems.map((item) => (
+            <a
+              key={item.id}
+              className={`${style.listGroupItem} ${style.cardLink}`}
+              data-bs-toggle="list"
+              href={`#${item.id}`}
+              role="tab"
+            >
+              <h1>{item.title}</h1>
+              <h3>{item.description}</h3>
+            </a>
+          ))}
         </div>
-      )}
+      </div>
+    </div>
+  </Card>
+)}
+
           <div className={style.container}>
             <div className={style.element}>
               <div className={style.text}>

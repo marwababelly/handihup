@@ -24,11 +24,11 @@
   .card{
     background-color: bisque;
     width: 18rem;
-    margin-left: 110px;
+    margin-left: 500px;
   }
   .img{
-    width: 275px;
+    width: 260px;
     height: 250px;
-    margin-left: 5px;
-    margin-top: 10px;
+    margin-left: -3px;
+    margin-top: -10px;
   }

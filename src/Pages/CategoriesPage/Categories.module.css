@@ -10,10 +10,31 @@
 .container1{
   background-color: #88857c;
   background-size: cover;
-  height: 200px;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.listGroupItem {
+  /* Existing styles */
+  display: block; /* Ensure items take up full width */
+  text-decoration: none; /* Remove underline if present */
+  color: inherit; /* Ensure text color is inherited */
+  padding: 10px; /* Add some padding for better appearance */
+  margin-bottom: 5px; /* Space below each item */
+  border-bottom: 1px solid black; /* Black line between items */
+}
+.card{
+  width: 800px;
+  margin-left: 300px;
+  margin-top: 10px;
+  border-radius: 2%;
+  border-color: black;
+  background-color: #fef8e5;
+}
+/* Optional: Style the last item differently if needed */
+.listGroupItem:last-child {
+  border-bottom: none; /* Removes the bottom border from the last item */
 }
 .element {
   width: 50%;
@@ -36,10 +57,10 @@
   font-weight: 300;
 }
 .text h2{
-  color:#88857c;
+  color:rgb(32, 32, 32);
 }
 .text h5{
-  color:#88857c;
+  color: rgb(32, 32, 32);
 }
 .content {
   background-color: #fef8e5;
@@ -56,6 +77,9 @@
   margin-bottom: 10px;
 }
 .button{
+  margin-top: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
