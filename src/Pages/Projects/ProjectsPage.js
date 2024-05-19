@@ -1,11 +1,10 @@
-import { React, useState } from "react";
+import { React } from "react";
 import style from "./Projects.module.css";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
 import rings from "../../assets/necklace.jpg";
 import { NavLink } from "react-bootstrap";
-import { Link } from "react-router-dom";
 
 const ProjectsPage = () => {
   const projects = [
@@ -15,7 +14,7 @@ const ProjectsPage = () => {
       projectDescription:
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: pottery,
-      link: "pottery",
+      link: "Pottery",
     },
     {
       id: 2,
@@ -23,7 +22,7 @@ const ProjectsPage = () => {
       projectDescription:
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: skinCare,
-      link: "skinCare",
+      link: "SkinCare",
     },
     {
       id: 3,
@@ -31,7 +30,7 @@ const ProjectsPage = () => {
       projectDescription:
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: fontArt,
-      link: "fontArt",
+      link: "FontArt",
     },
     {
       id: 4,
@@ -39,7 +38,7 @@ const ProjectsPage = () => {
       projectDescription:
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: rings,
-      link: "accessories",
+      link: "Accessories",
     },
   ];
 
@@ -49,7 +48,7 @@ const ProjectsPage = () => {
       <hr className={style.h2Hr} />
       <div className={style.projects}>
         {projects.map((project) => (
-          <NavLink href={`Products/${project.link}`}>
+          <NavLink href={`/Projects/${project.link}/Product`}>
             <div className={style.project}>
               <img
                 className={style.img}
@@ -65,7 +64,7 @@ const ProjectsPage = () => {
                 <p>{project.projectDescription}</p>
               </div>
               <button className={style.button}>
-                <NavLink href={`Products/${project.link}`}>
+                <NavLink href={`/Projects/${project.link}/Product`}>
                   View Products
                 </NavLink>
               </button>

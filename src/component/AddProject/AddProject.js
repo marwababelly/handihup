@@ -74,7 +74,7 @@ const AddProject = () => {
       <div className={style.Container} expand="md">
         <div className={style.formRow}>
           <div md={8} lg={6} xs={12} className={style.formCol}>
-            <Card className={style.card}>
+            <div className={style.card}>
               <Card.Body>
                 <div className="mb-3 mt-md-4">
                   <h2 className="fw-bold mb-2 text-center text-uppercase text-secondary">
@@ -229,7 +229,7 @@ const AddProject = () => {
                   </div>
                 </div>
               </Card.Body>
-            </Card>
+            </div>
           </div>
         </div>
 
