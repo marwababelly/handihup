@@ -105,29 +105,29 @@ const CategoriesPage = () => {
           <div className={style.container}>
             <div className={style.element}>
               <div className={style.text}>
-              <h5>Let's dive into some interesting art projects!</h5>
               <h2>Art</h2>
+              <h5>Let's dive into some interesting art projects!</h5>
               </div>
               <img src= {art} className={style.image}></img>
               <button className={style.btn}><Link to="/Projects">Read More</Link></button>
             </div>
             <div className={style.element}><div className={style.text}>
-              <h5>Looking for a clear skin , let's dive in !</h5>
               <h2>Skin Care Products</h2>
+              <h5>Looking for a clear skin , let's dive in !</h5>
               </div>
               <img src= {skinCare} className={style.image}></img>
               <button className={style.btn}><Link to="/Projects">Read More</Link></button>
               </div>
             <div className={style.element}><div className={style.text}>
-              <h5>Let's dive into aesthetic collections <br/> of handmade accessories!</h5>
               <h2>Accessories</h2>
+              <h5>Let's dive into aesthetic collections <br/> of handmade accessories!</h5>
               </div>
               <img src= {accessories} className={style.image}></img>
               <button className={style.btn}><Link to="/Projects">Read More</Link></button>
               </div>
             <div className={style.element}><div className={style.text}>
-              <h5>If you're interested in pottery , <br/> this is your right place!</h5>
               <h2>Pottery</h2>
+              <h5>If you're interested in pottery , <br/> this is your right place!</h5>
               </div>
               <img src= {pottery} className={style.image}></img>
               <button className={style.btn}><Link to="/Projects">Read More</Link></button>

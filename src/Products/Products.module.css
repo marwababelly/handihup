@@ -24,7 +24,7 @@
   .card{
     background-color: bisque;
     width: 18rem;
-    margin-left: 500px;
+    margin:auto;
   }
   .img{
     width: 260px;
