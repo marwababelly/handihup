@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import style from "./Categories.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import art from '../../assets/fontArt.jpeg';
+import art from "../../assets/fontArt.jpeg";
 import skinCare from "../../assets/skincareness.jpg";
 import choco from "../../assets/choco.jpg";
-import pottery from '../../assets/PotteryWheel.jpg'
+import pottery from "../../assets/PotteryWheel.jpg";
 import accessories from "../../assets/beadRings.jpg";
 import backgroundImage from "../../assets/background.jpg";
-import { Button, Form, Card,Col, Row, Image, Container } from "react-bootstrap";
+import {
+  Button,
+  Form,
+  Card,
+  Col,
+  Row,
+  Image,
+  Container,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 const CategoriesPage = () => {
-  
   const items = [
     {
       id: "1",
@@ -28,7 +35,8 @@ const CategoriesPage = () => {
     {
       id: "3",
       title: "Accessories",
-      description:'Let\'s dive into aesthetic collections of handmade accessories!',
+      description:
+        "Let's dive into aesthetic collections of handmade accessories!",
       imageUrl: accessories,
     },
     {
@@ -39,10 +47,8 @@ const CategoriesPage = () => {
     },
   ];
 
-
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -65,7 +71,7 @@ const CategoriesPage = () => {
         className={style.container1}
       >
         <div className={style.content}>
-          <h2 style={{color: '#88857c'}}>Categories</h2>
+          <h2 style={{ color: "#88857c" }}>Categories</h2>
           <form onSubmit={handleSearchSubmit}>
             <input
               type="text"
@@ -80,60 +86,75 @@ const CategoriesPage = () => {
         </div>
       </div>
       {filteredItems.length > 0 && (
-  <Card className={style.card}>
-    <div className="card-body">
-      <div role="tabpanel">
-        <div className={style.listGroup} role="tablist">
-          {filteredItems.map((item) => (
-            <a
-              key={item.id}
-              className={`${style.listGroupItem} ${style.cardLink}`}
-              data-bs-toggle="list"
-              href={`#${item.id}`}
-              role="tab"
-            >
-              <h1>{item.title}</h1>
-              <h3>{item.description}</h3>
-            </a>
-          ))}
+        <Card className={style.card}>
+          <div className="card-body">
+            <div role="tabpanel">
+              <div className={style.listGroup} role="tablist">
+                {filteredItems.map((item) => (
+                  <a
+                    key={item.id}
+                    className={`${style.listGroupItem} ${style.cardLink}`}
+                    data-bs-toggle="list"
+                    href={`#${item.id}`}
+                    role="tab"
+                  >
+                    <h1>{item.title}</h1>
+                    <h3>{item.description}</h3>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Card>
+      )}
+
+      <div className={style.container}>
+        <div className={style.element}>
+          <div className={style.text}>
+            <h2>Art</h2>
+            <h5>Let's dive into some interesting art projects!</h5>
+          </div>
+          <img src={art} className={style.image}></img>
+          <button className={style.btn}>
+            <Link to="/Projects">Read More</Link>
+          </button>
+        </div>
+        <div className={style.element}>
+          <div className={style.text}>
+            <h2>Skin Care Products</h2>
+            <h5>Looking for a clear skin , let's dive in !</h5>
+          </div>
+          <img src={skinCare} className={style.image}></img>
+          <button className={style.btn}>
+            <Link to="/Projects">Read More</Link>
+          </button>
+        </div>
+        <div className={style.element}>
+          <div className={style.text}>
+            <h2>Accessories</h2>
+            <h5>
+              Let's dive into aesthetic collections <br /> of handmade
+              accessories!
+            </h5>
+          </div>
+          <img src={accessories} className={style.image}></img>
+          <button className={style.btn}>
+            <Link to="/Projects">Read More</Link>
+          </button>
+        </div>
+        <div className={style.element}>
+          <div className={style.text}>
+            <h2>Pottery</h2>
+            <h5>
+              If you're interested in pottery , <br /> this is your right place!
+            </h5>
+          </div>
+          <img src={pottery} className={style.image}></img>
+          <button className={style.btn}>
+            <Link to="/Projects">Read More</Link>
+          </button>
         </div>
       </div>
-    </div>
-  </Card>
-)}
-
-          <div className={style.container}>
-            <div className={style.element}>
-              <div className={style.text}>
-              <h2>Art</h2>
-              <h5>Let's dive into some interesting art projects!</h5>
-              </div>
-              <img src= {art} className={style.image}></img>
-              <button className={style.btn}><Link to="/Projects">Read More</Link></button>
-            </div>
-            <div className={style.element}><div className={style.text}>
-              <h2>Skin Care Products</h2>
-              <h5>Looking for a clear skin , let's dive in !</h5>
-              </div>
-              <img src= {skinCare} className={style.image}></img>
-              <button className={style.btn}><Link to="/Projects">Read More</Link></button>
-              </div>
-            <div className={style.element}><div className={style.text}>
-              <h2>Accessories</h2>
-              <h5>Let's dive into aesthetic collections <br/> of handmade accessories!</h5>
-              </div>
-              <img src= {accessories} className={style.image}></img>
-              <button className={style.btn}><Link to="/Projects">Read More</Link></button>
-              </div>
-            <div className={style.element}><div className={style.text}>
-              <h2>Pottery</h2>
-              <h5>If you're interested in pottery , <br/> this is your right place!</h5>
-              </div>
-              <img src= {pottery} className={style.image}></img>
-              <button className={style.btn}><Link to="/Projects">Read More</Link></button>
-              </div>
-          </div>
-
     </div>
   );
 };

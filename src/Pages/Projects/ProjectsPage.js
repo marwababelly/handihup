@@ -1,5 +1,5 @@
 import { React } from "react";
-import style from "./Projects.module.css";
+import style from "./ProjectsPage.module.css";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
