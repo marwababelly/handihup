@@ -1,0 +1,68 @@
+.Container {
+  position: relative;
+  margin-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #eee8d6;
+  max-width: 100%;
+  width: 50rem;
+  margin: auto;
+  margin-top: 5rem;
+  border-radius: 10px;
+}
+
+.h2Title {
+  margin-top: 3rem;
+}
+
+.form {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  background-color: inherit;
+  padding-top: 0.5rem;
+  font-weight: 550;
+  display: flex;
+  padding-left: 5rem;
+  /* margin: auto; */
+}
+
+.label {
+  color: #121212;
+  font-family: "Cormorant Garamond";
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.customInput {
+  border: none;
+  background-color: inherit;
+  font-family: unset;
+  width: 380px;
+  border-bottom: 1.5px black solid;
+  border-radius: unset;
+}
+
+.divBtn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn {
+  background-color: #fef8e5;
+  color: #4d4c47;
+  border: 2px solid #4d4c47;
+  width: fit-content;
+  margin: 1rem;
+  font-family: "Cormorant Garamond";
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.btn:hover {
+  background-color: #4d4c47;
+  color: #fef8e5;
+  border: 2px solid #fef8e5;
+}

@@ -1,7 +1,8 @@
 import React from "react";
+import { NavLink } from "react-bootstrap";
 
 const OtherPage = () => {
-  return <div className="fs-2">OtherPage</div>;
+  return <NavLink href="/AddProduct">Add Product</NavLink>;
 };
 
 export default OtherPage;
