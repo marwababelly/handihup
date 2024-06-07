@@ -13,7 +13,7 @@ const DashboardPage = () => {
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey="Users">
       <Row className={style.row}>
-        <Col sm={2}>
+        <div className={style.col1}>
           <Nav className={style.nav}>
             <Nav.Item className={style.navItem}>
               <Nav.Link eventKey="Users">User Dashboard</Nav.Link>
@@ -43,9 +43,9 @@ const DashboardPage = () => {
               <Nav.Link eventKey="Bills">Bills Dashboard</Nav.Link>
             </Nav.Item>
           </Nav>
-        </Col>
+        </div>
 
-        <Col sm={9}>
+        <div className={style.col2}>
           <Tab.Content className={style.tab}>
             <Tab.Pane eventKey="Users">
               <h2>#User Dashboard:</h2>
@@ -82,7 +82,7 @@ const DashboardPage = () => {
               <BillsDashboard />
             </Tab.Pane>
           </Tab.Content>
-        </Col>
+        </div>
       </Row>
     </Tab.Container>
   );

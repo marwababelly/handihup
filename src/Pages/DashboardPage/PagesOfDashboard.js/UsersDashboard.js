@@ -21,12 +21,14 @@ const UserDashboard = () => {
             <th>Phone Number</th>
             <th>Image</th>
             <th>Type</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
             <td>1</td>
+            <td>Table Cell</td>
             <td>Table Cell</td>
             <td>Table Cell</td>
             <td>Table Cell</td>
@@ -48,9 +50,11 @@ const UserDashboard = () => {
             <td>Table Cell</td>
             <td>Table Cell</td>
             <td>Table Cell</td>
+            <td>Table Cell</td>
           </tr>
           <tr>
             <td>3</td>
+            <td>Table Cell</td>
             <td>Table Cell</td>
             <td>Table Cell</td>
             <td>Table Cell</td>
@@ -73,6 +77,7 @@ const UserDashboard = () => {
             <td>Table Cell</td>
             <td>Table Cell</td>
             <td>Table Cell</td>
+            <td>Table Cell</td>
           </tr>
           <tr>
             <td>5</td>
@@ -85,9 +90,11 @@ const UserDashboard = () => {
             <td>Table Cell</td>
             <td>Table Cell</td>
             <td>Table Cell</td>
+            <td>Table Cell</td>
           </tr>
           <tr>
             <td>6</td>
+            <td>Table Cell</td>
             <td>Table Cell</td>
             <td>Table Cell</td>
             <td>Table Cell</td>
