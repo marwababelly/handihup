@@ -13,6 +13,7 @@ import AddProject from "./component/AddProject/AddProject";
 import Footer from "./component/Footer/Footer";
 import ProjectDetails from "./Pages/Projects/ProjectDetails";
 import Products from "./Products/Products";
+import AddProjectPage from "./Pages/AddProject_Product/AddProjectPage/AddProjectPage";
 
 function App() {
   return (
@@ -27,7 +28,7 @@ function App() {
           <Route path="/Categories" element={<CategoriesPage />} />
           <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/Other" element={<OtherPage />} />
-          <Route path="/add-project" element={<AddProject />} />
+          <Route path="/add-project-page" element={<AddProjectPage />} />
           <Route path="/Projects/:projectLink/Product" element={<Products />} />
           <Route
             path="/Projects/:projectLink/Product/:productLink"
