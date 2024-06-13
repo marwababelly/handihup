@@ -1,113 +1,93 @@
-import React from "react";
-import { Table } from "react-bootstrap";
-import style from "./TablesDashboardStyle.module.css";
+import React, { useContext, useEffect, useState } from "react";
+import DataTable from "react-data-table-component";
+import { tableCustomStyles } from "./tableCustomStyles";
+import DataTableContext from "../../../Context/context";
+import { Nav } from "react-bootstrap";
 
 const UserDashboard = () => {
+  const {
+    data,
+    handleDelete,
+    isDeleteConfirmOpen,
+    setIsDeleteConfirmOpen,
+    rowToDelete,
+    handleConfirmDelete,
+    handleCancelDelete,
+    DeleteConfirmationModal,
+    setInitialData,
+  } = useContext(DataTableContext);
+
+  const userData = [
+    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "true" },
+    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
+    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
+    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
+    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
+    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
+  ];
+
+  useEffect(() => {
+    if (!data.length) {
+      setInitialData(userData);
+    }
+  }, [data, setInitialData]);
+
+  const columns = [
+    {
+      name: "Id",
+      selector: (row) => row.id,
+    },
+    {
+      name: "Owner Id",
+      selector: (row) => row.ownerId,
+    },
+    {
+      name: "categories Id",
+      selector: (row) => row.categoriesId,
+    },
+    {
+      name: "Name",
+      selector: (row) => row.name,
+    },
+    {
+      name: "Validated",
+      selector: (row) => row.validated,
+    },
+    {
+      name: "Action",
+      cell: (row) => (
+        <>
+          <button onClick={() => handleDelete(row)}>Delete</button>
+          <button>
+            {" "}
+            <Nav.Link href="/formEdit">Edit</Nav.Link>
+          </button>
+          {isDeleteConfirmOpen && rowToDelete?.id === row.id && (
+            <DeleteConfirmationModal
+              onConfirm={handleConfirmDelete}
+              onCancel={handleCancelDelete}
+            />
+          )}
+        </>
+      ),
+    },
+  ];
+
   return (
-    <div className={style.allContentTable}>
-      <Table
-        responsive
-        className={`table table-bordered table-hover table-light ${style["my-custom-table-style"]}`}
-      >
-        <thead>
-          <tr>
-            <th>#id</th>
-            <th>Username</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Birth Day</th>
-            <th>Address</th>
-            <th>Password</th>
-            <th>Phone Number</th>
-            <th>Image</th>
-            <th>Type</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-
-          <tr>
-            <td>4</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-            <td>Table Cell</td>
-          </tr>
-        </tbody>
-      </Table>
-    </div>
+    <>
+      <DataTable
+        customStyles={tableCustomStyles}
+        columns={columns}
+        data={userData}
+        fixedHeader
+      />
+      {isDeleteConfirmOpen && (
+        <DeleteConfirmationModal
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
+        />
+      )}
+    </>
   );
 };
 

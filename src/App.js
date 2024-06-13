@@ -13,6 +13,7 @@ import Footer from "./component/Footer/Footer";
 import ProjectDetails from "./Pages/Projects/ProjectDetails";
 import Products from "./Pages/Products/Products";
 import AddProductPage from "./Pages/AddProject_Product/AddProductPage/AddProductPage";
+import FormDashboard from "./Pages/DashboardPage/PagesOfDashboard.js/FormDashboard";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             path="/Projects/:projectLink/Product/:productLink"
             element={<ProjectDetails />}
           />
+          <Route path="/formEdit" element={<FormDashboard />} />
         </Routes>
         <Footer />
       </div>
