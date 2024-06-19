@@ -26,10 +26,9 @@ function App() {
           <Route path="/Projects" element={<ProjectsPage />} />
           <Route path="/Categories" element={<CategoriesPage />} />
           <Route path="/Dashboard" element={<DashboardPage />} />
-          <Route path="/Other" element={<OtherPage />} />
+          <Route path="/AddProduct" element={<AddProductPage />} />
           <Route path="/add-project-page" element={<AddProjectPage />} />
           <Route path="/Projects/:projectLink/Product" element={<Products />} />
-
           <Route
             path="/Projects/:projectLink/Product/:productLink"
             element={<ProjectDetails />}
