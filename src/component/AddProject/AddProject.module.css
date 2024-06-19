@@ -1,125 +1,100 @@
-.Container {
-  position: relative;
-  margin-top: 5rem;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  background-color: #88857c;
-  max-width: 100%;
-  justify-content: space-between;
-  width: 61rem;
-}
-
-.formRow {
-  display: flex;
-  width: 50%;
-}
-
-.formCol {
-  width: 100%;
-}
-
-Form {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 18px;
-  background-color: inherit;
-  padding-top: 0.5rem;
-  font-weight: 550;
-}
-
-.label {
-  color: #121212;
-  font-family: "Cormorant Garamond";
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 1rem;
-}
-
-.card {
-  background-color: inherit;
-  border: none;
-}
-
-.customInput {
-  border: none;
-  background-color: inherit;
-  font-family: unset;
-  width: 290px;
-  border-bottom: 1.5px black solid;
-  border-radius: unset;
-}
-
-.imgRow {
-  display: flex;
-  width: 50%;
-}
-
-.imageCol {
-  width: 100%;
-}
-
-.img {
-  width: 880px;
-  border-radius: 3px;
-  width: fit-content;
-  height: -webkit-fill-available;
-}
-
-.divBtn {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.btn {
-  background-color: #fef8e5;
-  color: #4d4c47;
-  border: 2px solid #4d4c47;
-  width: fit-content;
-  margin: 1rem;
-  font-family: "Cormorant Garamond";
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.btn:hover {
-  background-color: #4d4c47;
-  color: #fef8e5;
-  border: 2px solid #fef8e5;
-}
-
-@media (max-width: 1420px) {
-  .Container {
-    width: fit-content;
+.hr {
+    margin-top: -26rem;
+    display: block;
+    height: 2px;
+    width: 1169px;
+    position: absolute;
+    background: #000000;
+    translate: 0 353px;
   }
-  .imgRow {
-    display: flex;
+.imageContainer {
+    position: relative;
+    width: 300px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+  }
+  
+  .overlayImage {
+    position: absolute;
+    top: 80px;
+    left: 150px;
+    width: 80%;
+    height: 80%;
+    z-index: 2; /* Higher z-index */
+    object-fit: cover; /* Ensures the overlay image covers the container */
+  }
+  
+  .container {
+    margin-top: 5rem;
+    margin-bottom: 2.8rem;
+    background-color:rgb(197, 197, 197);;
+    padding: 3rem;
+  }
+  
+  .Row {
+    margin: 0 4rem 0;
+  }
+  
+  .backgroundImage {
+    position: relative;
+    top: 0.8rem;
+    left: -10px;
     width: 100%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    border-radius: 50%;
   }
-
-  .imageCol {
-    width: 100%;
-    margin: auto;
-    display: flex;
+  
+  .overlayImage {
+    position: absolute;
+    top: 80px;
+    left: 150px;
+    width: 80%;
+    height: 80%;
+    z-index: 2; 
+    object-fit: cover;
+    border-radius: 50%;
   }
-
-  .img {
-    width: 100%;
-    border-radius: 3px;
-    height: -webkit-fill-available;
+  
+  .contactButton {
+    background-color: #3f424b;
+    color:#fef8e5;
+    padding: 10px 20px;
+    border-color: #3f424b;
+    border-radius: 40px;
+    cursor: pointer;
   }
-
-  .formRow {
-    display: flex;
-    width: 100%;
-    margin: auto;
+  
+  .contactButton:hover {
+    background-color: #fef8e5; 
   }
-
-  .formCol {
-    width: 100%;
+  .contactButton :hover , a {
+    color: #3f424b;
   }
-}
+  .contactButton a {
+    color: #fef8e5;
+  }
+  @media (max-width: 768px) {
+    .imageContainer {
+       width: 100%;
+       height: auto;
+     }
+   
+    .overlayImage {
+       top: 40px;
+       left: 75px;
+       width: 60%;
+       height: 60%;
+     }
+   
+    .backgroundImage {
+       top: -20px;
+       left: -5px;
+       clip-path: ellipse(50% 70% at 50% 70%);
+     }
+   
+    .contactButton {
+       padding: 5px 10px;
+       font-size: 12px;
+     }
+   }

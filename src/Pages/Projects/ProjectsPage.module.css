@@ -15,6 +15,21 @@
   background: #000000;
   translate: 0 125px;
 }
+.dropdownContainer {
+  margin-top: -12rem;
+  margin-left: 23rem;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+}
+.dropdownToggle {
+  margin-right: 10px; 
+  background-color:#88857c;
+  border-color: #4d4c47;
+}
+.dropdownToggle:hover{ 
+  background-color:#4d4c47;
+}
 
 .title {
   display: flex;
@@ -26,6 +41,7 @@
   font-size: 55px;
   color: #4d4c47;
   width: 100vw;
+  margin-top: 5rem;
 }
 .container {
   margin: 5rem;
@@ -98,6 +114,23 @@ a {
   border: 2px solid #fef8e5;
   border-color: #4d4c47;
 }
+.button1 {
+  background-color: #88857c;
+  color: aliceblue;
+  min-width: 6rem;
+  min-height: 3rem;
+  font-size: 12px;
+  line-height: 1.2;
+  height: 60px;
+  border-radius: 5%;
+}
+.button1:hover {
+  background-color: #fef8e5;
+  color: #88857c;
+  border: 2px solid #fef8e5;
+  border-color: #4d4c47;
+}
+
 
 @media (max-width: 768px) {
   .project {

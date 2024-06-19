@@ -1,0 +1,35 @@
+/* .my-custom-table-style {
+  border-radius: 25px;
+  background-color: red;
+  color: aqua;
+  font-size: 30px;
+}
+table {
+  border-radius: 25px;
+  background-color: red;
+  color: aqua;
+  font-size: 30px;
+}
+
+Table {
+  border-radius: 25px;
+  background-color: red;
+  color: aqua;
+  font-size: 30px;
+} */
+
+th {
+  font-size: 27px;
+  color: #3f424b;
+}
+
+Table tbody {
+  font-size: 20px;
+}
+
+.tab-content {
+  border-radius: 25px;
+  background-color: red;
+  color: aqua;
+  font-size: 30px;
+}

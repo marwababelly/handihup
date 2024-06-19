@@ -8,7 +8,7 @@ const Main = () => {
     <>
       <Overview />
       <WhoWeAre />
-      <AddProject />
+      <AddProject/>
     </>
   );
 };

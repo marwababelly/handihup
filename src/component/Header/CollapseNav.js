@@ -9,7 +9,7 @@ const CollapseNav = () => {
         <Nav.Link href="/Projects">Projects</Nav.Link>
         <Nav.Link href="/Categories">Categories</Nav.Link>
         <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
-        <Nav.Link href="/Other">Other</Nav.Link>
+        <Nav.Link href="/AddProduct">Add Product</Nav.Link>
       </Nav>
     </Navbar.Collapse>
   );

@@ -8,12 +8,12 @@ import SignUpPage from "./Pages/SIgnUpPage/SignUpPage";
 import ProjectsPage from "./Pages/Projects/ProjectsPage";
 import CategoriesPage from "./Pages/CategoriesPage/CategoriesPage";
 import DashboardPage from "./Pages/DashboardPage/DashboardPage";
-import OtherPage from "./Pages/OtherPage";
-import AddProject from "./component/AddProject/AddProject";
+import AddProjectPage from "./Pages/AddProject_Product/AddProjectPage/AddProjectPage";
 import Footer from "./component/Footer/Footer";
 import ProjectDetails from "./Pages/Projects/ProjectDetails";
-import Products from "./Products/Products";
-import AddProjectPage from "./Pages/AddProject_Product/AddProjectPage/AddProjectPage";
+import Products from "./Pages/Products/Products";
+import OtherPage from "./Pages/OtherPage";
+import { CategoryList } from "./Pages/CategoriesPage/Categories";
 
 function App() {
   return (
@@ -30,10 +30,13 @@ function App() {
           <Route path="/Other" element={<OtherPage />} />
           <Route path="/add-project-page" element={<AddProjectPage />} />
           <Route path="/Projects/:projectLink/Product" element={<Products />} />
+
           <Route
             path="/Projects/:projectLink/Product/:productLink"
             element={<ProjectDetails />}
           />
+         <Route path="/Projects/:categoryId" element={<CategoryList />} />
+
         </Routes>
         <Footer />
       </div>

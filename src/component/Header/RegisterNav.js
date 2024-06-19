@@ -10,6 +10,9 @@ const RegisterNav = () => {
       <Nav.Item as="li" className="fs-5">
         <Nav.Link href="/LogIn">login</Nav.Link>
       </Nav.Item>
+      <Nav.Item as="li" className="fs-5">
+        <Nav.Link href="/add-project-page">Add Project</Nav.Link>
+      </Nav.Item>
     </>
   );
 };
