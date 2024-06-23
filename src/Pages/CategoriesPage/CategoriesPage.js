@@ -65,7 +65,7 @@ const CategoriesPage = () => {
         className={style.container1}
       >
         <div className={style.content}>
-          <h2 style={{ color: "#88857c" }}>Categories</h2>
+          <h2 className={style.title}>Categories</h2>
           <form onSubmit={handleSearchSubmit}>
             <input
               type="text"

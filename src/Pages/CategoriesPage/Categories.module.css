@@ -7,6 +7,9 @@
   flex-wrap: wrap;
   margin: 100px;
 }
+.title{
+  color: #88857c;
+}
 .container1 {
   background-color: #88857c;
   background-size: cover;
