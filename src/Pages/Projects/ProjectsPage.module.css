@@ -14,10 +14,11 @@
   position: absolute;
   background: #000000;
   translate: 0 125px;
+  margin-top: 2rem;
 }
 .dropdownContainer {
   margin-top: -12rem;
-  margin-left: 23rem;
+  margin-left: 29rem;
   display: flex;
   justify-content: space-between; 
   align-items: center; 
@@ -41,10 +42,9 @@
   font-size: 55px;
   color: #4d4c47;
   width: 100vw;
-  margin-top: 5rem;
+  margin-top: 6rem;
 }
 .container {
-  margin: 5rem;
   display: flex;
   flex-wrap: wrap;
 }
@@ -59,7 +59,7 @@
 
 .project {
   display: flex;
-  margin-top: 3rem;
+  margin-top: 6rem;
   flex-direction: row;
   margin-bottom: 1rem;
 }

@@ -129,7 +129,7 @@ const ProjectsPage = () => {
     const catego = categories.find(catego => catego.title === cat || catego.link === cat.trim());
     if (catego) {
       setSelectedCategory(catego);
-      navigate(`/Projects/${catego.id}`); 
+      navigate(`/Projects/${catego.title}`); 
     } else {
       setSelectedCategory(null);
     }

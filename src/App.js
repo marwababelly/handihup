@@ -6,6 +6,7 @@ import Main from "./Pages/Main/Main";
 import LogInPage from "./Pages/LogInPage/LogInPage";
 import SignUpPage from "./Pages/SIgnUpPage/SignUpPage";
 import ProjectsPage from "./Pages/Projects/ProjectsPage";
+import CategoryList from "./Pages/CategoriesPage/Categories";
 import CategoriesPage from "./Pages/CategoriesPage/CategoriesPage";
 import DashboardPage from "./Pages/DashboardPage/DashboardPage";
 import AddProjectPage from "./Pages/AddProject_Product/AddProjectPage/AddProjectPage";
@@ -24,7 +25,8 @@ function App() {
           <Route path="/LogIn" element={<LogInPage />} />
           <Route path="/SignUp" element={<SignUpPage />} />
           <Route path="/Projects" element={<ProjectsPage />} />
-          <Route path="/Categories" element={<CategoriesPage />} />
+          <Route path="/Projects/:categoryTitle" element={<CategoryList />} />
+          <Route path="/Categories" element={<CategoriesPage/>} />
           <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/AddProduct" element={<AddProductPage />} />
           <Route path="/add-project-page" element={<AddProjectPage />} />

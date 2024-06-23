@@ -10,7 +10,7 @@ import accessories from "../../assets/beadRings.jpg";
 import backgroundImage from "../../assets/background.jpg";
 import { Link } from "react-router-dom";
 export const CategoryList = () =>{
-    const {categoryId} = useParams();
+    const {categoryTitle} = useParams();
    
     const categories= [
          {
@@ -43,7 +43,7 @@ export const CategoryList = () =>{
             link: "Pottery",
           },
     ];
-    const selectedCategory = categories.find(category => category.id === categoryId);
+    const selectedCategory = categories.find(category => category.title === categoryTitle);
 
     return (
       <div className={style.container}>
@@ -68,3 +68,4 @@ export const CategoryList = () =>{
     );
   
 } 
+export default CategoryList
