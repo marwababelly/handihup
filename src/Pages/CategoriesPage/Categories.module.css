@@ -16,13 +16,12 @@
   align-items: center;
 }
 .listGroupItem {
-  /* Existing styles */
-  display: block; /* Ensure items take up full width */
-  text-decoration: none; /* Remove underline if present */
-  color: inherit; /* Ensure text color is inherited */
-  padding: 10px; /* Add some padding for better appearance */
-  margin-bottom: 5px; /* Space below each item */
-  border-bottom: 1px solid black; /* Black line between items */
+  display: block; 
+  text-decoration: none; 
+  color: inherit; 
+  padding: 10px;
+  margin-bottom: 5px; 
+  border-bottom: 1px solid black;
 }
 .card {
   width: 800px;
@@ -32,9 +31,9 @@
   border-color: black;
   background-color: #fef8e5;
 }
-/* Optional: Style the last item differently if needed */
+
 .listGroupItem:last-child {
-  border-bottom: none; /* Removes the bottom border from the last item */
+  border-bottom: none; 
 }
 .element {
   width: 50%;

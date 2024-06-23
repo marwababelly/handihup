@@ -38,7 +38,7 @@ const CategoriesPage = () => {
     },
   ];
 
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredItems, setFilteredItems] = useState(items);
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearchChange = (event) => {
@@ -47,12 +47,15 @@ const CategoriesPage = () => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    const results = items.filter(
-      (item) =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredItems(results);
+    if (searchTerm.trim() === "") {
+      setFilteredItems(items); 
+    } else {
+      const results = items.filter(item => 
+        item.title.toLowerCase() === searchTerm.toLowerCase() || 
+        item.description.toLowerCase().includes(searchTerm.toLowerCase()) 
+      );
+      setFilteredItems(results);
+    }
   };
 
   return (
@@ -66,7 +69,7 @@ const CategoriesPage = () => {
           <form onSubmit={handleSearchSubmit}>
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Search by Category..."
               className={style.input}
               onChange={handleSearchChange}
             />
@@ -76,75 +79,19 @@ const CategoriesPage = () => {
           </form>
         </div>
       </div>
-      {filteredItems.length > 0 && (
-        <Card className={style.card}>
-          <div className="card-body">
-            <div role="tabpanel">
-              <div className={style.listGroup} role="tablist">
-                {filteredItems.map((item) => (
-                  <a
-                    key={item.id}
-                    className={`${style.listGroupItem} ${style.cardLink}`}
-                    data-bs-toggle="list"
-                    href={`#${item.id}`}
-                    role="tab"
-                  >
-                    <h1>{item.title}</h1>
-                    <h3>{item.description}</h3>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Card>
-      )}
-
       <div className={style.container}>
-        <div className={style.element}>
-          <div className={style.text}>
-            <h2>Art</h2>
-            <h5>Let's dive into some interesting art projects!</h5>
+        {filteredItems.map(item => (
+          <div key={item.id} className={style.element}>
+            <div className={style.text}>
+              <h2>{item.title}</h2>
+              <h5>{item.description}</h5>
+            </div>
+            <img src={item.imageUrl} className={style.image} alt="Category Image" />
+            <button className={style.btn}>
+              <Link to={`/Projects/${item.title}`}>Read More</Link>
+            </button>
           </div>
-          <img src={art} className={style.image} alt="alt"></img>
-          <button className={style.btn}>
-            <Link to="/Projects">Read More</Link>
-          </button>
-        </div>
-        <div className={style.element}>
-          <div className={style.text}>
-            <h2>Skin Care Products</h2>
-            <h5>Looking for a clear skin , let's dive in !</h5>
-          </div>
-          <img src={skinCare} className={style.image} alt="alt"></img>
-          <button className={style.btn}>
-            <Link to="/Projects">Read More</Link>
-          </button>
-        </div>
-        <div className={style.element}>
-          <div className={style.text}>
-            <h2>Accessories</h2>
-            <h5>
-              Let's dive into aesthetic collections <br /> of handmade
-              accessories!
-            </h5>
-          </div>
-          <img src={accessories} className={style.image} alt="alt"></img>
-          <button className={style.btn}>
-            <Link to="/Projects">Read More</Link>
-          </button>
-        </div>
-        <div className={style.element}>
-          <div className={style.text}>
-            <h2>Pottery</h2>
-            <h5>
-              If you're interested in pottery , <br /> this is your right place!
-            </h5>
-          </div>
-          <img src={pottery} className={style.image} alt="alt"></img>
-          <button className={style.btn}>
-            <Link to="/Projects">Read More</Link>
-          </button>
-        </div>
+        ))}
       </div>
     </div>
   );
