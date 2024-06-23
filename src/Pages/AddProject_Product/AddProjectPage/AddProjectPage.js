@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Button, Card, Form } from "react-bootstrap";
 import style from "./AddProjectPage.module.css";
 import AddProjectImage from "../../../assets/AddProjectImage.jpg";
+import { Link } from "react-router-dom";
 
 const AddProjectPage = () => {
   const [username, setUsername] = useState("");
@@ -230,7 +231,7 @@ const AddProjectPage = () => {
                       ></Form.Group>
                       <div className={style.divBtn}>
                         <Button className={style.btn} type="submit">
-                          Next Page
+                          <Link to="/AddProduct">Next Page</Link>
                         </Button>
                       </div>
                     </Form>

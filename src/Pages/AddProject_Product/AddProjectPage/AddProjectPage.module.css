@@ -1,14 +1,16 @@
 .Container {
-    position: relative;
-    margin-top: 5rem;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    background-color:rgb(197, 197, 197);
-    max-width: 100%;
-    justify-content: space-between;
-    width: 61rem;
-  }
+  position: relative;
+  margin-top: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: #eee8d6;
+  max-width: 100%;
+  width: 50rem;
+  margin: auto;
+  margin-top: 5rem;
+  border-radius: 10px;
+}
   
   .formRow {
     display: flex;
