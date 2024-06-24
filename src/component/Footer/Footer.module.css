@@ -1,105 +1,47 @@
+.endDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 17px;
+  color: #88857c91;
+  max-width: 100%;
+  /* background-color: aqua; */
+  margin-top: 7rem;
+}
+
+.Semicircle {
+  transform: translate(0%, 0%);
+  height: 300px;
+  width: 900px;
+  border-radius: 200px 200px 0 0;
+  background-color: #eee8d6;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .h3pFooter {
-  /* margin-top: 7rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   translate: 0px 100px 0;
+  color: #3f424b;
 }
 
 .accounts {
-  /* margin-top: 3rem; */
-  translate: 0 160px 0;
+  /* translate: 0 160px 0; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: rgb(135, 102, 102); */
 }
+
 ul > li {
   list-style: none;
   display: inline;
-}
-
-.Semicircle {
-  transform: translate(0%, -10%);
-  height: 300px;
-  width: 900px;
-  border-radius: 200px 200px 0 0;
-  background-color: #eee8d6;
-  /* margin-top: 5rem; */
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  /* left: 215px; */
-  z-index: -1;
-  /* top: 248px; */
-  bottom: -258px;
-}
-
-.endDiv {
-  position: relative;
-  z-index: 100;
-  /* margin-top: 3rem; */
-  display: flex;
-  flex-direction: column;
-  /* background: rgb(196, 139, 139); */
-  align-items: center;
-  justify-content: center;
-  font-family: monospace;
-  font-size: 17px;
-  color: #88857c91;
-}
-
-.endP {
-  z-index: 100;
-  display: flex;
-  /* background: rgb(111, 163, 141); */
-  align-items: center;
-  justify-content: center;
-  font-family: monospace;
-  font-size: 17px;
-  color: #88857c91;
-}
-
-Form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  /* list-style: none; */
-  z-index: 100;
-  font-family: monospace;
-  color: #88857c91;
-  font-size: 17px;
-  background-color: inherit;
-}
-
-.customInput {
-  z-index: 100;
-  border: none;
-  border-bottom: 2px solid #4d4c47;
-  border-radius: unset;
-  width: 200px;
-  margin: auto;
-  background-color: inherit;
-}
-
-.btn {
-  background-color: #fef8e5;
-  color: #4d4c47;
-  border: 2px solid #4d4c47;
-  width: fit-content;
-  margin: 1rem;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 18px;
-  font-weight: 600;
-}
-
-.btn:hover {
-  background-color: #4d4c47;
-  color: #fef8e5;
-  border: 2px solid #fef8e5;
 }

@@ -71,7 +71,7 @@ const SignUpPage = () => {
 
   return (
     <div>
-      <Container className={style.container}>
+      <div className={style.container}>
         <Row
           className="vh-100 d-flex justify-content-center align-items-center mt-86"
           style={{ marginTop: "86px", marginBottom: "20px" }}
@@ -231,7 +231,7 @@ const SignUpPage = () => {
             </Card>
           </Col>
         </Row>
-      </Container>
+      </div>
     </div>
   );
 };
