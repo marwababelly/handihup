@@ -8,7 +8,6 @@ const AddProject = () => {
   return (
     <div className={style.container}>
       <Row className={style.Row}>
-        <hr className={style.hr} />
         <Col>
           <div className={style.imageContainer}>
             <img src={img1} className={style.backgroundImage} alt="" />

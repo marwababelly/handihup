@@ -1,100 +1,92 @@
-.hr {
-    margin-top: -26rem;
-    display: block;
-    height: 2px;
-    width: 1169px;
-    position: absolute;
-    background: #000000;
-    translate: 0 353px;
-  }
 .imageContainer {
-    position: relative;
-    width: 300px; /* Adjust as needed */
-    height: 300px; /* Adjust as needed */
-  }
-  
-  .overlayImage {
-    position: absolute;
-    top: 80px;
-    left: 150px;
-    width: 80%;
-    height: 80%;
-    z-index: 2; /* Higher z-index */
-    object-fit: cover; /* Ensures the overlay image covers the container */
-  }
-  
-  .container {
-    margin-top: 5rem;
-    margin-bottom: 2.8rem;
-    background-color:rgb(197, 197, 197);;
-    padding: 3rem;
-  }
-  
-  .Row {
-    margin: 0 4rem 0;
-  }
-  
-  .backgroundImage {
-    position: relative;
-    top: 0.8rem;
-    left: -10px;
+  position: relative;
+  width: 300px; /* Adjust as needed */
+  height: 300px; /* Adjust as needed */
+}
+
+.overlayImage {
+  position: absolute;
+  top: 80px;
+  left: 150px;
+  width: 80%;
+  height: 80%;
+  z-index: 2; /* Higher z-index */
+  object-fit: cover; /* Ensures the overlay image covers the container */
+}
+
+.container {
+  margin-top: 5rem;
+  margin-bottom: 2.8rem;
+  background-color: #cecac0;
+  padding: 3rem;
+}
+
+.Row {
+  margin: 0 4rem 0;
+}
+
+.backgroundImage {
+  position: relative;
+  top: 0.8rem;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.overlayImage {
+  position: absolute;
+  top: 80px;
+  left: 150px;
+  width: 80%;
+  height: 80%;
+  z-index: 2;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.contactButton {
+  background-color: #3f424b;
+  color: #fef8e5;
+  padding: 10px 20px;
+  border-color: #3f424b;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.contactButton:hover {
+  background-color: #fef8e5;
+}
+.contactButton :hover,
+a {
+  color: #3f424b;
+}
+.contactButton a {
+  color: #fef8e5;
+}
+@media (max-width: 768px) {
+  .imageContainer {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 1;
-    border-radius: 50%;
+    height: auto;
   }
-  
+
   .overlayImage {
-    position: absolute;
-    top: 80px;
-    left: 150px;
-    width: 80%;
-    height: 80%;
-    z-index: 2; 
-    object-fit: cover;
-    border-radius: 50%;
+    top: 40px;
+    left: 75px;
+    width: 60%;
+    height: 60%;
   }
-  
+
+  .backgroundImage {
+    top: -20px;
+    left: -5px;
+    clip-path: ellipse(50% 70% at 50% 70%);
+  }
+
   .contactButton {
-    background-color: #3f424b;
-    color:#fef8e5;
-    padding: 10px 20px;
-    border-color: #3f424b;
-    border-radius: 40px;
-    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 12px;
   }
-  
-  .contactButton:hover {
-    background-color: #fef8e5; 
-  }
-  .contactButton :hover , a {
-    color: #3f424b;
-  }
-  .contactButton a {
-    color: #fef8e5;
-  }
-  @media (max-width: 768px) {
-    .imageContainer {
-       width: 100%;
-       height: auto;
-     }
-   
-    .overlayImage {
-       top: 40px;
-       left: 75px;
-       width: 60%;
-       height: 60%;
-     }
-   
-    .backgroundImage {
-       top: -20px;
-       left: -5px;
-       clip-path: ellipse(50% 70% at 50% 70%);
-     }
-   
-    .contactButton {
-       padding: 5px 10px;
-       font-size: 12px;
-     }
-   }
+}
