@@ -6,7 +6,7 @@ import pottery from "../../assets/pottery3.jpg";
 import rings from "../../assets/necklace.jpg";
 import skincare from "../../assets/skinCareOil.jpg";
 import neonArt from "../../assets/neon.jpg";
-import { NavLink , Card , Dropdown} from "react-bootstrap";
+import { NavLink, Card, Dropdown } from "react-bootstrap";
 import CustomDropdown from "../../component/UI/CustomDropdown";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +31,8 @@ const ProjectsPage = () => {
     {
       id: "3",
       title: "Accessories",
-      description: "Let's dive into aesthetic collections of handmade accessories!",
+      description:
+        "Let's dive into aesthetic collections of handmade accessories!",
       imageUrl: rings,
       link: "Accessories",
     },
@@ -112,33 +113,39 @@ const ProjectsPage = () => {
     },
   ];
   const navigate = useNavigate();
-  const [selectedProject, setSelectedProject] = useState(null); 
-  const [selectedCategory, setSelectedCategory] = useState(null); 
-  const [selectedProduct, setSelectedProduct] = useState(null); 
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const filterProjects = (category) => {
-    const project = projects.find(project => project.projectName === category || project.link === category);
+    const project = projects.find(
+      (project) => project.projectName === category || project.link === category
+    );
     if (project) {
-      setSelectedProject(project); 
+      setSelectedProject(project);
     } else {
-      setSelectedProject(null); 
+      setSelectedProject(null);
     }
   };
-  
+
   const filterCategories = (cat) => {
-    const catego = categories.find(catego => catego.title === cat || catego.link === cat.trim());
+    const catego = categories.find(
+      (catego) => catego.title === cat || catego.link === cat.trim()
+    );
     if (catego) {
       setSelectedCategory(catego);
-      navigate(`/Projects/${catego.title}`); 
+      navigate(`/Projects/${catego.title}`);
     } else {
       setSelectedCategory(null);
     }
   };
   const filterProducts = (pro) => {
-    const product = productsList.find(product => product.title === pro || product.link === pro.trim());
+    const product = productsList.find(
+      (product) => product.title === pro || product.link === pro.trim()
+    );
     if (product) {
       setSelectedProduct(product);
-      navigate(`/Projects/${product.link}/Product`); 
+      navigate(`/Projects/${product.link}/Product`);
     } else {
       setSelectedProduct(null);
     }
@@ -147,41 +154,59 @@ const ProjectsPage = () => {
   return (
     <div className={style.container}>
       <h2 className={style.title}>Projects</h2>
-      <hr className={style.h2Hr} />
+      {/* <hr className={style.h2Hr} /> */}
       <div className={style.projects}>
         <div className={style.dropdownContainer}>
-      <Dropdown onSelect={(key) => filterProjects(key.trim())}> 
-        <Dropdown.Toggle variant="success" id="dropdown-basic" className={style.dropdownToggle} > 
-          Projects
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          {projects.map(project => (
-              <Dropdown.Item key={project.id} eventKey={project.link.trim()}>{project.projectName}</Dropdown.Item>
-          ))}
-        </Dropdown.Menu>
-      </Dropdown>
-        <Dropdown onSelect={(key) => filterCategories(key.trim())}> 
-          <Dropdown.Toggle variant="success" id="dropdown-basic" className={style.dropdownToggle} >
-            Categories
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {categories.map(cat => (
-               <Dropdown.Item key={cat.id} eventKey={cat.link.trim()}>{cat.title}</Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
-        <Dropdown onSelect={(key) => filterProducts(key.trim())}> 
-          <Dropdown.Toggle variant="success" id="dropdown-basic" className={style.dropdownToggle} >
-            Products
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {productsList.map(pro => (
-               <Dropdown.Item key={pro.id} eventKey={pro.link.trim()}>{pro.title}</Dropdown.Item>
-            ))}
-          </Dropdown.Menu>
-        </Dropdown>
+          <Dropdown onSelect={(key) => filterProjects(key.trim())}>
+            <Dropdown.Toggle
+              variant="success"
+              id="dropdown-basic"
+              className={style.dropdownToggle}
+            >
+              Projects
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {projects.map((project) => (
+                <Dropdown.Item key={project.id} eventKey={project.link.trim()}>
+                  {project.projectName}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown onSelect={(key) => filterCategories(key.trim())}>
+            <Dropdown.Toggle
+              variant="success"
+              id="dropdown-basic"
+              className={style.dropdownToggle}
+            >
+              Categories
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {categories.map((cat) => (
+                <Dropdown.Item key={cat.id} eventKey={cat.link.trim()}>
+                  {cat.title}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
+          <Dropdown onSelect={(key) => filterProducts(key.trim())}>
+            <Dropdown.Toggle
+              variant="success"
+              id="dropdown-basic"
+              className={style.dropdownToggle}
+            >
+              Products
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {productsList.map((pro) => (
+                <Dropdown.Item key={pro.id} eventKey={pro.link.trim()}>
+                  {pro.title}
+                </Dropdown.Item>
+              ))}
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
-        {selectedProject? (
+        {selectedProject ? (
           <NavLink href={`/Projects/${selectedProject.link}/Product`}>
             <div className={style.project}>
               <img
@@ -205,25 +230,25 @@ const ProjectsPage = () => {
         ) : (
           projects.map((project) => (
             <NavLink href={`/Projects/${project.link}/Product`}>
-            <div className={style.project}>
-              <img
-                className={style.img}
-                src={project.img}
-                alt={project.projectName}
-              />
-              <div className={style.content}>
-                <h3>{project.id}</h3>
-                <h2>{project.projectName}</h2>
-                <p>{project.projectDescription}</p>
+              <div className={style.project}>
+                <img
+                  className={style.img}
+                  src={project.img}
+                  alt={project.projectName}
+                />
+                <div className={style.content}>
+                  <h3>{project.id}</h3>
+                  <h2>{project.projectName}</h2>
+                  <p>{project.projectDescription}</p>
+                </div>
+                <button className={style.button}>
+                  <NavLink href={`/Projects/${project.link}/Product`}>
+                    View Products
+                  </NavLink>
+                </button>
+                <hr className={style.hr} />
               </div>
-              <button className={style.button}>
-                <NavLink href={`/Projects/${project.link}/Product`}>
-                  View Products
-                </NavLink>
-              </button>
-              <hr className={style.hr} />
-            </div>
-          </NavLink>
+            </NavLink>
           ))
         )}
       </div>

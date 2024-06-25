@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { useState } from "react";
 import { Carousel, Form, Button } from "react-bootstrap";
 import style from "./ProjectDetails.module.css";
@@ -22,6 +24,7 @@ const ProjectDetails = () => {
       ],
       link: "Pottery",
       dprice: "500$",
+      available: true,
     },
     {
       id: 2,
@@ -36,6 +39,7 @@ const ProjectDetails = () => {
       ],
       link: "SkinCare",
       dprice: "500$",
+      available: false,
     },
     {
       id: 3,
@@ -50,6 +54,7 @@ const ProjectDetails = () => {
       ],
       link: "FontArt",
       dprice: "500$",
+      available: true,
     },
     {
       id: 4,
@@ -64,6 +69,7 @@ const ProjectDetails = () => {
       ],
       link: "Accessories",
       dprice: "500$",
+      available: false,
     },
   ];
 
@@ -136,9 +142,32 @@ const ProjectDetails = () => {
                 </Carousel.Item>
               ))}
           </Carousel>
-          <p className={style.price}>
-            The price per piece is: {productsDetailPage.dprice}
-          </p>
+          <div className={style.pIcon}>
+            <p className={style.price}>
+              The price per piece is: {productsDetailPage.dprice}
+            </p>
+            <div className={style.availableIcon}>
+              {productsDetailPage.available ? (
+                <>
+                  <p>Available</p>
+                  <FontAwesomeIcon
+                    className={style.iconEnable}
+                    icon={faCircleCheck}
+                    size="3x"
+                  />
+                </>
+              ) : (
+                <>
+                  <p>Not Available</p>
+                  <FontAwesomeIcon
+                    className={style.iconDisable}
+                    icon={faCircleCheck}
+                    size="3x"
+                  />{" "}
+                </>
+              )}
+            </div>
+          </div>
         </div>
         <p className={style.description}>
           {productsDetailPage.dProjectDescription}
