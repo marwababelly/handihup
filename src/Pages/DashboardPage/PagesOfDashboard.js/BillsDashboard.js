@@ -18,8 +18,9 @@ const BillsDashboard = () => {
   } = useContext(DataTableContext);
 
   const billsData = [
-    { id: 1, ownerId: 3 },
-    { id: 2, ownerId: 5 },
+    { id: 1, ownerId: 3, subscriptionStatus: "subscriber" },
+    { id: 2, ownerId: 3, subscriptionStatus: "Canceled" },
+    { id: 2, ownerId: 3, subscriptionStatus: "paused" },
   ];
 
   useEffect(() => {
@@ -36,6 +37,10 @@ const BillsDashboard = () => {
     {
       name: "Owner Id",
       selector: (row) => row.ownerId,
+    },
+    {
+      name: "Subscription Status",
+      selector: (row) => row.subscriptionStatus,
     },
     {
       name: "Action",
