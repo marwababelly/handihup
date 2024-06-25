@@ -22,7 +22,7 @@ const DashboardPage = () => {
           <div className={style.col1}>
             <Nav className={style.nav}>
               <Nav.Item className={style.navItem}>
-                <Nav.Link eventKey="Users">User Dashboard</Nav.Link>
+                <Nav.Link eventKey="Users">Admin Dashboard</Nav.Link>
               </Nav.Item>
 
               <Nav.Item className={style.navItem}>
@@ -54,7 +54,7 @@ const DashboardPage = () => {
           <div className={style.col2}>
             <Tab.Content className={style.tab}>
               <Tab.Pane eventKey="Users">
-                <h2>#User Dashboard:</h2>
+                <h2>#Admin Dashboard:</h2>
                 <UsersDashboard />
               </Tab.Pane>
 

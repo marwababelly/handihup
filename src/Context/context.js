@@ -28,30 +28,34 @@ export const DataTableProvider = ({ children }) => {
     setIsDeleteConfirmOpen(true);
   };
 
-  const handleConfirmDelete = async () => {
+  // const handleConfirmDelete = async () => {
+  //   const updatedData = data.filter((item) => item.id !== rowToDelete.id);
+  //   setData(updatedData);
+
+  //   try {
+  //     const response = await fetch(`/api/data/${rowToDelete.id}`, {
+  //       method: "DELETE",
+  //     });
+
+  //     if (response.ok) {
+  //       const fetchedData = await response.json();
+  //       setData(fetchedData);
+  //     } else {
+  //       console.error("Error deleting data:", response.statusText);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error deleting data:", error);
+  //   } finally {
+  //     setIsDeleteConfirmOpen(false);
+  //     setRowToDelete(null);
+  //   }
+  // };
+
+  const handleConfirmDelete = () => {
     const updatedData = data.filter((item) => item.id !== rowToDelete.id);
-    setData(updatedData); // Update local state first
-
-    // Optional: Update backend if applicable
-    try {
-      const response = await fetch(`/api/data/${rowToDelete.id}`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        // Fetch updated data from backend (replace with your actual logic)
-        const fetchedData = await response.json();
-        setData(fetchedData); // Update with fetched data
-      } else {
-        // Handle API call errors (display error message, etc.)
-        console.error("Error deleting data:", response.statusText);
-      }
-    } catch (error) {
-      console.error("Error deleting data:", error);
-    } finally {
-      setIsDeleteConfirmOpen(false);
-      setRowToDelete(null);
-    }
+    setData(updatedData);
+    setIsDeleteConfirmOpen(false);
+    setRowToDelete(null);
   };
 
   const handleCancelDelete = () => {

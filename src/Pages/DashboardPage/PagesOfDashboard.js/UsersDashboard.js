@@ -18,12 +18,54 @@ const UserDashboard = () => {
   } = useContext(DataTableContext);
 
   const userData = [
-    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "true" },
-    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
-    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
-    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
-    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
-    { id: 1, ownerId: "S", name: "lab", categoriesId: 12, validated: "false" },
+    {
+      id: 1,
+      userType: "S",
+      userName: "lab",
+      categoriesId: 12,
+      validated: "true",
+      projectName: "lab",
+    },
+    {
+      id: 1,
+      userType: "S",
+      userName: "lab",
+      categoriesId: 12,
+      validated: "false",
+      projectName: "lab",
+    },
+    {
+      id: 1,
+      userType: "S",
+      userName: "lab",
+      categoriesId: 12,
+      validated: "false",
+      projectName: "lab",
+    },
+    {
+      id: 1,
+      userType: "S",
+      userName: "lab",
+      categoriesId: 12,
+      validated: "false",
+      projectName: "lab",
+    },
+    {
+      id: 1,
+      userType: "S",
+      userName: "lab",
+      categoriesId: 12,
+      validated: "false",
+      projectName: "lab",
+    },
+    {
+      id: 1,
+      userType: "S",
+      userName: "lab",
+      categoriesId: 12,
+      validated: "false",
+      projectName: "lab",
+    },
   ];
 
   useEffect(() => {
@@ -38,16 +80,20 @@ const UserDashboard = () => {
       selector: (row) => row.id,
     },
     {
-      name: "Owner Id",
-      selector: (row) => row.ownerId,
+      name: "User Name",
+      selector: (row) => row.userName,
+    },
+    {
+      name: "User Type",
+      selector: (row) => row.userType,
+    },
+    {
+      name: "Project Name",
+      selector: (row) => row.userType,
     },
     {
       name: "categories Id",
       selector: (row) => row.categoriesId,
-    },
-    {
-      name: "Name",
-      selector: (row) => row.name,
     },
     {
       name: "Validated",

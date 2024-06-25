@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { tableCustomStyles } from "./tableCustomStyles";
 import DataTableContext from "../../../Context/context";
