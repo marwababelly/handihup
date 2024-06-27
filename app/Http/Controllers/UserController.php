@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class UserController extends Controller
 {
@@ -43,6 +46,47 @@ class UserController extends Controller
         return Response::json([
             'message' => 'no token baby'
         ], 401);
+    }
+    public function login(Request $request)
+    {
+        $data =   $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+        $user = User::where('email', $request->email)->first();
+        if ($user && Hash::check($request->password, $user->password)) {
+            $token =  $user->createToken($request->userAgent());
+            return Response::json([
+                'token' => $token->plainTextToken,
+                'message' => 'login done',
+                'user' => $user
+            ], 201);
+        }
+        return Response::json([
+            'message' => 'no token baby'
+        ], 401);
+    }
+
+    public function logout($token = null)
+    {
+        $user = Auth::guard('sanctum')->user();
+
+        if (null === $token) {
+            $user->currentAccessToken()->delete;
+            return response()->json(['message' => '1Successfully logged out']);
+        }
+
+        $pat =    PersonalAccessToken::findToken($token);
+        if ($user->id == $pat->tokenable_id) {
+            $pat->delete();
+            // response()->json(['message' => '2Successfully logged out']);
+        }
+        // if ($user) {
+        //     $user->tokens()->revoke();
+        //     return response()->json(['message' => 'Successfully logged out']);
+        // }
+
+        return response()->json(['error' => 'Unauthorized'], 401);
     }
     // return Response::json([$project, 200, "created"]);
     // return $user;

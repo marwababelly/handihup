@@ -21,6 +21,8 @@ Route::get('/', function (Request $request) {
 
 
 Route::apiResource('user', UserController::class);
+Route::post('login', [UserController::class, 'login']);
+Route::post('logout/{token?}', [UserController::class, 'logout'])->middleware('auth:sanctum');
 
 
 Route::apiResource('project', ProjectController::class)->middleware('auth:sanctum')->except(['index', 'show']);
