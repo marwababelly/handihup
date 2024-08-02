@@ -23,7 +23,7 @@ const ProjectDetails = () => {
         "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
       ],
       link: "Pottery",
-      dprice: "500$",
+      dPrice: "500$",
       available: true,
     },
     {
@@ -38,7 +38,7 @@ const ProjectDetails = () => {
         "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
       ],
       link: "SkinCare",
-      dprice: "500$",
+      dPrice: "500$",
       available: false,
     },
     {
@@ -53,7 +53,7 @@ const ProjectDetails = () => {
         "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
       ],
       link: "FontArt",
-      dprice: "500$",
+      dPrice: "500$",
       available: true,
     },
     {
@@ -68,7 +68,7 @@ const ProjectDetails = () => {
         "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
       ],
       link: "Accessories",
-      dprice: "500$",
+      dPrice: "500$",
       available: false,
     },
   ];
@@ -144,7 +144,7 @@ const ProjectDetails = () => {
           </Carousel>
           <div className={style.pIcon}>
             <p className={style.price}>
-              The price per piece is: {productsDetailPage.dprice}
+              The price per piece is: {productsDetailPage.dPrice}
             </p>
             <div className={style.availableIcon}>
               {productsDetailPage.available ? (

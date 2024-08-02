@@ -6,12 +6,9 @@ import pottery from "../../assets/pottery3.jpg";
 import rings from "../../assets/necklace.jpg";
 import skincare from "../../assets/skinCareOil.jpg";
 import neonArt from "../../assets/neon.jpg";
-import { NavLink, Card, Dropdown } from "react-bootstrap";
-import CustomDropdown from "../../component/UI/CustomDropdown";
-import { Link } from "react-router-dom";
+import { NavLink, Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { CategoryList } from "../CategoriesPage/Categories";
-import Products from "../Products/Products";
+
 const ProjectsPage = () => {
   const categories = [
     {
@@ -44,6 +41,7 @@ const ProjectsPage = () => {
       link: "Pottery",
     },
   ];
+
   const projects = [
     {
       id: 1,
@@ -52,6 +50,7 @@ const ProjectsPage = () => {
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: pottery,
       link: "Pottery",
+      ownerOfProject: "Rana Alhaj Ahmad",
     },
     {
       id: 2,
@@ -60,6 +59,7 @@ const ProjectsPage = () => {
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: skinCare,
       link: "SkinCare",
+      ownerOfProject: "Bana",
     },
     {
       id: 3,
@@ -68,6 +68,7 @@ const ProjectsPage = () => {
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: fontArt,
       link: "FontArt",
+      ownerOfProject: "Rana Alhaj Ahmad",
     },
     {
       id: 4,
@@ -76,8 +77,10 @@ const ProjectsPage = () => {
         'This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on "Edit Text" or double click on the text box to start.',
       img: rings,
       link: "Accessories",
+      ownerOfProject: "Omar",
     },
   ];
+
   const productsList = [
     {
       id: 1,
@@ -139,6 +142,7 @@ const ProjectsPage = () => {
       setSelectedCategory(null);
     }
   };
+
   const filterProducts = (pro) => {
     const product = productsList.find(
       (product) => product.title === pro || product.link === pro.trim()
@@ -154,7 +158,6 @@ const ProjectsPage = () => {
   return (
     <div className={style.container}>
       <h2 className={style.title}>Projects</h2>
-      {/* <hr className={style.h2Hr} /> */}
       <div className={style.projects}>
         <div className={style.dropdownContainer}>
           <Dropdown onSelect={(key) => filterProjects(key.trim())}>
@@ -241,11 +244,20 @@ const ProjectsPage = () => {
                   <h2>{project.projectName}</h2>
                   <p>{project.projectDescription}</p>
                 </div>
-                <button className={style.button}>
-                  <NavLink href={`/Projects/${project.link}/Product`}>
+                <div className={style.divNavLink}>
+                  <NavLink
+                    href={`/Projects/${project.link}/Product`}
+                    className={style.navLink}
+                  >
                     View Products
+                  </NavLink>{" "}
+                  <NavLink
+                    href={`/OwnerPage/${project.ownerOfProject}`}
+                    className={style.navLink}
+                  >
+                    View Owner Details
                   </NavLink>
-                </button>
+                </div>
                 <hr className={style.hr} />
               </div>
             </NavLink>
