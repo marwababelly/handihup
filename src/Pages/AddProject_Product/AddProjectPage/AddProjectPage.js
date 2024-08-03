@@ -229,6 +229,12 @@ const AddProjectPage = () => {
                         className="mb-3"
                         controlId="formBasicCheckbox"
                       ></Form.Group>
+                      <div className={style.linkContainer}>
+                        <p>Already have a project?  </p>
+                       <Link to="/AddProduct" className={style.linkText}>
+                             Add Product
+                             </Link>
+                     </div>
                       <div className={style.divBtn}>
                         <Button className={style.btn} type="submit">
                           <Link to="/AddProduct">Next Page</Link>
@@ -239,16 +245,6 @@ const AddProjectPage = () => {
                 </div>
               </Card.Body>
             </div>
-          </div>
-        </div>
-
-        <div className={style.imgRow}>
-          <div md={8} lg={6} xs={12} className={style.imageCol}>
-            <img
-              src={AddProjectImage}
-              alt="Add Project alt"
-              className={style.img}
-            />
           </div>
         </div>
       </div>
