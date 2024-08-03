@@ -40,6 +40,8 @@ function App() {
             path="/Projects/:projectLink/Product/:productLink"
             element={<ProjectDetails />}
           />
+          <Route path="/OwnerPage/:ownerOfProject" element={<OwnerPage />} /> 
+              <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
         </AuthProvider>
