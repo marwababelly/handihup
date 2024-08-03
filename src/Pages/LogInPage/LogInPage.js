@@ -25,7 +25,7 @@ const LogInPage = () => {
     setPassword(event.target.value);
   };
 
-  const submitFormHandler = (event) => {
+  const submitFormHandler = async (event) => {
     event.preventDefault();
 
      const enteredUsername = usernameRef.current.value;
@@ -34,12 +34,16 @@ const LogInPage = () => {
      console.log(enteredEmail , enteredUsername , enteredPassword);
     // props.onAddUser({username: enteredUsername, email: enteredEmail})
     try{
-      const response = axios.post( `http://127.0.0.1:8000/api/login`, {
+      const response = await axios.post( `http://127.0.0.1:8000/api/login`, {
         username : enteredUsername ,
         email : enteredEmail ,
         password : enteredPassword ,
       }
       )
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+    });
       console.log(response.data);
     }
     catch(err){
@@ -118,7 +122,7 @@ const LogInPage = () => {
                     </Form>
                     <div className="mt-3">
                       <p className="mb-0  text-center">
-                        Don't have an account?{" "}
+                        Doesn't have an account?{" "}
                         <Link to="/SignUp" className="text-primary fw-bold">
                           Sign Up
                         </Link>

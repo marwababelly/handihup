@@ -14,11 +14,14 @@ import Footer from "./component/Footer/Footer";
 import ProjectDetails from "./Pages/Projects/ProjectDetails";
 import Products from "./Pages/Products/Products";
 import AddProductPage from "./Pages/AddProject_Product/AddProductPage/AddProductPage";
+import { AuthProvider } from ".//Context/AuthContext";
+import PageNotFound from "./Pages/PageNotFound";
 
 function App() {
   return (
     <Fragment>
       <div className="App">
+      <AuthProvider>
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
@@ -35,8 +38,10 @@ function App() {
             path="/Projects/:projectLink/Product/:productLink"
             element={<ProjectDetails />}
           />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
+        </AuthProvider>
       </div>
     </Fragment>
   );
