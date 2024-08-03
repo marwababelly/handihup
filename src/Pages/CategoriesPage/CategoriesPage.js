@@ -88,7 +88,7 @@ const CategoriesPage = () => {
             </div>
             <img src={item.imageUrl} className={style.image} alt="Category Image" />
             <button className={style.btn}>
-              <Link to={`/Projects/${item.title}`}>Read More</Link>
+            <Link to={`/Projects?category=${item.title}`}>Read More</Link>
             </button>
           </div>
         ))}
