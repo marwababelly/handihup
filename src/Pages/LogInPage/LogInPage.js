@@ -1,56 +1,58 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import style from "./LogInPage.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { baseURL, LogIn } from "../../API/Api";
 
 const LogInPage = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [form, setForm] = useState({
+    // userName: "",
+    password: "",
+    email: "",
+  });
+  // const [error, setError] = useState("");
+  const focus = useRef(null);
 
-  const usernameRef = useRef("");
-  const emailRef = useRef("");
-  const passwordRef = useRef("");
-
-  const loginURL = "http://127.0.0.1:8000/api/login";
-
-  const usernameHandler = (event) => {
-    setUsername(event.target.value);
+  const handleChange = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const emailHandler = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const passwordHandler = (event) => {
-    setPassword(event.target.value);
-  };
+  useEffect(() => {
+    focus.current.focus();
+  }, []);
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
+    axios
+      .post("http://127.0.0.1:8000/api/login", form)
+      .then((response) => {
+        console.log("form is ", form, "response is: ", response);
+      })
+      .catch((error) => {
+        console.log("error is ", error);
+      });
 
-    const enteredUsername = usernameRef.current.value;
-    const enteredEmail = emailRef.current.value;
-    const enteredPassword = passwordRef.current.value;
-    console.log(enteredEmail, enteredUsername, enteredPassword);
-    // props.onAddUser({username: enteredUsername, email: enteredEmail})
-    try{
-      const response = await axios.post( `http://127.0.0.1:8000/api/login`, {
-        username : enteredUsername ,
-        email : enteredEmail ,
-        password : enteredPassword ,
-      }
-      )
-      .then((res) => {
-        console.log(res);
-        console.log(res.data);
-    });
-      console.log(response.data);
-    }
-    catch(err){
-      console.log(err);
-    }
+    //   const enteredUsername = usernameRef.current.value;
+    //   const enteredEmail = emailRef.current.value;
+    //   const enteredPassword = passwordRef.current.value;
+    //   console.log(enteredEmail, enteredUsername, enteredPassword);
+    //   // props.onAddUser({username: enteredUsername, email: enteredEmail})
+    //   try {
+    //     const response = await axios
+    //       .post(`http://127.0.0.1:8000/api/login`, {
+    //         username: enteredUsername,
+    //         email: enteredEmail,
+    //         password: enteredPassword,
+    //       })
+    //       .then((res) => {
+    //         console.log(res);
+    //         console.log(res.data);
+    //       });
+    //     console.log(response.data);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
     // try {
     //   const response = axios.post(loginURL, {
     //     username: enteredUsername,
@@ -60,12 +62,22 @@ const LogInPage = () => {
     //   console.log(response.data);
     // } catch (err) {
     //   console.log(err);
-    // }
+    //  }
 
-    axios.post(loginURL).then((res) => {
-      console.log(res);
-      console.log(res.data);
-    });
+    //   axios.post(loginURL).then((res) => {
+    // const submitFormHandler = async (event) => {
+    //   event.preventDefault();
+    //   try {
+    //     let res = await axios.post(`${baseURL}/${LogIn}`, form);
+    //     console.log(res);
+    //   } catch (err) {
+    //     console.log(err);
+    //     if (err.response.status === 401) {
+    //       setError("Wrong Email or password");
+    //     } else {
+    //       setError("Internet Server Error");
+    //     }
+    //   }
   };
 
   return (
@@ -81,20 +93,21 @@ const LogInPage = () => {
                   </h2>
                   <div className="mb-3">
                     <Form onSubmit={submitFormHandler}>
-                      <Form.Group className="mb-3" controlId="Name">
+                      {/* <Form.Group className="mb-3" controlId="Name">
                         <Form.Label className="text-center">
                           UserName
                         </Form.Label>
                         <Form.Control
                           type="text"
+                          name="userName"
                           className={style.formControl}
                           placeholder="Enter username"
-                          ref={usernameRef}
-                          value={username}
-                          onChange={usernameHandler}
+                          ref={focus}
+                          value={form.userName}
+                          onChange={handleChange}
                           required
                         />
-                      </Form.Group>
+                      </Form.Group> */}
 
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
@@ -103,10 +116,11 @@ const LogInPage = () => {
                         <Form.Control
                           className={style.formControl}
                           type="email"
+                          name="email"
                           placeholder="Enter email"
-                          ref={emailRef}
-                          value={email}
-                          onChange={emailHandler}
+                          ref={focus}
+                          value={form.email}
+                          onChange={handleChange}
                           required
                         />
                       </Form.Group>
@@ -119,10 +133,11 @@ const LogInPage = () => {
                         <Form.Control
                           className={style.formControl}
                           type="password"
+                          name="password"
                           placeholder="Password"
-                          ref={passwordRef}
-                          value={password}
-                          onChange={passwordHandler}
+                          ref={focus}
+                          value={form.password}
+                          onChange={handleChange}
                           required
                         />
                       </Form.Group>
