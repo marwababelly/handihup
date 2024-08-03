@@ -7,7 +7,9 @@ import { Nav } from "react-bootstrap";
 const ReviewsDashboard = () => {
   const {
     data,
+    setData,
     handleDelete,
+    setRowToDelete,
     isDeleteConfirmOpen,
     setIsDeleteConfirmOpen,
     rowToDelete,
@@ -22,11 +24,28 @@ const ReviewsDashboard = () => {
     { id: 2, name: "Bob", email: "bob@example.com" },
   ];
 
+  console.log(reviewData);
+
+  // useEffect(() => {
+  //   if (!data.length) {
+  //     setInitialData(reviewData);
+  //     setRowToDelete(null);
+  //   }
+  // }, [data, setInitialData]);
+
   useEffect(() => {
     if (!data.length) {
       setInitialData(reviewData);
+      setIsDeleteConfirmOpen(false);  //Reset confirmation state after deletion
+      setRowToDelete(null); // Reset row to delete after deletion/cancellation
     }
-  }, [data, setInitialData]);
+  }, [
+    data,
+    rowToDelete,
+    setInitialData,
+    setIsDeleteConfirmOpen,
+    setRowToDelete,
+  ]);
 
   const columns = [
     {

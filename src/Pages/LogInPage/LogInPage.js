@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import style from "./LogInPage.module.css";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 const LogInPage = () => {
   const [username, setUsername] = useState("");
@@ -12,7 +12,9 @@ const LogInPage = () => {
   const usernameRef = useRef("");
   const emailRef = useRef("");
   const passwordRef = useRef("");
-  const loginURL = 'http://127.0.0.1:8000/api/login';
+
+  const loginURL = "http://127.0.0.1:8000/api/login";
+
   const usernameHandler = (event) => {
     setUsername(event.target.value);
   };
@@ -28,10 +30,10 @@ const LogInPage = () => {
   const submitFormHandler = async (event) => {
     event.preventDefault();
 
-     const enteredUsername = usernameRef.current.value;
-     const enteredEmail = emailRef.current.value;
-     const enteredPassword = passwordRef.current.value;
-     console.log(enteredEmail , enteredUsername , enteredPassword);
+    const enteredUsername = usernameRef.current.value;
+    const enteredEmail = emailRef.current.value;
+    const enteredPassword = passwordRef.current.value;
+    console.log(enteredEmail, enteredUsername, enteredPassword);
     // props.onAddUser({username: enteredUsername, email: enteredEmail})
     try{
       const response = await axios.post( `http://127.0.0.1:8000/api/login`, {
@@ -49,6 +51,21 @@ const LogInPage = () => {
     catch(err){
       console.log(err);
     }
+    // try {
+    //   const response = axios.post(loginURL, {
+    //     username: enteredUsername,
+    //     email: enteredEmail,
+    //     password: enteredPassword,
+    //   });
+    //   console.log(response.data);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+
+    axios.post(loginURL).then((res) => {
+      console.log(res);
+      console.log(res.data);
+    });
   };
 
   return (

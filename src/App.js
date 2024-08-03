@@ -14,6 +14,7 @@ import Footer from "./component/Footer/Footer";
 import ProjectDetails from "./Pages/Projects/ProjectDetails";
 import Products from "./Pages/Products/Products";
 import AddProductPage from "./Pages/AddProject_Product/AddProductPage/AddProductPage";
+import OwnerPage from "./Pages/OwnerPage/OwnerPage";
 import { AuthProvider } from ".//Context/AuthContext";
 import PageNotFound from "./Pages/PageNotFound";
 
@@ -28,8 +29,9 @@ function App() {
           <Route path="/LogIn" element={<LogInPage />} />
           <Route path="/SignUp" element={<SignUpPage />} />
           <Route path="/Projects" element={<ProjectsPage />} />
+          <Route path="/Owner" element={<OwnerPage />} />
           <Route path="/Projects/:categoryTitle" element={<CategoryList />} />
-          <Route path="/Categories" element={<CategoriesPage/>} />
+          <Route path="/Categories" element={<CategoriesPage />} />
           <Route path="/Dashboard" element={<DashboardPage />} />
           <Route path="/AddProduct" element={<AddProductPage />} />
           <Route path="/add-project-page" element={<AddProjectPage />} />
@@ -38,7 +40,6 @@ function App() {
             path="/Projects/:projectLink/Product/:productLink"
             element={<ProjectDetails />}
           />
-          <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />
         </AuthProvider>
