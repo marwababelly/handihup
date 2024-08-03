@@ -11,6 +11,14 @@ import work_Hand from "../../assets/work_Hand.jpg";
 import Knitting from "../../assets/Knitting.jpg";
 import Pottery_Wheel from "../../assets/PotteryWheel.jpg";
 import Woven_Bag from "../../assets/Woven_Bag.jpg";
+import skin_moisturizer from "../../assets/alya skin.jpg"
+import coffee_cups from "../../assets/coffee cups.jpg"
+import neon_font from "../../assets/neon font.jpg"
+import pottery_jar from "../../assets/jar and cups.jpg"
+import bead_rings from "../../assets/ring.jpg"
+import skin_care from "../../assets/skincare prod.jpg"
+import cute_rings from "../../assets/cute rings.jpg"
+import neon_art from "../../assets/girls neon art.jpg"
 
 const Overview = () => {
   const [index, setIndex] = useState(0);
@@ -31,17 +39,17 @@ const Overview = () => {
         <Carousel.Item className={style.item}>
           <Container className={style.imgContainer}>
             <img
-              src={pottery}
+              src={pottery_jar}
               alt="first img"
               className={style.imageOverview}
             />
-            <img src={sweet} alt="second img" className={style.imageOverview} />
-            <img src={wool} alt="third img" className={style.imageOverview} />
+            <img src={bead_rings} alt="second img" className={style.imageOverview} />
+            <img src={skin_moisturizer} alt="third img" className={style.imageOverview} />
           </Container>
           <Container>
             <Carousel.Caption className={style.caption}>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h3>Most Liked Products</h3>
+              <p>Take a look at these most liked products.</p>
             </Carousel.Caption>
           </Container>
         </Carousel.Item>
@@ -49,25 +57,25 @@ const Overview = () => {
         <Carousel.Item className={style.item}>
           <Container className={style.imgContainer}>
             <img
-              src={White_Vases}
+              src={pottery}
               alt="fourth img"
               className={style.imageOverview}
             />
             <img
-              src={Female_Jeweler}
+              src={skin_care}
               alt="fifth img"
               className={style.imageOverview}
             />
             <img
-              src={work_Hand}
+              src={neon_font}
               alt="sixth img"
               className={style.imageOverview}
             />
           </Container>
           <Carousel.Caption className={style.caption}>
             <Container>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h3>Most Famous Projects</h3>
+              <p>Take a look at these best selling Projects.</p>
             </Container>
           </Carousel.Caption>
         </Carousel.Item>
@@ -75,25 +83,25 @@ const Overview = () => {
         <Carousel.Item className={style.item}>
           <Container className={style.imgContainer}>
             <img
-              src={Knitting}
+              src={coffee_cups}
               alt="seventh img"
               className={style.imageOverview}
             />
             <img
-              src={Pottery_Wheel}
+              src={cute_rings}
               alt="eighth img"
               className={style.imageOverview}
             />
             <img
-              src={Woven_Bag}
+              src={neon_art}
               alt="ninth img"
               className={style.imageOverview}
             />
           </Container>
           <Carousel.Caption className={style.caption}>
-            <h3>Third slide label</h3>
+            <h3>Featured Products</h3>
             <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              Take a look at these on sale products.
             </p>
           </Carousel.Caption>
         </Carousel.Item>
