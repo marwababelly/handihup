@@ -4,53 +4,25 @@ import { Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const AddProductPage = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [projectName, setProjectName] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState([]);
+  const [form , setForm] = useState({
+  username : "" ,
+  email : "" ,
+  password : "" ,
+  projectName : "" ,
+  category : "" , 
+  description : "" ,
+  image : [null] ,
+  }) ;
 
-  const usernameRef = useRef("");
-  const emailRef = useRef("");
-  const passwordRef = useRef("");
-  const projectNameRef = useRef("");
-  const categoryRef = useRef("");
-  const descriptionRef = useRef("");
-  const imageRef = useRef(null);
+  const [error , setError] = useState("") ;
 
-  const usernameHandler = (event) => {
-    setUsername(event.target.value);
+  const focus = useRef(null) ;
+  
+  const changeHandler = (e) => {
+    e.preventDefault();
+    setForm({ ...form  , [e.target.name] : e.target.value })
   };
-
-  const emailHandler = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const passwordHandler = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const projectNameHandler = (event) => {
-    setProjectName(event.target.value);
-  };
-
-  const categoryHandler = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const descriptionHandler = (event) => {
-    setDescription(event.target.value);
-  };
-  const imageHandler = (event) => {
-    setImage([...event.target.files]);
-  };
-
-  const submitFormHandler = (event) => {
-    event.preventDefault();
-  };
-
+  
   return (
     <div md={8} lg={6} xs={12} className={style.Container} expand="md">
       <div className={style.h2Title}>
@@ -59,15 +31,16 @@ const AddProductPage = () => {
         </h2>
       </div>
       <div className={style.form}>
-        <Form onSubmit={submitFormHandler}>
+        <Form onSubmit={changeHandler}>
           <Form.Group className="mb-3" controlId="username">
             <Form.Label className={style.label}>UserName</Form.Label>
             <Form.Control
               type="text"
+              name= "username"
               className={style.customInput}
-              ref={usernameRef}
-              value={username}
-              onChange={usernameHandler}
+              ref={focus}
+              value={form.username}
+              onChange={changeHandler}
               required
             />
           </Form.Group>
@@ -77,9 +50,10 @@ const AddProductPage = () => {
             <Form.Control
               className={style.customInput}
               type="email"
-              ref={emailRef}
-              value={email}
-              onChange={emailHandler}
+              name="email"
+              ref={focus}
+              value={form.email}
+              onChange={changeHandler}
               required
             />
           </Form.Group>
@@ -89,9 +63,10 @@ const AddProductPage = () => {
             <Form.Control
               className={style.customInput}
               type="password"
-              ref={passwordRef}
-              value={password}
-              onChange={passwordHandler}
+              name="password"
+              ref={focus}
+              value={form.password}
+              onChange={changeHandler}
               required
             />
           </Form.Group>
@@ -100,10 +75,11 @@ const AddProductPage = () => {
             <Form.Label className={style.label}>Project Name</Form.Label>
             <Form.Control
               type="text"
+              name="projectName"
               className={style.customInput}
-              ref={projectNameRef}
-              value={projectName}
-              onChange={projectNameHandler}
+              ref={focus}
+              value={form.projectName}
+              onChange={changeHandler}
               required
             />
           </Form.Group>
@@ -112,11 +88,11 @@ const AddProductPage = () => {
             <Form.Label className={style.label}>IProject Category</Form.Label>
             <Form.Control
               type="text"
+              name="category"
               className={style.customInput}
-              ref={categoryRef}
-              value={category}
-              onChange={categoryHandler}
-              required
+              ref={focus}
+              value={form.category}
+              onChange={changeHandler}
             />
           </Form.Group>
 
@@ -124,11 +100,12 @@ const AddProductPage = () => {
             <Form.Label className={style.label}>Project Description</Form.Label>
             <Form.Control
               as="textarea"
+              name="description"
               rows={3}
               className={style.customInput}
-              ref={descriptionRef}
-              value={description}
-              onChange={descriptionHandler}
+              ref={focus}
+              value={form.description}
+              onChange={changeHandler}
               required
             />
           </Form.Group>
@@ -140,11 +117,12 @@ const AddProductPage = () => {
             <Form.Control
               multiple
               type="file"
+              name="image"
               accept="image/*"
               className={style.customInput}
-              ref={imageRef}
-              // value={image}
-              onChange={imageHandler}
+              ref={focus}
+              value={form.image}
+              onChange={changeHandler}
               required
             />
           </Form.Group>

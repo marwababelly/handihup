@@ -5,67 +5,30 @@ import AddProjectImage from "../../../assets/AddProjectImage.jpg";
 import { Link } from "react-router-dom";
 
 const AddProjectPage = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [projectName, setProjectName] = useState("");
-  const [category, setCategory] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
-  const [instagram, setInstagram] = useState("");
-  const [facebook, setFacebook] = useState("");
+  const [form , setForm] = useState({
+    username : "" ,
+    email : "" ,
+    password : "" ,
+    projectName : "" ,
+    category : "" , 
+    description : "" ,
+    image : "" ,
+    instagram : "" , 
+    facebook : "" ,
+  }) ;
 
-  const usernameRef = useRef("");
-  const emailRef = useRef("");
-  const passwordRef = useRef("");
-  const projectNameRef = useRef("");
-  const descriptionRef = useRef("");
-  const imageRef = useRef("");
-  const instagramRef = useRef("");
-  const facebookRef = useRef("");
+  const [error , serError] = useState("");
 
-  const usernameHandler = (event) => {
-    setUsername(event.target.value);
-  };
+  const focus = useRef(null) ;
+  
+  const changeHandler = (e) => {
+    e.preventDefault() ;
+    setForm({ ...form  , [e.target.name] : e.target.value }) ;
+  }
 
-  const emailHandler = (event) => {
-    setEmail(event.target.value);
-  };
-
-  const passwordHandler = (event) => {
-    setPassword(event.target.value);
-  };
-
-  const projectNameHandler = (event) => {
-    setProjectName(event.target.value);
-  };
-
-  const categoryChangeHandler = (event) => {
-    setCategory(event.target.value);
-  };
-
-  const descriptionHandler = (event) => {
-    setDescription(event.target.value);
-  };
-  const imageHandler = (event) => {
-    setImage(event.target.value);
-  };
-
-  const instagramHandler = (event) => {
-    setInstagram(event.target.value);
-  };
-
-  const facebookHandler = (event) => {
-    setFacebook(event.target.value);
-  };
+  
   const categories = ["Pottery", "SkinCare", "FontArt", "Accessories"];
 
-
-  const submitFormHandler = (event) => {
-    event.preventDefault();
-    console.log("Submitted form:",
-       { username, email, password, projectName, category, description, image, instagram, facebook });
-   }
   return (
     <div>
       <div className={style.Container} expand="md">
@@ -78,17 +41,18 @@ const AddProjectPage = () => {
                     Add Your Project
                   </h2>
                   <div>
-                    <Form onSubmit={submitFormHandler} className={style.form}>
+                    <Form onSubmit={changeHandler} className={style.form}>
                       <Form.Group className="mb-3" controlId="username">
                         <Form.Label className={style.label}>
                           UserName
                         </Form.Label>
                         <Form.Control
                           type="text"
+                          name="username"
                           className={style.customInput}
-                          ref={usernameRef}
-                          value={username}
-                          onChange={usernameHandler}
+                          ref={focus}
+                          value={form.username}
+                          onChange={changeHandler}
                           required
                         />
                       </Form.Group>
@@ -100,9 +64,10 @@ const AddProjectPage = () => {
                         <Form.Control
                           className={style.customInput}
                           type="email"
-                          ref={emailRef}
-                          value={email}
-                          onChange={emailHandler}
+                          name="email"
+                          ref={focus}
+                          value={form.email}
+                          onChange={changeHandler}
                           required
                         />
                       </Form.Group>
@@ -117,9 +82,10 @@ const AddProjectPage = () => {
                         <Form.Control
                           className={style.customInput}
                           type="password"
-                          ref={passwordRef}
-                          value={password}
-                          onChange={passwordHandler}
+                          name="password"
+                          ref={focus}
+                          value={form.password}
+                          onChange={changeHandler}
                           required
                         />
                       </Form.Group>
@@ -130,19 +96,22 @@ const AddProjectPage = () => {
                         </Form.Label>
                         <Form.Control
                           type="text"
+                          name="projectName"
                           className={style.customInput}
-                          ref={projectNameRef}
-                          value={projectName}
-                          onChange={projectNameHandler}
+                          ref={focus}
+                          value={form.projectName}
+                          onChange={changeHandler}
                           required
                         />
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="category">
                         <Form.Label className={style.label}>Category</Form.Label>
-                        <Form.Control as="select" className={style.customInput}
-                         value={category} 
-                         onChange={categoryChangeHandler} 
+                        <Form.Control as="select" 
+                        name="category"
+                        className={style.customInput}
+                         value={form.category} 
+                         onChange={changeHandler} 
                          required>
                           <option value="" >Select Your Project's Category</option>
                           {categories.map((cate, index) => (
@@ -152,11 +121,12 @@ const AddProjectPage = () => {
                           ))}
                           <option value="other">Other</option>
                         </Form.Control>
-                        {category === "other" && (
+                        {form.category === "other" && (
                           <Form.Group className="mb-3">
                             <Form.Label className={style.label}>New Category</Form.Label>
                             <Form.Control
                               type="text"
+                              name="category"
                               className={style.customInput}
                               placeholder="Enter new category"
                               required
@@ -173,11 +143,12 @@ const AddProjectPage = () => {
                         </Form.Label>
                         <Form.Control
                           as="textarea"
+                          name="description"
                           rows={3}
                           className={style.customInput}
-                          ref={descriptionRef}
-                          value={description}
-                          onChange={descriptionHandler}
+                          ref={focus}
+                          value={form.description}
+                          onChange={changeHandler}
                           required
                         />
                       </Form.Group>
@@ -188,11 +159,12 @@ const AddProjectPage = () => {
                         </Form.Label>
                         <Form.Control
                           type="file"
+                          name="image"
                           accept="image/*"
                           className={style.customInput}
-                          ref={imageRef}
-                          value={image}
-                          onChange={imageHandler}
+                          ref={focus}
+                          value={form.image}
+                          onChange={changeHandler}
                           required
                         />
                       </Form.Group>
@@ -203,10 +175,11 @@ const AddProjectPage = () => {
                         </Form.Label>
                         <Form.Control
                           type="url"
+                          name="instagram"
                           className={style.customInput}
-                          ref={instagramRef}
-                          value={instagram}
-                          onChange={instagramHandler}
+                          ref={focus}
+                          value={form.instagram}
+                          onChange={changeHandler}
                           required
                         />
                       </Form.Group>
@@ -217,10 +190,11 @@ const AddProjectPage = () => {
                         </Form.Label>
                         <Form.Control
                           type="url"
+                          name="facebook"
                           className={style.customInput}
-                          ref={facebookRef}
-                          value={facebook}
-                          onChange={facebookHandler}
+                          ref={focus}
+                          value={form.facebook}
+                          onChange={changeHandler}
                           required
                         />
                       </Form.Group>
@@ -230,7 +204,7 @@ const AddProjectPage = () => {
                         controlId="formBasicCheckbox"
                       ></Form.Group>
                       <div className={style.linkContainer}>
-                        <p>Already have a project?  </p>
+                        <p>Already have a project? </p>
                        <Link to="/AddProduct" className={style.linkText}>
                              Add Product
                              </Link>
