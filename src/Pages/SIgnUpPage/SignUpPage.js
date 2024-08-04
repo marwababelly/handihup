@@ -191,7 +191,50 @@ const SignUpPage = () => {
             </option>
             <option value="owner">Owner</option>
           </Form.Select>
-        </Form.Group>
+          </Form.Group>
+      {form.type === "owner" && (
+        <>
+          <Form.Group className="mb-3" controlId="instagramUrl">
+            <Form.Label>Instagram URL</Form.Label>
+            <Form.Control
+              type="url"
+              name="instagramUrl"
+              placeholder="Enter Instagram URL"
+              className={style.formControl}
+              required
+              ref={focus}
+              value={form.instagramUrl}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="facebookUrl">
+            <Form.Label>Facebook URL</Form.Label>
+            <Form.Control
+              type="url"
+              name="facebookUrl"
+              placeholder="Enter Facebook URL"
+              className={style.formControl}
+              required
+              ref={focus}
+              value={form.facebookUrl}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="linkedinUrl">
+            <Form.Label>LinkedIn URL</Form.Label>
+            <Form.Control
+              type="url"
+              name="linkedinUrl"
+              placeholder="Enter LinkedIn URL"
+              className={style.formControl}
+              required
+              ref={focus}
+              value={form.linkedinUrl}
+              onChange={handleChange}
+            />
+          </Form.Group>
+        </>
+      )}
         <Form.Group className="mb-3" controlId="formBasicCheckbox"></Form.Group>
         <div className={style.divBtn}>
           <Button className={style.btn} type="submit">
