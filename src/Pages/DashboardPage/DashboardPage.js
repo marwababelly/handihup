@@ -9,45 +9,49 @@ import ReviewsDashboard from "./PagesOfDashboard.js/ReviewsDashboard";
 import ReportsDashboard from "./PagesOfDashboard.js/ReportsDashboard";
 import BillsDashboard from "./PagesOfDashboard.js/BillsDashboard";
 import { DataTableProvider } from "../../Context/context";
+import {useAuth} from "../../Context/AuthContext"
+import { useContext } from "react";
+
+const GetUserRole = () => {
+const {user} = useContext(useAuth);
+return user?.role || "admin";
+};
 
 const DashboardPage = () => {
-  // const initialData = [
-  //   { id: 1, name: "Alice", email: "alice@example.com" },
-  //   { id: 2, name: "Bob", email: "bob@example.com" },
-  // ];
+  const userRole = GetUserRole();
+
   return (
     <DataTableProvider>
-      <Tab.Container id="left-tabs-example" defaultActiveKey="Users">
+      <Tab.Container id="left-tabs-example" defaultActiveKey={userRole === "admin" ? "Users" : "projects"}>
         <Row className={style.row}>
           <div className={style.col1}>
             <Nav className={style.nav}>
-              <Nav.Item className={style.navItem}>
-                <Nav.Link eventKey="Users">Admin Dashboard</Nav.Link>
-              </Nav.Item>
-
-              <Nav.Item className={style.navItem}>
-                <Nav.Link eventKey="projects">Project Dashboard</Nav.Link>
-              </Nav.Item>
-
-              <Nav.Item className={style.navItem}>
-                <Nav.Link eventKey="Products">Products Dashboard</Nav.Link>
-              </Nav.Item>
-
-              <Nav.Item className={style.navItem}>
-                <Nav.Link eventKey="Categories">Categories Dashboard</Nav.Link>
-              </Nav.Item>
-
-              <Nav.Item className={style.navItem}>
-                <Nav.Link eventKey="Reviews">Reviews Dashboard</Nav.Link>
-              </Nav.Item>
-
-              <Nav.Item className={style.navItem}>
-                <Nav.Link eventKey="Reports">Reports Dashboard</Nav.Link>
-              </Nav.Item>
-
-              <Nav.Item className={style.navItem}>
-                <Nav.Link eventKey="Bills">Bills Dashboard</Nav.Link>
-              </Nav.Item>
+              {userRole === "admin" && (
+                <>
+                  <Nav.Item className={style.navItem}>
+                    <Nav.Link eventKey="Users">Admin Dashboard</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className={style.navItem}>
+                    <Nav.Link eventKey="Reports">Reports Dashboard</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className={style.navItem}>
+                    <Nav.Link eventKey="Bills">Bills Dashboard</Nav.Link>
+                  </Nav.Item>
+                </>
+              )}
+              {userRole === "owner" && (
+                <>
+                  <Nav.Item className={style.navItem}>
+                    <Nav.Link eventKey="projects">Project Dashboard</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className={style.navItem}>
+                    <Nav.Link eventKey="Products">Products Dashboard</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item className={style.navItem}>
+                    <Nav.Link eventKey="Reviews">Reviews Dashboard</Nav.Link>
+                  </Nav.Item>
+                </>
+              )}
             </Nav>
           </div>
 
