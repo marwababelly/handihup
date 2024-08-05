@@ -1,28 +1,40 @@
 import React, { useRef, useState } from "react";
 import style from "./AddProductPage.module.css";
 import { Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import axios from "axios";
 
 const AddProductPage = () => {
-  const [form , setForm] = useState({
-  username : "" ,
-  email : "" ,
-  password : "" ,
-  projectName : "" ,
-  category : "" , 
-  description : "" ,
-  image : [null] ,
-  }) ;
+  const [form, setForm] = useState({
+    name: "",
+    price: "",
+    available: true,
+    project_id: "",
+    // category: "",
+    description: "",
+    // image: [null],
+  });
 
-  const [error , setError] = useState("") ;
+  const focus = useRef(null);
 
-  const focus = useRef(null) ;
-  
-  const changeHandler = (e) => {
+  const handleChange = (e) => {
     e.preventDefault();
-    setForm({ ...form  , [e.target.name] : e.target.value })
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
-  
+
+  const submitFormHandler = (event) => {
+    event.preventDefault();
+    axios
+      .post("http://127.0.0.1:8000/api/product")
+      .then((response) => {
+        console.log("form is ", form, "response is: ", response);
+      })
+      .catch((error) => {
+        console.log("error is ", error);
+      });
+    setForm("");
+  };
+  console.log(form);
+
   return (
     <div md={8} lg={6} xs={12} className={style.Container} expand="md">
       <div className={style.h2Title}>
@@ -31,60 +43,47 @@ const AddProductPage = () => {
         </h2>
       </div>
       <div className={style.form}>
-        <Form onSubmit={changeHandler}>
-          <Form.Group className="mb-3" controlId="username">
-            <Form.Label className={style.label}>UserName</Form.Label>
+        <Form onSubmit={submitFormHandler}>
+          <Form.Group className="mb-3" controlId="projectName">
+            <Form.Label className={style.label}>Project Name</Form.Label>
             <Form.Control
-              type="text"
-              name= "username"
+              type="number"
+              name="project_id"
               className={style.customInput}
               ref={focus}
-              value={form.username}
-              onChange={changeHandler}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label className={style.label}>Email address</Form.Label>
-            <Form.Control
-              className={style.customInput}
-              type="email"
-              name="email"
-              ref={focus}
-              value={form.email}
-              onChange={changeHandler}
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label className={style.label}>Password</Form.Label>
-            <Form.Control
-              className={style.customInput}
-              type="password"
-              name="password"
-              ref={focus}
-              value={form.password}
-              onChange={changeHandler}
+              value={form.project_id}
+              onChange={handleChange}
               required
             />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="projectName">
-            <Form.Label className={style.label}>Project Name</Form.Label>
+            <Form.Label className={style.label}>Product Name</Form.Label>
             <Form.Control
               type="text"
-              name="projectName"
+              name="name"
               className={style.customInput}
               ref={focus}
-              value={form.projectName}
-              onChange={changeHandler}
+              value={form.name}
+              onChange={handleChange}
               required
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="categoryName">
+          <Form.Group className="mb-3" controlId="projectName">
+            <Form.Label className={style.label}>Price</Form.Label>
+            <Form.Control
+              type="number"
+              name="price"
+              className={style.customInput}
+              ref={focus}
+              value={form.price}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          {/* <Form.Group className="mb-3" controlId="categoryName">
             <Form.Label className={style.label}>IProject Category</Form.Label>
             <Form.Control
               type="text"
@@ -92,9 +91,9 @@ const AddProductPage = () => {
               className={style.customInput}
               ref={focus}
               value={form.category}
-              onChange={changeHandler}
+              onChange={handleChange}
             />
-          </Form.Group>
+          </Form.Group> */}
 
           <Form.Group className="mb-3" controlId="descriptionTextarea">
             <Form.Label className={style.label}>Project Description</Form.Label>
@@ -105,12 +104,12 @@ const AddProductPage = () => {
               className={style.customInput}
               ref={focus}
               value={form.description}
-              onChange={changeHandler}
+              onChange={handleChange}
               required
             />
           </Form.Group>
 
-          <Form.Group controlId="formImageUpload">
+          {/* <Form.Group controlId="formImageUpload">
             <Form.Label className={style.label}>
               Upload Project Image
             </Form.Label>
@@ -122,10 +121,10 @@ const AddProductPage = () => {
               className={style.customInput}
               ref={focus}
               value={form.image}
-              onChange={changeHandler}
+              onChange={handleChange}
               required
             />
-          </Form.Group>
+          </Form.Group> */}
 
           <Form.Group
             className="mb-3"

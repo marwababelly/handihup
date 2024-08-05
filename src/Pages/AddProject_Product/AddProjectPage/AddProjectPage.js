@@ -1,33 +1,45 @@
-import React, { useRef, useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
+import React, { useRef, useState, useEffect } from "react";
+import axios from "axios";
+import { Card, Form } from "react-bootstrap";
 import style from "./AddProjectPage.module.css";
-import AddProjectImage from "../../../assets/AddProjectImage.jpg";
 import { Link } from "react-router-dom";
 
 const AddProjectPage = () => {
-  const [form , setForm] = useState({
-    username : "" ,
-    email : "" ,
-    password : "" ,
-    projectName : "" ,
-    category : "" , 
-    description : "" ,
-    image : "" ,
-    instagram : "" , 
-    facebook : "" ,
-  }) ;
+  const [form, setForm] = useState({
+    name: "",
+    category_id: "",
+    description: "",
+    image: "",
+    owner_id: "",
+  });
 
-  const [error , serError] = useState("");
+  const focus = useRef(null);
 
-  const focus = useRef(null) ;
-  
-  const changeHandler = (e) => {
-    e.preventDefault() ;
-    setForm({ ...form  , [e.target.name] : e.target.value }) ;
-  }
-
-  
   const categories = ["Pottery", "SkinCare", "FontArt", "Accessories"];
+  // const categories = [1, 2, 3, 4];
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  useEffect(() => {
+    focus.current.focus();
+  }, []);
+
+  const submitFormHandler = async (event) => {
+    event.preventDefault();
+    axios
+      .post("http://127.0.0.1:8000/api/project", form)
+      .then((response) => {
+        console.log("form is ", form, "response is: ", response);
+      })
+      .catch((error) => {
+        console.log("error is ", error);
+      });
+    setForm("");
+  };
+  console.log(form);
 
   return (
     <div>
@@ -41,98 +53,58 @@ const AddProjectPage = () => {
                     Add Your Project
                   </h2>
                   <div>
-                    <Form onSubmit={changeHandler} className={style.form}>
-                      <Form.Group className="mb-3" controlId="username">
-                        <Form.Label className={style.label}>
-                          UserName
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="username"
-                          className={style.customInput}
-                          ref={focus}
-                          value={form.username}
-                          onChange={changeHandler}
-                          required
-                        />
-                      </Form.Group>
-
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label className={style.label}>
-                          Email address
-                        </Form.Label>
-                        <Form.Control
-                          className={style.customInput}
-                          type="email"
-                          name="email"
-                          ref={focus}
-                          value={form.email}
-                          onChange={changeHandler}
-                          required
-                        />
-                      </Form.Group>
-
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicPassword"
-                      >
-                        <Form.Label className={style.label}>
-                          Password
-                        </Form.Label>
-                        <Form.Control
-                          className={style.customInput}
-                          type="password"
-                          name="password"
-                          ref={focus}
-                          value={form.password}
-                          onChange={changeHandler}
-                          required
-                        />
-                      </Form.Group>
-
+                    <Form onSubmit={submitFormHandler} className={style.form}>
                       <Form.Group className="mb-3" controlId="projectName">
                         <Form.Label className={style.label}>
                           Project Name
                         </Form.Label>
                         <Form.Control
                           type="text"
-                          name="projectName"
+                          name="name"
                           className={style.customInput}
                           ref={focus}
                           value={form.projectName}
-                          onChange={changeHandler}
+                          onChange={handleChange}
+                          required
+                        />
+                      </Form.Group>
+
+                      <Form.Group className="mb-3" controlId="projectName">
+                        <Form.Label className={style.label}>
+                          Owner Name
+                        </Form.Label>
+                        <Form.Control
+                          type="number"
+                          name="owner_id"
+                          className={style.customInput}
+                          ref={focus}
+                          value={form.owner_id}
+                          onChange={handleChange}
                           required
                         />
                       </Form.Group>
 
                       <Form.Group className="mb-3" controlId="category">
-                        <Form.Label className={style.label}>Category</Form.Label>
-                        <Form.Control as="select" 
-                        name="category"
-                        className={style.customInput}
-                         value={form.category} 
-                         onChange={changeHandler} 
-                         required>
-                          <option value="" >Select Your Project's Category</option>
+                        <Form.Label className={style.label}>
+                          Category
+                        </Form.Label>
+                        <Form.Control
+                          as="select"
+                          name="category_id"
+                          className={style.customInput}
+                          value={form.category}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">
+                            Select Your Project's Category
+                          </option>
                           {categories.map((cate, index) => (
-                            <option key={index} value={cate}>
+                            <option key={index} value={index}>
                               {cate}
                             </option>
                           ))}
-                          <option value="other">Other</option>
                         </Form.Control>
-                        {form.category === "other" && (
-                          <Form.Group className="mb-3">
-                            <Form.Label className={style.label}>New Category</Form.Label>
-                            <Form.Control
-                              type="text"
-                              name="category"
-                              className={style.customInput}
-                              placeholder="Enter new category"
-                              required
-                            />
-                          </Form.Group>
-                        )}
                       </Form.Group>
                       <Form.Group
                         className="mb-3"
@@ -148,7 +120,7 @@ const AddProjectPage = () => {
                           className={style.customInput}
                           ref={focus}
                           value={form.description}
-                          onChange={changeHandler}
+                          onChange={handleChange}
                           required
                         />
                       </Form.Group>
@@ -164,55 +136,22 @@ const AddProjectPage = () => {
                           className={style.customInput}
                           ref={focus}
                           value={form.image}
-                          onChange={changeHandler}
-                          required
+                          onChange={handleChange}
+                          // required
                         />
                       </Form.Group>
-
-                      <Form.Group controlId="InstagramProfileUrl">
-                        <Form.Label className={style.label}>
-                          Instagram Profile URL
-                        </Form.Label>
-                        <Form.Control
-                          type="url"
-                          name="instagram"
-                          className={style.customInput}
-                          ref={focus}
-                          value={form.instagram}
-                          onChange={changeHandler}
-                          required
-                        />
-                      </Form.Group>
-
-                      <Form.Group controlId="FacebookProfileUrl">
-                        <Form.Label className={style.label}>
-                          Facebook Profile URL
-                        </Form.Label>
-                        <Form.Control
-                          type="url"
-                          name="facebook"
-                          className={style.customInput}
-                          ref={focus}
-                          value={form.facebook}
-                          onChange={changeHandler}
-                          required
-                        />
-                      </Form.Group>
-
-                      <Form.Group
-                        className="mb-3"
-                        controlId="formBasicCheckbox"
-                      ></Form.Group>
-                      <div className={style.linkContainer}>
-                        <p>Already have a project? </p>
-                       <Link to="/AddProduct" className={style.linkText}>
-                             Add Product
-                             </Link>
-                     </div>
                       <div className={style.divBtn}>
-                        <Button className={style.btn} type="submit">
-                          <Link to="/AddProduct">Next Page</Link>
-                        </Button>
+                        <button className={style.projBtn} type="submit">
+                          Add Project
+                        </button>
+                        <div className={style.linkContainer}>
+                          <p>Already have a project? </p>
+                          <Link to="/AddProduct">
+                            <button className={style.projBtn} type="submit">
+                              Next Page
+                            </button>
+                          </Link>
+                        </div>
                       </div>
                     </Form>
                   </div>

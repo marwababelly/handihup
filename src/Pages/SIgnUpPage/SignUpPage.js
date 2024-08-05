@@ -18,23 +18,8 @@ const SignUpPage = () => {
     phone_number: "",
     password: "",
     type: "",
-    // birth_date: "",
   });
 
-  useEffect(() => {
-    if (!isAuthenticated) {
-      setForm({
-        name: "" ,
-        user_name: "" ,
-        image: "" ,
-        address: "" ,
-        phone_number: "" ,
-        type: "" ,
-        password: "",
-        email: "",
-      });
-    }
-  }, [isAuthenticated]);
   // const [error, setError] = useState("");
 
   const focus = useRef(null);
@@ -50,18 +35,15 @@ const SignUpPage = () => {
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post("http://127.0.0.1:8000/api/user", form);
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      console.log("form is ", form, "response is: ", response);
-
-      const userRole = response.data.user.type; 
-      updateUser({ ...response.data, type: userRole });
-    } catch (error) {
-      console.log("error is ", error);
-    }
-  };{
+    axios
+      .post("http://127.0.0.1:8000/api/user", form)
+      .then((response) => {
+        console.log("form is ", form, "response is: ", response);
+      })
+      .catch((error) => {
+        console.log("error is ", error);
+      });
+    // try {
     //   const res = await axios.post(`http://127.0.0.1:8000/api/signup`, form);
     //   console.log(res);
     // } catch (err) {
@@ -183,20 +165,6 @@ const SignUpPage = () => {
             onChange={handleChange}
           />
         </Form.Group>
-
-        {/* <Form.Group className="mb-3" controlId="Name">
-          <Form.Label className="text-center">Birth Date</Form.Label>
-          <Form.Control
-            type="Date"
-            name="birth_date"
-            className={style.formControl}
-            placeholder="Enter Your Date"
-            ref={focus}
-            value={form.birth_date}
-            onChange={handleChange}
-          />
-        </Form.Group> */}
-
         <Form.Group>
           <Form.Label>User Type</Form.Label>
           <Form.Select
@@ -212,50 +180,50 @@ const SignUpPage = () => {
             </option>
             <option value="owner">Owner</option>
           </Form.Select>
-          </Form.Group>
-      {form.type === "owner" && (
-        <>
-          <Form.Group className="mb-3" controlId="instagramUrl">
-            <Form.Label>Instagram URL</Form.Label>
-            <Form.Control
-              type="url"
-              name="instagramUrl"
-              placeholder="Enter Instagram URL"
-              className={style.formControl}
-              required
-              ref={focus}
-              value={form.instagramUrl}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="facebookUrl">
-            <Form.Label>Facebook URL</Form.Label>
-            <Form.Control
-              type="url"
-              name="facebookUrl"
-              placeholder="Enter Facebook URL"
-              className={style.formControl}
-              required
-              ref={focus}
-              value={form.facebookUrl}
-              onChange={handleChange}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="linkedinUrl">
-            <Form.Label>LinkedIn URL</Form.Label>
-            <Form.Control
-              type="url"
-              name="linkedinUrl"
-              placeholder="Enter LinkedIn URL"
-              className={style.formControl}
-              required
-              ref={focus}
-              value={form.linkedinUrl}
-              onChange={handleChange}
-            />
-          </Form.Group>
-        </>
-      )}
+        </Form.Group>
+        {form.type === "owner" && (
+          <>
+            <Form.Group className="mb-3" controlId="instagramUrl">
+              <Form.Label>Instagram URL</Form.Label>
+              <Form.Control
+                type="url"
+                name="instagramUrl"
+                placeholder="Enter Instagram URL"
+                className={style.formControl}
+                required
+                ref={focus}
+                value={form.instagramUrl}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="facebookUrl">
+              <Form.Label>Facebook URL</Form.Label>
+              <Form.Control
+                type="url"
+                name="facebookUrl"
+                placeholder="Enter Facebook URL"
+                className={style.formControl}
+                required
+                ref={focus}
+                value={form.facebookUrl}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="linkedinUrl">
+              <Form.Label>LinkedIn URL</Form.Label>
+              <Form.Control
+                type="url"
+                name="linkedinUrl"
+                placeholder="Enter LinkedIn URL"
+                className={style.formControl}
+                required
+                ref={focus}
+                value={form.linkedinUrl}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </>
+        )}
         <Form.Group className="mb-3" controlId="formBasicCheckbox"></Form.Group>
         <div className={style.divBtn}>
           <Button className={style.btn} type="submit">
