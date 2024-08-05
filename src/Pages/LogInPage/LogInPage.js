@@ -3,15 +3,12 @@ import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
 import style from "./LogInPage.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { baseURL, LogIn } from "../../API/Api";
 
 const LogInPage = () => {
   const [form, setForm] = useState({
-    // userName: "",
     password: "",
     email: "",
   });
-  // const [error, setError] = useState("");
   const focus = useRef(null);
 
   const handleChange = (event) => {
@@ -22,7 +19,7 @@ const LogInPage = () => {
     focus.current.focus();
   }, []);
 
-  const submitFormHandler = async (event) => {
+  const submitFormHandler = (event) => {
     event.preventDefault();
     axios
       .post("http://127.0.0.1:8000/api/login", form)
@@ -32,52 +29,7 @@ const LogInPage = () => {
       .catch((error) => {
         console.log("error is ", error);
       });
-
-    //   const enteredUsername = usernameRef.current.value;
-    //   const enteredEmail = emailRef.current.value;
-    //   const enteredPassword = passwordRef.current.value;
-    //   console.log(enteredEmail, enteredUsername, enteredPassword);
-    //   // props.onAddUser({username: enteredUsername, email: enteredEmail})
-    //   try {
-    //     const response = await axios
-    //       .post(`http://127.0.0.1:8000/api/login`, {
-    //         username: enteredUsername,
-    //         email: enteredEmail,
-    //         password: enteredPassword,
-    //       })
-    //       .then((res) => {
-    //         console.log(res);
-    //         console.log(res.data);
-    //       });
-    //     console.log(response.data);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // try {
-    //   const response = axios.post(loginURL, {
-    //     username: enteredUsername,
-    //     email: enteredEmail,
-    //     password: enteredPassword,
-    //   });
-    //   console.log(response.data);
-    // } catch (err) {
-    //   console.log(err);
-    //  }
-
-    //   axios.post(loginURL).then((res) => {
-    // const submitFormHandler = async (event) => {
-    //   event.preventDefault();
-    //   try {
-    //     let res = await axios.post(`${baseURL}/${LogIn}`, form);
-    //     console.log(res);
-    //   } catch (err) {
-    //     console.log(err);
-    //     if (err.response.status === 401) {
-    //       setError("Wrong Email or password");
-    //     } else {
-    //       setError("Internet Server Error");
-    //     }
-    //   }
+    setForm("");
   };
 
   return (
@@ -93,22 +45,6 @@ const LogInPage = () => {
                   </h2>
                   <div className="mb-3">
                     <Form onSubmit={submitFormHandler}>
-                      {/* <Form.Group className="mb-3" controlId="Name">
-                        <Form.Label className="text-center">
-                          UserName
-                        </Form.Label>
-                        <Form.Control
-                          type="text"
-                          name="userName"
-                          className={style.formControl}
-                          placeholder="Enter username"
-                          ref={focus}
-                          value={form.userName}
-                          onChange={handleChange}
-                          required
-                        />
-                      </Form.Group> */}
-
                       <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label className="text-center">
                           Email address
