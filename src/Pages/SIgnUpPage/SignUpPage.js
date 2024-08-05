@@ -3,8 +3,12 @@ import { Button, Form } from "react-bootstrap";
 import style from "./SIgnUpPage.module.css";
 import axios from "axios";
 import { baseURL, SignUp } from "../../API/Api";
+import { useAuth } from "../../Context/AuthContext";
 
 const SignUpPage = () => {
+
+  const { updateUser , isAuthenticated} = useAuth();
+
   const [form, setForm] = useState({
     name: "",
     user_name: "",
@@ -17,6 +21,20 @@ const SignUpPage = () => {
     // birth_date: "",
   });
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setForm({
+        name: "" ,
+        user_name: "" ,
+        image: "" ,
+        address: "" ,
+        phone_number: "" ,
+        type: "" ,
+        password: "",
+        email: "",
+      });
+    }
+  }, [isAuthenticated]);
   // const [error, setError] = useState("");
 
   const focus = useRef(null);
@@ -32,15 +50,18 @@ const SignUpPage = () => {
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
-    axios
-      .post("http://127.0.0.1:8000/api/user", form)
-      .then((response) => {
-        console.log("form is ", form, "response is: ", response);
-      })
-      .catch((error) => {
-        console.log("error is ", error);
-      });
-    // try {
+    try {
+      const response = await axios.post("http://127.0.0.1:8000/api/user", form);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      console.log("form is ", form, "response is: ", response);
+
+      const userRole = response.data.user.type; 
+      updateUser({ ...response.data, type: userRole });
+    } catch (error) {
+      console.log("error is ", error);
+    }
+  };{
     //   const res = await axios.post(`http://127.0.0.1:8000/api/signup`, form);
     //   console.log(res);
     // } catch (err) {

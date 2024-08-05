@@ -4,13 +4,24 @@ import style from "./LogInPage.module.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { baseURL, LogIn } from "../../API/Api";
+import { useAuth } from "../../Context/AuthContext";
 
 const LogInPage = () => {
+
+  const {updateUser, isAuthenticated, logout} = useAuth(); 
   const [form, setForm] = useState({
-    // userName: "",
     password: "",
     email: "",
   });
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setForm({
+        password: "",
+        email: "",
+      });
+    }
+  }, [isAuthenticated]);
   // const [error, setError] = useState("");
   const focus = useRef(null);
 
@@ -27,7 +38,10 @@ const LogInPage = () => {
     axios
       .post("http://127.0.0.1:8000/api/login", form)
       .then((response) => {
+        const token = response.data.token;
+        localStorage.setItem("token", token);
         console.log("form is ", form, "response is: ", response);
+        updateUser(response.data.type);
       })
       .catch((error) => {
         console.log("error is ", error);
