@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Cookies from "universal-cookie";
 import { Button, Form } from "react-bootstrap";
 import style from "./SIgnUpPage.module.css";
 import axios from "axios";
@@ -6,8 +7,7 @@ import { baseURL, SignUp } from "../../API/Api";
 import { useAuth } from "../../Context/AuthContext";
 
 const SignUpPage = () => {
-
-  const { updateUser , isAuthenticated} = useAuth();
+  const { updateUser, isAuthenticated } = useAuth();
 
   const [form, setForm] = useState({
     name: "",
@@ -19,8 +19,6 @@ const SignUpPage = () => {
     password: "",
     type: "",
   });
-
-  // const [error, setError] = useState("");
 
   const focus = useRef(null);
 
@@ -35,31 +33,17 @@ const SignUpPage = () => {
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
-    axios
-      .post("http://127.0.0.1:8000/api/user", form)
-      .then((response) => {
-        console.log("form is ", form, "response is: ", response);
-      })
-      .catch((error) => {
-        console.log("error is ", error);
-      });
-    // try {
-    //   const res = await axios.post(`http://127.0.0.1:8000/api/signup`, form);
-    //   console.log(res);
-    // } catch (err) {
-    // console.log(err);
-    // if (err.response.status === 404) {
-    //   setError("Email is already been token");
-    // } else {
-    //   setError("Internal Server Err");
-    // }
-    //   if (err.response) {
-    //     let status = err.response.status;
-    //     console.log("status", status);
-    //   } else {
-    //     console.error("Error:", err.message);
-    //   }
-    // }
+    try {
+      const response = await axios.post(`${baseURL}/${SignUp}`, form);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      console.log("form is ", form, "response is: ", response);
+      const userRole = response.data.user.type;
+      updateUser({ ...response.data, type: userRole });
+    } catch (error) {
+      console.log("error is ", error);
+    }
+    setForm("");
   };
   console.log(form);
 
@@ -181,7 +165,7 @@ const SignUpPage = () => {
             <option value="owner">Owner</option>
           </Form.Select>
         </Form.Group>
-        {form.type === "owner" && (
+        {/* {form.type === "owner" && (
           <>
             <Form.Group className="mb-3" controlId="instagramUrl">
               <Form.Label>Instagram URL</Form.Label>
@@ -223,7 +207,7 @@ const SignUpPage = () => {
               />
             </Form.Group>
           </>
-        )}
+        )} */}
         <Form.Group className="mb-3" controlId="formBasicCheckbox"></Form.Group>
         <div className={style.divBtn}>
           <Button className={style.btn} type="submit">
