@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
 import { Carousel, Form, Button } from "react-bootstrap";
 import style from "./ProjectDetails.module.css";
 import fontArt from "../../assets/fontArt4.jpg";
@@ -9,6 +8,8 @@ import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
 import rings from "../../assets/accessoriesRing.jpg";
 import { useParams } from "react-router";
+import axios from "axios";
+
 const ProjectDetails = () => {
   const projectsDetails = [
     {
@@ -76,8 +77,34 @@ const ProjectDetails = () => {
   const [index, setIndex] = useState(0);
   const [reviews, setReviews] = useState([]);
   const [report, setReport] = useState();
-  const reviewRef = useRef(null);
+  const [getProductDetails, setGetProductDetails] = useState([]);
+
   const reportRef = useRef(null);
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/Projects/${projectId}/product/${productId}`
+        );
+        setGetProductDetails(response.data);
+      } catch (error) {
+        console.error("Error featching Products: ", error);
+      }
+    };
+    fetchProduct();
+  }, []);
+
+  const handleSubmitReport = (e) => {
+    e.preventDefault();
+    alert("Form submitted successfully!");
+    reportRef.current.value = "";
+  };
+
+  const handleReport = (e) => {
+    setReport(e.target.value);
+  };
+  const reviewRef = useRef(null);
 
   const handleAddReview = (event) => {
     event.preventDefault();
@@ -86,16 +113,6 @@ const ProjectDetails = () => {
       setReviews([...reviews, newReview]);
       reviewRef.current.value = "";
     }
-  };
-
-  const handleReport = (e) => {
-    setReport(e.target.value);
-  };
-
-  const handleSubmitReport = (e) => {
-    e.preventDefault();
-    alert("Form submitted successfully!");
-    reportRef.current.value = "";
   };
 
   const reviewSlides = reviews.map((review, index) => (
@@ -108,10 +125,10 @@ const ProjectDetails = () => {
     setIndex(selectedIndex);
   };
 
-  const { projectLink, productLink } = useParams();
+  const { projectId, productId } = useParams();
   const productsDetailPage =
-    projectsDetails.find((p) => p.link === String(projectLink)) &&
-    projectsDetails.find((p) => p.link === String(productLink));
+    projectsDetails.find((p) => p.id === Number(projectId)) &&
+    projectsDetails.find((p) => p.id === Number(productId));
 
   if (!productsDetailPage) return <div>Product Detail not found</div>;
 
@@ -120,7 +137,7 @@ const ProjectDetails = () => {
       <div className={style.container}>
         <div className={style.backgroundContainer}>
           <h2 className="fw-bold mb-2 text-center text-uppercase text-secondary">
-            {productsDetailPage.dProjectName}
+            {productsDetailPage.getProductDetails.dProjectName}
           </h2>
           <Carousel
             className={style.carouselImg}
@@ -130,24 +147,27 @@ const ProjectDetails = () => {
             onSelect={handleSelect}
           >
             {" "}
-            {productsDetailPage.dProjectImg.length > 0 &&
-              productsDetailPage.dProjectImg.map((img, index) => (
-                <Carousel.Item className={style.carouselItemImg}>
-                  <img
-                    className={style.img}
-                    key={index}
-                    src={img}
-                    alt="alt img"
-                  />
-                </Carousel.Item>
-              ))}
+            {productsDetailPage.getProductDetails.dProjectImg.length > 0 &&
+              productsDetailPage.getProductDetails.dProjectImg.map(
+                (img, index) => (
+                  <Carousel.Item className={style.carouselItemImg}>
+                    <img
+                      className={style.img}
+                      key={index}
+                      src={img}
+                      alt="alt img"
+                    />
+                  </Carousel.Item>
+                )
+              )}
           </Carousel>
           <div className={style.pIcon}>
             <p className={style.price}>
-              The price per piece is: {productsDetailPage.dPrice}
+              The price per piece is:{" "}
+              {productsDetailPage.getProductDetails.dPrice}
             </p>
             <div className={style.availableIcon}>
-              {productsDetailPage.available ? (
+              {productsDetailPage.getProductDetails.available ? (
                 <>
                   <p>Available</p>
                   <FontAwesomeIcon
@@ -170,24 +190,26 @@ const ProjectDetails = () => {
           </div>
         </div>
         <p className={style.description}>
-          {productsDetailPage.dProjectDescription}
+          {productsDetailPage.getProductDetails.dProjectDescription}
         </p>
         <div className={style.contentDiv}>
           <h3 className="fw-bold mb-2 text-center text-uppercase text-secondary mt-3">
             project contents:
           </h3>
           <div className={style.content}>
-            {productsDetailPage.dProjectContents.map((detail, detailIndex) => (
-              <div className={style.element}>
-                <p className={style.numberP}>
-                  {"0"}
-                  {detailIndex}
-                  {":"}
-                </p>
-                <p className={style.detailP}>{detail}</p>
-                <hr className={style.hrContents} />
-              </div>
-            ))}
+            {productsDetailPage.getProductDetails.dProjectContents.map(
+              (detail, detailIndex) => (
+                <div className={style.element}>
+                  <p className={style.numberP}>
+                    {"0"}
+                    {detailIndex}
+                    {":"}
+                  </p>
+                  <p className={style.detailP}>{detail}</p>
+                  <hr className={style.hrContents} />
+                </div>
+              )
+            )}
           </div>
         </div>
         <h3 className="fw-bold mb-2 text-center text-uppercase text-secondary mt-3">
@@ -200,14 +222,16 @@ const ProjectDetails = () => {
           interval={2500}
           onSelect={handleSelect}
         >
-          {productsDetailPage.dProjectReviews.length > 0 &&
-            productsDetailPage.dProjectReviews.map((review, index) => (
-              <Carousel.Item className={style.carouselItem}>
-                <p key={index} className={style.par}>
-                  {review}
-                </p>
-              </Carousel.Item>
-            ))}
+          {productsDetailPage.getProductDetails.dProjectReviews.length > 0 &&
+            productsDetailPage.getProductDetails.dProjectReviews.map(
+              (review, index) => (
+                <Carousel.Item className={style.carouselItem}>
+                  <p key={index} className={style.par}>
+                    {review}
+                  </p>
+                </Carousel.Item>
+              )
+            )}
           {reviewSlides}
         </Carousel>
 
@@ -229,7 +253,6 @@ const ProjectDetails = () => {
             </Button>
           </div>
         </Form>
-
         <div className={style.reportSession}>
           <h5 className="fw-bold mb-2 text-center text-uppercase text-secondary mt-3">
             If anything happens that is illegal or not beneficial to the site's
@@ -237,11 +260,10 @@ const ProjectDetails = () => {
           </h5>
           <Form onSubmit={handleSubmitReport} className={style.reportForm}>
             <Form.Group className="mb-3" controlId="addReport">
-              {/* <Form.Label className={style.label}>Add Report</Form.Label> */}
               <Form.Control
                 type="text"
                 className={style.customInput}
-                // value={report}
+                value={report}
                 onChange={handleReport}
                 ref={reportRef}
                 required

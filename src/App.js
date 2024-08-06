@@ -22,28 +22,28 @@ function App() {
   return (
     <Fragment>
       <div className="App">
-      <AuthProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/LogIn" element={<LogInPage />} />
-          <Route path="/SignUp" element={<SignUpPage />} />
-          <Route path="/Projects" element={<ProjectsPage />} />
-          <Route path="/Owner" element={<OwnerPage />} />
-          <Route path="/Projects/:categoryTitle" element={<CategoryList />} />
-          <Route path="/Categories" element={<CategoriesPage />} />
-          <Route path="/Dashboard" element={<DashboardPage />} />
-          <Route path="/AddProduct" element={<AddProductPage />} />
-          <Route path="/add-project-page" element={<AddProjectPage />} />
-          <Route path="/Projects/:projectLink/Product" element={<Products />} />
-          <Route
-            path="/Projects/:projectLink/Product/:productLink"
-            element={<ProjectDetails />}
-          />
-          <Route path="/OwnerPage/:ownerOfProject" element={<OwnerPage />} /> 
-              <Route path="*" element={<PageNotFound />} />
-        </Routes>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/LogIn" element={<LogInPage />} />
+            <Route path="/SignUp" element={<SignUpPage />} />
+            <Route path="/Projects" element={<ProjectsPage />} />
+            <Route path="/Owner" element={<OwnerPage />} />
+            <Route path="/Projects/:categoryTitle" element={<CategoryList />} />
+            <Route path="/Categories" element={<CategoriesPage />} />
+            <Route path="/Dashboard" element={<DashboardPage />} />
+            <Route path="/AddProduct" element={<AddProductPage />} />
+            <Route path="/add-project-page" element={<AddProjectPage />} />
+            <Route path="/Projects/:projectId/Product" element={<Products />} />
+            <Route
+              path="/Projects/:projectId/Product/:productId"
+              element={<ProjectDetails />}
+            />
+            <Route path="/OwnerPage/:ownerOfProject" element={<OwnerPage />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+          <Footer />
         </AuthProvider>
       </div>
     </Fragment>

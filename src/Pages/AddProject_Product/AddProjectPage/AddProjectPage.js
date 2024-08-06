@@ -3,6 +3,8 @@ import axios from "axios";
 import { Card, Form } from "react-bootstrap";
 import style from "./AddProjectPage.module.css";
 import { Link } from "react-router-dom";
+import { Axios } from "../../../API/axios";
+import { baseURL, Project } from "../../../API/Api";
 
 const AddProjectPage = () => {
   const [form, setForm] = useState({
@@ -29,14 +31,23 @@ const AddProjectPage = () => {
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
-    axios
-      .post("http://127.0.0.1:8000/api/project", form)
-      .then((response) => {
-        console.log("form is ", form, "response is: ", response);
-      })
-      .catch((error) => {
-        console.log("error is ", error);
-      });
+    try {
+      const response = await axios.post(`${baseURL}/${Project}`, form);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      console.log("form is ", form, "response is: ", response);
+    } catch (error) {
+      console.log("error is ", error);
+    }
+
+    // axios
+    //   .post(`${baseURL}/${Project}`, form)
+    //   .then((response) => {
+    //     console.log("form is ", form, "response is: ", response);
+    //   })
+    //   .catch((error) => {
+    //     console.log("error is ", error);
+    //   });
     setForm("");
   };
   console.log(form);
