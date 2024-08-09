@@ -40,7 +40,7 @@ function App() {
               path="/Projects/:projectId/Product/:productId"
               element={<ProjectDetails />}
             />
-            <Route path="/OwnerPage/:ownerOfProject" element={<OwnerPage />} />
+            <Route path="/OwnerPage/:ownerOfProduct" element={<OwnerPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
           <Footer />

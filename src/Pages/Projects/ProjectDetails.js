@@ -78,40 +78,81 @@ const ProjectDetails = () => {
   const [reviews, setReviews] = useState([]);
   const [report, setReport] = useState();
   const [getProductDetails, setGetProductDetails] = useState([]);
+  const [postReport, setPostReport] = useState({
+    report: "",
+    project_id: "",
+    user_id: "",
+  });
+  const [postReview, setPostReview] = useState({
+    review: "",
+    project_id: "1",
+    user_id: "1",
+    rate: "3",
+  });
 
   const reportRef = useRef(null);
-
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(
-          `http://127.0.0.1:8000/api/Projects/${projectId}/product/${productId}`
-        );
-        setGetProductDetails(response.data);
-      } catch (error) {
-        console.error("Error featching Products: ", error);
-      }
-    };
-    fetchProduct();
-  }, []);
-
-  const handleSubmitReport = (e) => {
-    e.preventDefault();
-    alert("Form submitted successfully!");
-    reportRef.current.value = "";
-  };
-
-  const handleReport = (e) => {
-    setReport(e.target.value);
-  };
   const reviewRef = useRef(null);
 
-  const handleAddReview = (event) => {
+  useEffect(() => {
+    reportRef.current.focus();
+    reviewRef.current.focus();
+  }, []);
+
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://127.0.0.1:8000/api/Projects/${projectId}/product/${productId}`
+  //       );
+  //       setGetProductDetails(response.data);
+  //     } catch (error) {
+  //       console.error("Error featching Products: ", error);
+  //     }
+  //   };
+  //   fetchProduct();
+  // }, []);
+
+  const handleSubmitReport = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/report`,
+        postReport
+      );
+      console.log("form is ", postReport, "response is: ", response);
+    } catch (error) {
+      console.log("error is ", error);
+    }
+    alert("Form submitted successfully!");
+    reportRef.current.value = "";
+    setReport("");
+  };
+
+  const handleReportChange = (e) => {
+    e.preventDefault();
+    setPostReport({ ...postReport, [e.target.name]: e.target.value });
+  };
+
+  const handleReviewChange = (e) => {
+    e.preventDefault();
+    setPostReview({ ...postReview, [e.target.name]: e.target.value });
+  };
+
+  const handleAddReview = async (event) => {
     event.preventDefault();
     const newReview = reviewRef.current.value.trim();
     if (newReview) {
       setReviews([...reviews, newReview]);
       reviewRef.current.value = "";
+    }
+    try {
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/review`,
+        postReview
+      );
+      console.log("form is ", postReview, "response is: ", response);
+    } catch (error) {
+      console.log("error is ", error);
     }
   };
 
@@ -137,7 +178,7 @@ const ProjectDetails = () => {
       <div className={style.container}>
         <div className={style.backgroundContainer}>
           <h2 className="fw-bold mb-2 text-center text-uppercase text-secondary">
-            {productsDetailPage.getProductDetails.dProjectName}
+            {productsDetailPage.dProjectName}
           </h2>
           <Carousel
             className={style.carouselImg}
@@ -147,27 +188,24 @@ const ProjectDetails = () => {
             onSelect={handleSelect}
           >
             {" "}
-            {productsDetailPage.getProductDetails.dProjectImg.length > 0 &&
-              productsDetailPage.getProductDetails.dProjectImg.map(
-                (img, index) => (
-                  <Carousel.Item className={style.carouselItemImg}>
-                    <img
-                      className={style.img}
-                      key={index}
-                      src={img}
-                      alt="alt img"
-                    />
-                  </Carousel.Item>
-                )
-              )}
+            {productsDetailPage.dProjectImg.length > 0 &&
+              productsDetailPage.dProjectImg.map((img, index) => (
+                <Carousel.Item className={style.carouselItemImg}>
+                  <img
+                    className={style.img}
+                    key={index}
+                    src={img}
+                    alt="alt img"
+                  />
+                </Carousel.Item>
+              ))}
           </Carousel>
           <div className={style.pIcon}>
             <p className={style.price}>
-              The price per piece is:{" "}
-              {productsDetailPage.getProductDetails.dPrice}
+              The price per piece is: {productsDetailPage.dPrice}
             </p>
             <div className={style.availableIcon}>
-              {productsDetailPage.getProductDetails.available ? (
+              {productsDetailPage.available ? (
                 <>
                   <p>Available</p>
                   <FontAwesomeIcon
@@ -190,26 +228,24 @@ const ProjectDetails = () => {
           </div>
         </div>
         <p className={style.description}>
-          {productsDetailPage.getProductDetails.dProjectDescription}
+          {productsDetailPage.dProjectDescription}
         </p>
         <div className={style.contentDiv}>
           <h3 className="fw-bold mb-2 text-center text-uppercase text-secondary mt-3">
             project contents:
           </h3>
           <div className={style.content}>
-            {productsDetailPage.getProductDetails.dProjectContents.map(
-              (detail, detailIndex) => (
-                <div className={style.element}>
-                  <p className={style.numberP}>
-                    {"0"}
-                    {detailIndex}
-                    {":"}
-                  </p>
-                  <p className={style.detailP}>{detail}</p>
-                  <hr className={style.hrContents} />
-                </div>
-              )
-            )}
+            {productsDetailPage.dProjectContents.map((detail, detailIndex) => (
+              <div className={style.element}>
+                <p className={style.numberP}>
+                  {"0"}
+                  {detailIndex}
+                  {":"}
+                </p>
+                <p className={style.detailP}>{detail}</p>
+                <hr className={style.hrContents} />
+              </div>
+            ))}
           </div>
         </div>
         <h3 className="fw-bold mb-2 text-center text-uppercase text-secondary mt-3">
@@ -222,16 +258,14 @@ const ProjectDetails = () => {
           interval={2500}
           onSelect={handleSelect}
         >
-          {productsDetailPage.getProductDetails.dProjectReviews.length > 0 &&
-            productsDetailPage.getProductDetails.dProjectReviews.map(
-              (review, index) => (
-                <Carousel.Item className={style.carouselItem}>
-                  <p key={index} className={style.par}>
-                    {review}
-                  </p>
-                </Carousel.Item>
-              )
-            )}
+          {productsDetailPage.dProjectReviews.length > 0 &&
+            productsDetailPage.dProjectReviews.map((review, index) => (
+              <Carousel.Item className={style.carouselItem}>
+                <p key={index} className={style.par}>
+                  {review}
+                </p>
+              </Carousel.Item>
+            ))}
           {reviewSlides}
         </Carousel>
 
@@ -242,6 +276,8 @@ const ProjectDetails = () => {
               as="textarea"
               rows={3}
               type="description"
+              name="review"
+              onChange={handleReviewChange}
               className={style.customInput}
               ref={reviewRef}
               required
@@ -261,10 +297,11 @@ const ProjectDetails = () => {
           <Form onSubmit={handleSubmitReport} className={style.reportForm}>
             <Form.Group className="mb-3" controlId="addReport">
               <Form.Control
+                name="report"
                 type="text"
                 className={style.customInput}
-                value={report}
-                onChange={handleReport}
+                value={postReport.report}
+                onChange={handleReportChange}
                 ref={reportRef}
                 required
               />

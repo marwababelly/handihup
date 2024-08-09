@@ -181,7 +181,7 @@ const ProjectsPage = () => {
             </div>
           </NavLink>
         ) : (
-          getProjects.map((project) => (
+          projects.map((project) => (
             <NavLink href={`/Projects/${project.id}/product`}>
               <div className={style.project}>
                 <img

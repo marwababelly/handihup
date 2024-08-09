@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import style from "./OwnerPage.module.css";
 import instagram from "../../assets/instagram.png";
 import facebook from "../../assets/facebook.png";
-import linkedIn from "../../assets/LinkedIn.png";
 import Rana1 from "../../assets/person-1_rfzshl.jpg";
 import Rana2 from "../../assets/person-2_np9x5l.jpg";
 import Bana from "../../assets/person-3_ipa0mj.jpg";
 import Omar from "../../assets/person-4_t9nxjt.jpg";
+import axios from "axios";
 
 const OwnerPage = () => {
   const ownerDetails = [
@@ -25,11 +25,6 @@ const OwnerPage = () => {
         instagram: (
           <a href="https://www.instagram.com/feather.rana?igsh=ajVzY3hjNTVueW5h">
             <img src={instagram} alt="instagram" />
-          </a>
-        ),
-        linkedIn: (
-          <a href="https://www.linkedin.com/in/marwababelly/">
-            <img src={linkedIn} alt="LinkedIn" />
           </a>
         ),
       },
@@ -50,11 +45,6 @@ const OwnerPage = () => {
             <img src={instagram} alt="instagram" />
           </a>
         ),
-        linkedIn: (
-          <a href="https://www.linkedin.com/in/marwababelly/">
-            <img src={linkedIn} alt="LinkedIn" />
-          </a>
-        ),
       },
     },
     {
@@ -71,11 +61,6 @@ const OwnerPage = () => {
         instagram: (
           <a href="https://www.instagram.com/marwababelly/">
             <img src={instagram} alt="instagram" />
-          </a>
-        ),
-        linkedIn: (
-          <a href="https://www.linkedin.com/in/marwababelly/">
-            <img src={linkedIn} alt="LinkedIn" />
           </a>
         ),
       },
@@ -96,19 +81,26 @@ const OwnerPage = () => {
             <img src={instagram} alt="instagram" />
           </a>
         ),
-        linkedIn: (
-          <a href="https://www.linkedin.com/in/marwababelly/">
-            <img src={linkedIn} alt="LinkedIn" />
-          </a>
-        ),
       },
     },
   ];
 
-  const { ownerOfProject } = useParams();
-  const owner = ownerDetails.find(
-    (p) => p.ownerName === String(ownerOfProject)
-  );
+  const [getOwner, setGetOwner] = useState([]);
+
+  useEffect(() => {
+    const fetchOwner = async () => {
+      try {
+        const response = await axios.get(`the URL${ownerOfProduct}`);
+        setGetOwner(response.data);
+      } catch (error) {
+        console.error("Error Fetching Owner: ", error);
+      }
+    };
+    fetchOwner();
+  }, []);
+
+  const { ownerOfProduct } = useParams();
+  const owner = getOwner.find((p) => p.ownerName === String(ownerOfProduct));
   if (!owner) return <div>Owner Page is not found</div>;
 
   return (
@@ -141,7 +133,6 @@ const OwnerPage = () => {
               <ul>
                 <li> Facebook Account: {owner.ownerAccounts.facebook}</li>
                 <li>Instagram Account: {owner.ownerAccounts.instagram}</li>
-                <li> LinkedIn Account: {owner.ownerAccounts.linkedIn}</li>
               </ul>
             </div>
           </>
