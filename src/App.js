@@ -1,5 +1,5 @@
 import "./App.css";
-import { Fragment } from "react";
+import { Fragment , useEffect , useState} from "react";
 import Header from "./component/Header/Header";
 import { Route, Routes } from "react-router";
 import Main from "./Pages/Main/Main";
@@ -15,35 +15,54 @@ import ProjectDetails from "./Pages/Projects/ProjectDetails";
 import Products from "./Pages/Products/Products";
 import AddProductPage from "./Pages/AddProject_Product/AddProductPage/AddProductPage";
 import OwnerPage from "./Pages/OwnerPage/OwnerPage";
-import { AuthProvider } from ".//Context/AuthContext";
+import  {AuthProvider}  from ".//Context/AuthContext";
 import PageNotFound from "./Pages/PageNotFound";
+import PrivateRoute from "./Context/PrivateRoute"; 
+
 
 function App() {
+
+
+  const [state, setState] = useState({
+    isAuthenticated: false,
+    user: null,
+    userRole: null,
+  });
+
+  useEffect(() => {
+    const storedState = localStorage.getItem('isAuthenticated');
+    if (storedState) {
+      setState(JSON.parse(storedState));
+    }
+  }, []);
+
   return (
     <Fragment>
       <div className="App">
-      <AuthProvider>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/LogIn" element={<LogInPage />} />
-          <Route path="/SignUp" element={<SignUpPage />} />
-          <Route path="/Projects" element={<ProjectsPage />} />
-          <Route path="/Owner" element={<OwnerPage />} />
-          <Route path="/Projects/:categoryTitle" element={<CategoryList />} />
-          <Route path="/Categories" element={<CategoriesPage />} />
-          <Route path="/Dashboard" element={<DashboardPage />} />
-          <Route path="/AddProduct" element={<AddProductPage />} />
-          <Route path="/add-project-page" element={<AddProjectPage />} />
-          <Route path="/Projects/:projectLink/Product" element={<Products />} />
-          <Route
-            path="/Projects/:projectLink/Product/:productLink"
-            element={<ProjectDetails />}
-          />
-          <Route path="/OwnerPage/:ownerOfProject" element={<OwnerPage />} /> 
-              <Route path="*" element={<PageNotFound />} />
-        </Routes>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Main />} />
+            <Route path="/LogIn" element={<LogInPage />} />
+            <Route path="/SignUp" element={<SignUpPage />} />
+            <Route path="/Projects" element={<ProjectsPage />} />
+            <Route path="/Owner" element={<OwnerPage />} />
+            <Route path="/Projects/:categoryTitle" element={<CategoryList />} />
+            <Route path="/Categories" element={<CategoriesPage />} />
+            
+            <Route path="/Dashboard" element={<DashboardPage />} />
+            
+            <Route path="/AddProduct" element={<AddProductPage />} />
+            <Route path="/add-project-page" element={<AddProjectPage />} />
+            <Route path="/Projects/:projectLink/Product" element={<Products />} />
+            <Route
+              path="/Projects/:projectLink/Product/:productLink"
+              element={<ProjectDetails />}
+            />
+            <Route path="/OwnerPage/:ownerOfProject" element={<OwnerPage />} /> 
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+          <Footer />
         </AuthProvider>
       </div>
     </Fragment>
