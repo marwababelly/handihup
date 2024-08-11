@@ -3,8 +3,11 @@ import axios from "axios";
 import { Card, Form } from "react-bootstrap";
 import style from "./AddProjectPage.module.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../Context/AuthContext";
+import apiClient from "../../../API/axios";
 
 const AddProjectPage = () => {
+  const {state} = useAuth();
   const [form, setForm] = useState({
     name: "",
     category_id: "",
@@ -15,8 +18,8 @@ const AddProjectPage = () => {
 
   const focus = useRef(null);
 
-  const categories = ["Pottery", "SkinCare", "FontArt", "Accessories"];
-  // const categories = [1, 2, 3, 4];
+  //const categories = ["Pottery", "SkinCare", "FontArt", "Accessories"];
+  const categories = [1, 2, 3, 4];
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -29,16 +32,30 @@ const AddProjectPage = () => {
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
-    axios
-      .post("http://127.0.0.1:8000/api/project", form)
-      .then((response) => {
-        console.log("form is ", form, "response is: ", response);
-      })
-      .catch((error) => {
-        console.log("error is ", error);
-      });
-    setForm("");
+    const token = localStorage.getItem('token');
+  
+    apiClient.post("/Projects", form, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      console.log("Token is", token);
+      console.log("Form is ", form, "Response is: ", response);
+    })
+    .catch((error) => {
+      console.log("Error is ", error);
+    });
+  
+    setForm({
+      name: "",
+      category_id: "",
+      description: "",
+      image: "",
+      owner_id: "",
+    });
   };
+  
   console.log(form);
 
   return (
@@ -147,9 +164,9 @@ const AddProjectPage = () => {
                         <div className={style.linkContainer}>
                           <p>Already have a project? </p>
                           <Link to="/AddProduct">
-                            <button className={style.projBtn} type="submit">
+                           { state.isAuthenticated &&  <button className={style.projBtn} type="submit">
                               Next Page
-                            </button>
+                            </button> }
                           </Link>
                         </div>
                       </div>

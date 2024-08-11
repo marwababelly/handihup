@@ -23,8 +23,13 @@ const AddProductPage = () => {
 
   const submitFormHandler = (event) => {
     event.preventDefault();
+    const token = localStorage.getItem('token')
     axios
-      .post("http://127.0.0.1:8000/api/product")
+      .post("http://127.0.0.1:8000/api/Projects/1/product" , form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log("form is ", form, "response is: ", response);
       })
@@ -82,18 +87,6 @@ const AddProductPage = () => {
               required
             />
           </Form.Group>
-
-          {/* <Form.Group className="mb-3" controlId="categoryName">
-            <Form.Label className={style.label}>IProject Category</Form.Label>
-            <Form.Control
-              type="text"
-              name="category"
-              className={style.customInput}
-              ref={focus}
-              value={form.category}
-              onChange={handleChange}
-            />
-          </Form.Group> */}
 
           <Form.Group className="mb-3" controlId="descriptionTextarea">
             <Form.Label className={style.label}>Project Description</Form.Label>
