@@ -4,7 +4,9 @@ export const LogIn = "login";
 
 export const SignUp = "user";
 
-export const Projects = "projects";
+export const LogOut = "logout";
+
+export const Project = "project";
 
 export const Products = "products";
 

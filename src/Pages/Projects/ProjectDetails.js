@@ -1,7 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
-import { useState } from "react";
 import { Carousel, Form, Button } from "react-bootstrap";
 import style from "./ProjectDetails.module.css";
 import fontArt from "../../assets/fontArt4.jpg";
@@ -9,6 +8,8 @@ import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
 import rings from "../../assets/accessoriesRing.jpg";
 import { useParams } from "react-router";
+import axios from "axios";
+
 const ProjectDetails = () => {
   const projectsDetails = [
     {
@@ -76,26 +77,83 @@ const ProjectDetails = () => {
   const [index, setIndex] = useState(0);
   const [reviews, setReviews] = useState([]);
   const [report, setReport] = useState();
-  const reviewRef = useRef(null);
-  const reportRef = useRef(null);
+  const [getProductDetails, setGetProductDetails] = useState([]);
+  const [postReport, setPostReport] = useState({
+    report: "",
+    project_id: "",
+    user_id: "",
+  });
+  const [postReview, setPostReview] = useState({
+    review: "",
+    project_id: "1",
+    user_id: "1",
+    rate: "3",
+  });
 
-  const handleAddReview = (event) => {
+  const reportRef = useRef(null);
+  const reviewRef = useRef(null);
+
+  useEffect(() => {
+    reportRef.current.focus();
+    reviewRef.current.focus();
+  }, []);
+
+  // useEffect(() => {
+  //   const fetchProduct = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `http://127.0.0.1:8000/api/Projects/${projectId}/product/${productId}`
+  //       );
+  //       setGetProductDetails(response.data);
+  //     } catch (error) {
+  //       console.error("Error featching Products: ", error);
+  //     }
+  //   };
+  //   fetchProduct();
+  // }, []);
+
+  const handleSubmitReport = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/report`,
+        postReport
+      );
+      console.log("form is ", postReport, "response is: ", response);
+    } catch (error) {
+      console.log("error is ", error);
+    }
+    alert("Form submitted successfully!");
+    reportRef.current.value = "";
+    setReport("");
+  };
+
+  const handleReportChange = (e) => {
+    e.preventDefault();
+    setPostReport({ ...postReport, [e.target.name]: e.target.value });
+  };
+
+  const handleReviewChange = (e) => {
+    e.preventDefault();
+    setPostReview({ ...postReview, [e.target.name]: e.target.value });
+  };
+
+  const handleAddReview = async (event) => {
     event.preventDefault();
     const newReview = reviewRef.current.value.trim();
     if (newReview) {
       setReviews([...reviews, newReview]);
       reviewRef.current.value = "";
     }
-  };
-
-  const handleReport = (e) => {
-    setReport(e.target.value);
-  };
-
-  const handleSubmitReport = (e) => {
-    e.preventDefault();
-    alert("Form submitted successfully!");
-    reportRef.current.value = "";
+    try {
+      const response = await axios.post(
+        `http://127.0.0.1:8000/api/review`,
+        postReview
+      );
+      console.log("form is ", postReview, "response is: ", response);
+    } catch (error) {
+      console.log("error is ", error);
+    }
   };
 
   const reviewSlides = reviews.map((review, index) => (
@@ -108,10 +166,10 @@ const ProjectDetails = () => {
     setIndex(selectedIndex);
   };
 
-  const { projectLink, productLink } = useParams();
+  const { projectId, productId } = useParams();
   const productsDetailPage =
-    projectsDetails.find((p) => p.link === String(projectLink)) &&
-    projectsDetails.find((p) => p.link === String(productLink));
+    projectsDetails.find((p) => p.id === Number(projectId)) &&
+    projectsDetails.find((p) => p.id === Number(productId));
 
   if (!productsDetailPage) return <div>Product Detail not found</div>;
 
@@ -218,6 +276,8 @@ const ProjectDetails = () => {
               as="textarea"
               rows={3}
               type="description"
+              name="review"
+              onChange={handleReviewChange}
               className={style.customInput}
               ref={reviewRef}
               required
@@ -229,7 +289,6 @@ const ProjectDetails = () => {
             </Button>
           </div>
         </Form>
-
         <div className={style.reportSession}>
           <h5 className="fw-bold mb-2 text-center text-uppercase text-secondary mt-3">
             If anything happens that is illegal or not beneficial to the site's
@@ -237,12 +296,12 @@ const ProjectDetails = () => {
           </h5>
           <Form onSubmit={handleSubmitReport} className={style.reportForm}>
             <Form.Group className="mb-3" controlId="addReport">
-              {/* <Form.Label className={style.label}>Add Report</Form.Label> */}
               <Form.Control
+                name="report"
                 type="text"
                 className={style.customInput}
-                // value={report}
-                onChange={handleReport}
+                value={postReport.report}
+                onChange={handleReportChange}
                 ref={reportRef}
                 required
               />

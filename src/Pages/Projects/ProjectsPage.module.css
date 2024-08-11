@@ -108,7 +108,8 @@ h2 {
   margin-left: -480px;
   /* border: #000000 1px solid; */
   width: 500px;
-  justify-content: space-around;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
   color: #fef8e5;
 }
@@ -127,10 +128,17 @@ h2 {
   align-items: center;
   font-size: 20px;
   border-radius: 5%;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
   .project {
     flex-wrap: wrap;
   }
+}
+
+.iconEnable {
+  background-color: #88857c;
+  border-radius: 50%;
+  border: 1px solid #88857c;
 }

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import React, { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthContext";
+import style from "./CollapseNav.module.css";
 
 const CollapseNav = () => {
   const {state ,isAuthenticated , userRole} = useAuth();
@@ -14,11 +15,12 @@ const CollapseNav = () => {
     event.preventDefault();
     const token = localStorage.getItem("token");
     try {
-      const result = await axios.get(`The URL/${projectName}`);
+      const result = await axios.get(`The URL/${productName}`);
       localStorage.setItem("token" , token);
-      navigate("/Projects/:projectLink/Product/:productLink");
+      navigate(`/Projects/:projectId/Product`);
+      console.log(result);
     } catch (error) {
-      console.error("Failed to fetch project:", error);
+      console.error("Failed to fetch product:", error);
     }
   };
 
@@ -39,11 +41,13 @@ const CollapseNav = () => {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Search projects..."
-            value={projectName}
-            onChange={(e) => setProjectName(e.target.value)}
+            placeholder="Search products..."
+            value={productName}
+            onChange={(e) => setProductName(e.target.value)}
           />
-          <button type="submit">Search</button>
+          <button type="submit" className={style.searchBtn}>
+            Search
+          </button>
         </form>
       </div>
     </>

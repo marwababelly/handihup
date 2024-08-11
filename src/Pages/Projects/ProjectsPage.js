@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "./ProjectsPage.module.css";
 import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
 import rings from "../../assets/necklace.jpg";
-import skincare from "../../assets/skinCareOil.jpg";
-import neonArt from "../../assets/neon.jpg";
 import { NavLink, Dropdown } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
 
 const ProjectsPage = () => {
   const categories = [
@@ -81,44 +81,10 @@ const ProjectsPage = () => {
     },
   ];
 
-  const productsList = [
-    {
-      id: 1,
-      projectname: "Pottery",
-      image: pottery,
-      title: "Pottery Plates",
-      description: "Beautiful and Colourful handmade pottery plates",
-      link: "Pottery",
-    },
-    {
-      id: 2,
-      projectname: "SkinCare",
-      image: skincare,
-      title: "Essential Oil ",
-      description: "Cosmetic and Natural oil for a better skin",
-      link: "SkinCare",
-    },
-    {
-      id: 3,
-      projectname: "FontArt",
-      image: neonArt,
-      title: "Neon Quotes Art",
-      description: "Decorate your home with these amazing Neon Art",
-      link: "FontArt",
-    },
-    {
-      id: 4,
-      projectname: "Accessories",
-      image: rings,
-      title: "Bead Rings",
-      description: "Spacious amount of trendy bead rings ",
-      link: "Accessories",
-    },
-  ];
   const navigate = useNavigate();
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [getProjects, setGetProjects] = useState([]);
 
   const filterProjects = (category) => {
     const project = projects.find(
@@ -143,17 +109,17 @@ const ProjectsPage = () => {
     }
   };
 
-  const filterProducts = (pro) => {
-    const product = productsList.find(
-      (product) => product.title === pro || product.link === pro.trim()
-    );
-    if (product) {
-      setSelectedProduct(product);
-      navigate(`/Projects/${product.link}/Product`);
-    } else {
-      setSelectedProduct(null);
-    }
-  };
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/api/Projects");
+        setGetProjects(response.data);
+      } catch (error) {
+        console.error("Error featching Projects: ", error);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   return (
     <div className={style.container}>
@@ -192,25 +158,9 @@ const ProjectsPage = () => {
               ))}
             </Dropdown.Menu>
           </Dropdown>
-          <Dropdown onSelect={(key) => filterProducts(key.trim())}>
-            <Dropdown.Toggle
-              variant="success"
-              id="dropdown-basic"
-              className={style.dropdownToggle}
-            >
-              Products
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {productsList.map((pro) => (
-                <Dropdown.Item key={pro.id} eventKey={pro.link.trim()}>
-                  {pro.title}
-                </Dropdown.Item>
-              ))}
-            </Dropdown.Menu>
-          </Dropdown>
         </div>
         {selectedProject ? (
-          <NavLink href={`/Projects/${selectedProject.link}/Product`}>
+          <NavLink href={`/Projects/${selectedProject.link}/product`}>
             <div className={style.project}>
               <img
                 className={style.img}
@@ -223,7 +173,7 @@ const ProjectsPage = () => {
                 <p>{selectedProject.projectDescription}</p>
               </div>
               <button className={style.button}>
-                <NavLink href={`/Projects/${selectedProject.link}/Product`}>
+                <NavLink href={`/Projects/${selectedProject.link}/product`}>
                   View Products
                 </NavLink>
               </button>
@@ -232,7 +182,7 @@ const ProjectsPage = () => {
           </NavLink>
         ) : (
           projects.map((project) => (
-            <NavLink href={`/Projects/${project.link}/Product`}>
+            <NavLink href={`/Projects/${project.id}/product`}>
               <div className={style.project}>
                 <img
                   className={style.img}
@@ -246,7 +196,7 @@ const ProjectsPage = () => {
                 </div>
                 <div className={style.divNavLink}>
                   <NavLink
-                    href={`/Projects/${project.link}/Product`}
+                    href={`/Projects/${project.id}/product`}
                     className={style.navLink}
                   >
                     View Products
@@ -257,6 +207,14 @@ const ProjectsPage = () => {
                   >
                     View Owner Details
                   </NavLink>
+                  {/* <NavLink href="/Report">
+                    <FontAwesomeIcon
+                      className={style.iconEnable}
+                      icon={faCircleExclamation}
+                      size="5x"
+                      
+                    />
+                  </NavLink> */}
                 </div>
                 <hr className={style.hr} />
               </div>
