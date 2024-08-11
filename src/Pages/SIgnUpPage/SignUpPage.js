@@ -1,14 +1,33 @@
 import React, { useEffect, useRef, useState } from "react";
-import Cookies from "universal-cookie";
 import { Button, Form } from "react-bootstrap";
 import style from "./SIgnUpPage.module.css";
 import axios from "axios";
 import { baseURL, SignUp } from "../../API/Api";
 import { useAuth } from "../../Context/AuthContext";
+import { useNavigate } from "react-router";
+import apiClient from "../../API/axios";
 
 const SignUpPage = () => {
-  const { updateUser, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
+  const { updateUser, isAuthenticated , state } = useAuth();
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (!state.isAuthenticated) {
+      setForm({
+        name: "" ,
+        user_name: "" ,
+        image: "" ,
+        address: "" ,
+        phone_number: "" ,
+        type: "" ,
+        password: "",
+        email: "",
+      });
+    }
+  }, [state.isAuthenticated]);
   const [form, setForm] = useState({
     name: "",
     user_name: "",
@@ -34,17 +53,29 @@ const SignUpPage = () => {
   const submitFormHandler = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${baseURL}/${SignUp}`, form);
-      const token = response.data.token;
-      localStorage.setItem("token", token);
-      console.log("form is ", form, "response is: ", response);
-      const userRole = response.data.user.type;
-      updateUser({ ...response.data, type: userRole });
+      const token = localStorage.getItem('token');
+      await apiClient.post("http://127.0.0.1:8000/api/user", form,  {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((response) => {
+        localStorage.setItem("token", token);
+        console.log("form is ", form, "response is: ", response, 'token is ', token);
+        const userRole = response.data.user.type;
+        localStorage.setItem("userRole",userRole);
+        updateUser({...response.data, type: userRole });
+        navigate('/');
+      })
+  
     } catch (error) {
       console.log("error is ", error);
+      if (error.response && error.response.data.message === "The email has already been taken. (and 1 more error)") {
+        setErrorMessage("The email, username, or phone number has already been used.");
+      } 
     }
     setForm("");
   };
+  
   console.log(form);
 
   return (
@@ -214,6 +245,12 @@ const SignUpPage = () => {
             Create Account
           </Button>
         </div>
+        {errorMessage && (
+           <div className="alert alert-danger mt-3" role="alert">
+              {errorMessage}
+                </div>
+)}
+
       </Form>
     </div>
   );
