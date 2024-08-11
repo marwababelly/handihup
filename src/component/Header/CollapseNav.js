@@ -8,7 +8,7 @@ import style from "./CollapseNav.module.css";
 const CollapseNav = () => {
   const {state ,isAuthenticated , userRole} = useAuth();
   console.log(state.userRole);
-  const [projectName, setProjectName] = useState("");
+  const [productName, setProductName] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -16,9 +16,7 @@ const CollapseNav = () => {
     const token = localStorage.getItem("token");
     try {
       const result = await axios.get(`The URL/${productName}`);
-      localStorage.setItem("token" , token);
       navigate(`/Projects/:projectId/Product`);
-      console.log(result);
     } catch (error) {
       console.error("Failed to fetch product:", error);
     }
