@@ -5,15 +5,17 @@ import { Nav, Navbar } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthContext";
 
 const CollapseNav = () => {
-  const {isAuthenticated , user} = useAuth();
-  console.log(user?.type);
+  const {state ,isAuthenticated , userRole} = useAuth();
+  console.log(state.userRole);
   const [projectName, setProjectName] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const token = localStorage.getItem("token");
     try {
       const result = await axios.get(`The URL/${projectName}`);
+      localStorage.setItem("token" , token);
       navigate("/Projects/:projectLink/Product/:productLink");
     } catch (error) {
       console.error("Failed to fetch project:", error);
@@ -22,12 +24,12 @@ const CollapseNav = () => {
 
   return (
     <>
-      <Navbar.Collapse id="responsive-navbar-nav" key={user?.role}>
+      <Navbar.Collapse id="responsive-navbar-nav" key={state.userRole}>
       <Nav className="me-auto fs-5 ps-5">
         <Nav.Link href="/">Home</Nav.Link>
         <Nav.Link href="/Projects">Projects</Nav.Link>
         <Nav.Link href="/Categories">Categories</Nav.Link>
-        {(isAuthenticated && user?.type !== 'user') && (
+        {(state.isAuthenticated && state.userRole !== 'user') && (
           <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
         )}
         {/* <Nav.Link href="/OwnerPage">Owner Page</Nav.Link> */}
