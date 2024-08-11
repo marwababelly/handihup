@@ -1,21 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
+import axios from "axios";
 import { tableCustomStyles } from "./tableCustomStyles";
 import DataTableContext from "../../../Context/context";
 import { Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const ReportsDashboard = () => {
-  const {
-    data,
-    handleDelete,
-    isDeleteConfirmOpen,
-    setIsDeleteConfirmOpen,
-    rowToDelete,
-    handleConfirmDelete,
-    handleCancelDelete,
-    DeleteConfirmationModal,
-    setInitialData,
-  } = useContext(DataTableContext);
+  const [reportsData, setReportsData] = useState([]);
+  const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
+  const [rowToDelete, setRowToDelete] = useState(null);
+  const [selectedProjectId, setSelectedProjectId] = useState(null);
 
   const reportData = [
     { id: 1, projectId: 22, userId: 14, availableItem: "false" },
@@ -28,11 +23,47 @@ const ReportsDashboard = () => {
     { id: 1, projectId: 22, userId: 14, availableItem: "false" },
   ];
 
+  const handleSelectProject = (projectId) => {
+    setSelectedProjectId(projectId);
+  };
+
   useEffect(() => {
-    if (!data.length) {
-      setInitialData(reportData);
+    axios.get('http://127.0.0.1:8000/api/reports')
+      .then(response => {
+        setReportsData(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
+
+  const handleDeleteReport = (reportId) => {
+
+    if (!selectedProjectId) {
+      console.error("No project selected");
+      return;
     }
-  }, [data, setInitialData]);
+
+    axios.delete(`http://127.0.0.1:8000/api/Projects/${selectedProjectId}/report/${reportId}`)
+      .then(response => {
+        setReportsData(reportsData.filter(report => report.id !== reportId));
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+  };
+
+  const handleDeleteConfirm = () => {
+    handleDeleteReport(rowToDelete.id);
+    setIsDeleteConfirmOpen(false);
+    setRowToDelete(null);
+  };
+
+  const handleCancelDelete = () => {
+    setIsDeleteConfirmOpen(false);
+    setRowToDelete(null);
+  };
 
   const columns = [
     {
@@ -51,16 +82,16 @@ const ReportsDashboard = () => {
       name: "Action",
       cell: (row) => (
         <>
-          <button onClick={() => handleDelete(row)}>Delete</button>
-          <button>
-            {" "}
-            <Nav.Link href="/formEdit">Edit</Nav.Link>
-          </button>
+          <button onClick={() => {
+            setIsDeleteConfirmOpen(true)
+            setRowToDelete(row)
+          }}>Delete</button>
+
           {isDeleteConfirmOpen && rowToDelete?.id === row.id && (
-            <DeleteConfirmationModal
-              onConfirm={handleConfirmDelete}
-              onCancel={handleCancelDelete}
-            />
+            <div>
+            <button onClick={handleDeleteConfirm}>Confirm Delete</button>
+            <button onClick={handleCancelDelete}>Cancel</button>
+          </div>
           )}
         </>
       ),
@@ -76,10 +107,11 @@ const ReportsDashboard = () => {
         fixedHeader
       />
       {isDeleteConfirmOpen && (
-        <DeleteConfirmationModal
-          onConfirm={handleConfirmDelete}
-          onCancel={handleCancelDelete}
-        />
+        <div>
+          Are you sure you want to delete report {rowToDelete?.id}?
+          <button onClick={handleDeleteConfirm}>Confirm Delete</button>
+          <button onClick={handleCancelDelete}>Cancel</button>
+        </div>
       )}
     </>
   );

@@ -2,24 +2,36 @@ import React from "react";
 import { Nav, Row, Tab } from "react-bootstrap";
 import style from "./DashboardPage.module.css";
 import UsersDashboard from "./PagesOfDashboard.js/UsersDashboard";
-import ProjectsDashboard from "./PagesOfDashboard.js/ProjectsDashboard";
+import ProjectDashboard from "./PagesOfDashboard.js/ProjectsDashboard";
 import ProductsDashboard from "./PagesOfDashboard.js/ProductsDashboard";
 import CategoriesDashboard from "./PagesOfDashboard.js/CategoriesDashboard";
 import ReviewsDashboard from "./PagesOfDashboard.js/ReviewsDashboard";
 import ReportsDashboard from "./PagesOfDashboard.js/ReportsDashboard";
 import BillsDashboard from "./PagesOfDashboard.js/BillsDashboard";
 import { DataTableProvider } from "../../Context/context";
-import {useAuth} from "../../Context/AuthContext"
-import { useContext } from "react";
+import { AuthContext } from "../../Context/AuthContext";
+import { useContext , useEffect } from "react";
 
-const GetUserRole = () => {
-const {user} = useContext(useAuth);
-return user?.role || "admin";
-};
+
 
 const DashboardPage = () => {
-  const userRole = GetUserRole();
+  const { state } = useContext(AuthContext);
+  const { user, userRole } = state;
 
+  
+  // useEffect(() => {
+  //   console.log("user is ", state.user);
+  //   console.log(state.userRole);
+  // }, [state]);
+
+  // if (!user || !userRole) {
+  //   return <div>You are not authenticated. Please log in.</div>;
+  // }
+  
+  console.log("user is ", user);
+  console.log(userRole);
+
+  console.log(AuthContext);
   return (
     <DataTableProvider>
       <Tab.Container id="left-tabs-example" defaultActiveKey={userRole === "admin" ? "Users" : "projects"}>
@@ -64,7 +76,7 @@ const DashboardPage = () => {
 
               <Tab.Pane eventKey="projects">
                 <h2>#projects Dashboard:</h2>
-                <ProjectsDashboard />
+                <ProjectDashboard />
               </Tab.Pane>
 
               <Tab.Pane eventKey="Products">
