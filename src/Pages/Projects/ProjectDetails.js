@@ -9,6 +9,7 @@ import pottery from "../../assets/pottery3.jpg";
 import rings from "../../assets/accessoriesRing.jpg";
 import { useParams } from "react-router";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 const ProjectDetails = () => {
   const projectsDetails = [
@@ -73,21 +74,21 @@ const ProjectDetails = () => {
       available: false,
     },
   ];
-
+  const { projectLink, productLink } = useParams();
+  const { user } = useSelector((state) => state.auth);
   const [index, setIndex] = useState(0);
   const [reviews, setReviews] = useState([]);
   const [report, setReport] = useState();
   const [getProductDetails, setGetProductDetails] = useState([]);
   const [postReport, setPostReport] = useState({
-    report: "",
-    project_id: "",
-    user_id: "",
+    description: "",
+    product_id: productLink,
+    user_id: user.id,
   });
   const [postReview, setPostReview] = useState({
-    review: "",
-    project_id: "1",
-    user_id: "1",
-    rate: "3",
+    description: "",
+    product_id: productLink,
+    user_id: user.id,
   });
 
   const reportRef = useRef(null);
@@ -98,25 +99,25 @@ const ProjectDetails = () => {
     reviewRef.current.focus();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchProduct = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://127.0.0.1:8000/api/Projects/${projectId}/product/${productId}`
-  //       );
-  //       setGetProductDetails(response.data);
-  //     } catch (error) {
-  //       console.error("Error featching Products: ", error);
-  //     }
-  //   };
-  //   fetchProduct();
-  // }, []);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(
+          `http://127.0.0.1:8000/api/Projects/${projectLink}/product/${productLink}`
+        );
+        setGetProductDetails(response.data);
+      } catch (error) {
+        console.error("Error featching Products: ", error);
+      }
+    };
+    fetchProduct();
+  }, []);
 
   const handleSubmitReport = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://127.0.0.1:8000/api/report`,
+        `http://127.0.0.1:8000/api/Projects/${productLink}/report`,
         postReport
       );
       console.log("form is ", postReport, "response is: ", response);
@@ -147,7 +148,7 @@ const ProjectDetails = () => {
     }
     try {
       const response = await axios.post(
-        `http://127.0.0.1:8000/api/review`,
+        `http://127.0.0.1:8000/api/Projects/${productLink}/review`,
         postReview
       );
       console.log("form is ", postReview, "response is: ", response);
@@ -166,10 +167,9 @@ const ProjectDetails = () => {
     setIndex(selectedIndex);
   };
 
-  const { projectId, productId } = useParams();
   const productsDetailPage =
-    projectsDetails.find((p) => p.id === Number(projectId)) &&
-    projectsDetails.find((p) => p.id === Number(productId));
+    projectsDetails.find((p) => p.id === Number(projectLink)) &&
+    projectsDetails.find((p) => p.id === Number(productLink));
 
   if (!productsDetailPage) return <div>Product Detail not found</div>;
 
@@ -178,9 +178,9 @@ const ProjectDetails = () => {
       <div className={style.container}>
         <div className={style.backgroundContainer}>
           <h2 className="fw-bold mb-2 text-center text-uppercase text-secondary">
-            {productsDetailPage.dProjectName}
+            {getProductDetails.name}
           </h2>
-          <Carousel
+          {/* <Carousel
             className={style.carouselImg}
             activeIndex={index}
             variant="dark"
@@ -188,8 +188,8 @@ const ProjectDetails = () => {
             onSelect={handleSelect}
           >
             {" "}
-            {productsDetailPage.dProjectImg.length > 0 &&
-              productsDetailPage.dProjectImg.map((img, index) => (
+            {projectsDetails.dProjectImg.length > 0 &&
+              projectsDetails.dProjectImg.map((img, index) => (
                 <Carousel.Item className={style.carouselItemImg}>
                   <img
                     className={style.img}
@@ -199,13 +199,13 @@ const ProjectDetails = () => {
                   />
                 </Carousel.Item>
               ))}
-          </Carousel>
+          </Carousel> */}
           <div className={style.pIcon}>
             <p className={style.price}>
-              The price per piece is: {productsDetailPage.dPrice}
+              The price per piece is: {getProductDetails.price}
             </p>
             <div className={style.availableIcon}>
-              {productsDetailPage.available ? (
+              {getProductDetails.available ? (
                 <>
                   <p>Available</p>
                   <FontAwesomeIcon
@@ -228,14 +228,14 @@ const ProjectDetails = () => {
           </div>
         </div>
         <p className={style.description}>
-          {productsDetailPage.dProjectDescription}
+          {getProductDetails.dProjectDescription}
         </p>
         <div className={style.contentDiv}>
           <h3 className="fw-bold mb-2 text-center text-uppercase text-secondary mt-3">
             project contents:
           </h3>
-          <div className={style.content}>
-            {productsDetailPage.dProjectContents.map((detail, detailIndex) => (
+          {/* <div className={style.content}>
+            {getProductDetails.dProjectContents.map((detail, detailIndex) => (
               <div className={style.element}>
                 <p className={style.numberP}>
                   {"0"}
@@ -246,20 +246,20 @@ const ProjectDetails = () => {
                 <hr className={style.hrContents} />
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
         <h3 className="fw-bold mb-2 text-center text-uppercase text-secondary mt-3">
           Reviews
         </h3>
-        <Carousel
+        {/* <Carousel
           className={style.carousel}
           activeIndex={index}
           variant="dark"
           interval={2500}
           onSelect={handleSelect}
         >
-          {productsDetailPage.dProjectReviews.length > 0 &&
-            productsDetailPage.dProjectReviews.map((review, index) => (
+          {getProductDetails.dProjectReviews.length > 0 &&
+            getProductDetails.dProjectReviews.map((review, index) => (
               <Carousel.Item className={style.carouselItem}>
                 <p key={index} className={style.par}>
                   {review}
@@ -267,7 +267,7 @@ const ProjectDetails = () => {
               </Carousel.Item>
             ))}
           {reviewSlides}
-        </Carousel>
+        </Carousel> */}
 
         <Form onSubmit={handleAddReview}>
           <Form.Group className="mb-3" controlId="addReview">

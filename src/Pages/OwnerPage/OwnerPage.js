@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import style from "./OwnerPage.module.css";
 import instagram from "../../assets/instagram.png";
 import facebook from "../../assets/facebook.png";
-import Rana1 from "../../assets/person-1_rfzshl.jpg";
+import Rana1 from "../../assets/photo_2024-08-10_10-36-15.jpg";
 import Rana2 from "../../assets/person-2_np9x5l.jpg";
 import Bana from "../../assets/person-3_ipa0mj.jpg";
 import Omar from "../../assets/person-4_t9nxjt.jpg";
@@ -100,7 +100,9 @@ const OwnerPage = () => {
   }, []);
 
   const { ownerOfProduct } = useParams();
-  const owner = getOwner.find((p) => p.ownerName === String(ownerOfProduct));
+  const owner = ownerDetails.find(
+    (p) => p.ownerName === String(ownerOfProduct)
+  );
   if (!owner) return <div>Owner Page is not found</div>;
 
   return (

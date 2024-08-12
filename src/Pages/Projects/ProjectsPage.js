@@ -126,7 +126,7 @@ const ProjectsPage = () => {
       <h2 className={style.title}>Projects</h2>
       <div className={style.projects}>
         <div className={style.dropdownContainer}>
-          <Dropdown onSelect={(key) => filterProjects(key.trim())}>
+          <Dropdown onSelect={(key) => filterProjects(key)}>
             <Dropdown.Toggle
               variant="success"
               id="dropdown-basic"
@@ -136,13 +136,13 @@ const ProjectsPage = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {projects.map((project) => (
-                <Dropdown.Item key={project.id} eventKey={project.link.trim()}>
+                <Dropdown.Item key={project.id} eventKey={project.link}>
                   {project.projectName}
                 </Dropdown.Item>
               ))}
             </Dropdown.Menu>
           </Dropdown>
-          <Dropdown onSelect={(key) => filterCategories(key.trim())}>
+          <Dropdown onSelect={(key) => filterCategories(key)}>
             <Dropdown.Toggle
               variant="success"
               id="dropdown-basic"
@@ -152,7 +152,7 @@ const ProjectsPage = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               {categories.map((cat) => (
-                <Dropdown.Item key={cat.id} eventKey={cat.link.trim()}>
+                <Dropdown.Item key={cat.id} eventKey={cat.link}>
                   {cat.title}
                 </Dropdown.Item>
               ))}
@@ -181,8 +181,8 @@ const ProjectsPage = () => {
             </div>
           </NavLink>
         ) : (
-          projects.map((project) => (
-            <NavLink href={`/Projects/${project.id}/product`}>
+          getProjects.map((project, index) => (
+            <NavLink key={index} href={`/Projects/${project.id}/product`}>
               <div className={style.project}>
                 <img
                   className={style.img}
@@ -191,8 +191,8 @@ const ProjectsPage = () => {
                 />
                 <div className={style.content}>
                   <h3>{project.id}</h3>
-                  <h2>{project.projectName}</h2>
-                  <p>{project.projectDescription}</p>
+                  <h2>{project.name}</h2>
+                  <p>{project.description}</p>
                 </div>
                 <div className={style.divNavLink}>
                   <NavLink

@@ -4,10 +4,12 @@ import React, { useState } from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { useAuth } from "../../Context/AuthContext";
 import style from "./CollapseNav.module.css";
+import { useSelector } from "react-redux";
 
 const CollapseNav = () => {
-  const {state ,isAuthenticated , userRole} = useAuth();
-  console.log(state.userRole);
+  // const { isAuthenticated, logout, updateUser, user, userRole } = useAuth();
+  const { userRole, isAuth } = useSelector((state) => state.auth);
+  // console.log(state.userRole);
   const [productName, setProductName] = useState("");
   const navigate = useNavigate();
 
@@ -24,17 +26,17 @@ const CollapseNav = () => {
 
   return (
     <>
-      <Navbar.Collapse id="responsive-navbar-nav" key={state.userRole}>
-      <Nav className="me-auto fs-5 ps-5">
-        <Nav.Link href="/">Home</Nav.Link>
-        <Nav.Link href="/Projects">Projects</Nav.Link>
-        <Nav.Link href="/Categories">Categories</Nav.Link>
-        {(state.isAuthenticated && state.userRole !== 'user') && (
-          <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
-        )}
-        {/* <Nav.Link href="/OwnerPage">Owner Page</Nav.Link> */}
-      </Nav>
-    </Navbar.Collapse>
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="me-auto fs-5 ps-5">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/Projects">Projects</Nav.Link>
+          <Nav.Link href="/Categories">Categories</Nav.Link>
+          {isAuth && userRole !== "user" && (
+            <Nav.Link href="/Dashboard">Dashboard</Nav.Link>
+          )}
+          <Nav.Link href="/OwnerPage">Owner Page</Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
       <div>
         <form onSubmit={handleSubmit}>
           <input

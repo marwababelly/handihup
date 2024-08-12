@@ -5,57 +5,89 @@ import style from "./AddProjectPage.module.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../Context/AuthContext";
 import apiClient from "../../../API/axios";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddProjectPage = () => {
-  const {state} = useAuth();
+  // const { state } = useAuth();
+  const dispatch = useDispatch();
+  const { token, user, isAuth, userRole } = useSelector((state) => state.auth);
+  const [categories, setCategories] = useState([]);
+
+  const userId = JSON.parse(user).id;
   const [form, setForm] = useState({
     name: "",
     category_id: "",
     description: "",
-    image: "",
-    owner_id: "",
+    image: null,
   });
 
   const focus = useRef(null);
 
-  //const categories = ["Pottery", "SkinCare", "FontArt", "Accessories"];
-  const categories = [1, 2, 3, 4];
+  // const categories = [
+  //   { id: 1, name: "Pottery" },
+  //   "SkinCare",
+  //   "FontArt",
+  //   "Accessories",
+  // ];
+  // const categories = [1, 2, 3, 4];
 
   const handleChange = (e) => {
     e.preventDefault();
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+      owner_id: userId.toString(),
+    });
   };
 
-  useEffect(() => {
+  const handleImageChange = (e) => {
+    e.preventDefault();
+    console.log(e.target.files[0]);
+    setForm({
+      ...form,
+      image: e.target.files[0],
+      owner_id: userId.toString(),
+    });
+  };
+
+  useEffect(async () => {
     focus.current.focus();
+    await apiClient.get("/category").then((response) => {
+      setCategories(response.data);
+    });
   }, []);
 
   const submitFormHandler = async (event) => {
     event.preventDefault();
-    const token = localStorage.getItem('token');
-  
-    apiClient.post("/Projects", form, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => {
-      console.log("Token is", token);
-      console.log("Form is ", form, "Response is: ", response);
-    })
-    .catch((error) => {
-      console.log("Error is ", error);
-    });
-  
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("name", form.name);
+    formData.append("category_id", form.category_id.toString());
+    formData.append("description", form.description);
+    formData.append("image", form.image);
+    apiClient
+      .post("/Projects", form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        console.log("Token is", token);
+        console.log("Form is ", form, "Response is: ", response);
+      })
+      .catch((error) => {
+        console.log("Error is ", error);
+      });
+
     setForm({
       name: "",
       category_id: "",
       description: "",
       image: "",
-      owner_id: "",
     });
   };
-  
+
   console.log(form);
 
   return (
@@ -86,21 +118,6 @@ const AddProjectPage = () => {
                         />
                       </Form.Group>
 
-                      <Form.Group className="mb-3" controlId="projectName">
-                        <Form.Label className={style.label}>
-                          Owner Name
-                        </Form.Label>
-                        <Form.Control
-                          type="number"
-                          name="owner_id"
-                          className={style.customInput}
-                          ref={focus}
-                          value={form.owner_id}
-                          onChange={handleChange}
-                          required
-                        />
-                      </Form.Group>
-
                       <Form.Group className="mb-3" controlId="category">
                         <Form.Label className={style.label}>
                           Category
@@ -117,8 +134,8 @@ const AddProjectPage = () => {
                             Select Your Project's Category
                           </option>
                           {categories.map((cate, index) => (
-                            <option key={index} value={index}>
-                              {cate}
+                            <option key={index} value={cate.id}>
+                              {cate.name}
                             </option>
                           ))}
                         </Form.Control>
@@ -152,8 +169,8 @@ const AddProjectPage = () => {
                           accept="image/*"
                           className={style.customInput}
                           ref={focus}
-                          value={form.image}
-                          onChange={handleChange}
+                          // value={form.image}
+                          onChange={handleImageChange}
                           // required
                         />
                       </Form.Group>
@@ -164,9 +181,11 @@ const AddProjectPage = () => {
                         <div className={style.linkContainer}>
                           <p>Already have a project? </p>
                           <Link to="/AddProduct">
-                           { state.isAuthenticated &&  <button className={style.projBtn} type="submit">
-                              Next Page
-                            </button> }
+                            {isAuth && (
+                              <button className={style.projBtn} type="submit">
+                                Next Page
+                              </button>
+                            )}
                           </Link>
                         </div>
                       </div>

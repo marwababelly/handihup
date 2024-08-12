@@ -10,15 +10,14 @@ import ReportsDashboard from "./PagesOfDashboard.js/ReportsDashboard";
 import BillsDashboard from "./PagesOfDashboard.js/BillsDashboard";
 import { DataTableProvider } from "../../Context/context";
 import { AuthContext } from "../../Context/AuthContext";
-import { useContext , useEffect } from "react";
-
-
+import { useContext, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const DashboardPage = () => {
-  const { state } = useContext(AuthContext);
-  const { user, userRole } = state;
+  // const { state } = useContext(AuthContext);
+  // const { user, userRole } = state;
 
-  
+  const { user, userRole } = useSelector((state) => state.auth);
   // useEffect(() => {
   //   console.log("user is ", state.user);
   //   console.log(state.userRole);
@@ -27,14 +26,17 @@ const DashboardPage = () => {
   // if (!user || !userRole) {
   //   return <div>You are not authenticated. Please log in.</div>;
   // }
-  
+
   console.log("user is ", user);
   console.log(userRole);
 
   console.log(AuthContext);
   return (
     <DataTableProvider>
-      <Tab.Container id="left-tabs-example" defaultActiveKey={userRole === "admin" ? "Users" : "projects"}>
+      <Tab.Container
+        id="left-tabs-example"
+        defaultActiveKey={userRole === "admin" ? "Users" : "projects"}
+      >
         <Row className={style.row}>
           <div className={style.col1}>
             <Nav className={style.nav}>

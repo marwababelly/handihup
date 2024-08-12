@@ -7,12 +7,15 @@ import { baseURL, LogIn } from "../../API/Api";
 import { useAuth } from "../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import apiClient from "../../API/axios";
+import { update } from "../../store/featuers/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const LogInPage = () => {
-
   const navigate = useNavigate();
+  const { token, user, isAuth, userRole } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
-  const {updateUser, isAuthenticated,state , logout} = useAuth(); 
+  // const { isAuthenticated, logout, updateUser, user, userRole } = useAuth();
   const [form, setForm] = useState({
     password: "",
     email: "",
@@ -20,18 +23,6 @@ const LogInPage = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-
-  useEffect(() => {
-    if (!state.isAuthenticated) {
-      setForm(prevState => ({
-        ...prevState,
-        email: "",
-        password: ""
-      }));
-    }
-  }, [state.isAuthenticated]);
-
-  
   // const [error, setError] = useState("");
   const focus = useRef(null);
 
@@ -46,33 +37,37 @@ const LogInPage = () => {
   const submitFormHandler = (event) => {
     event.preventDefault();
     setErrorMessage("");
-    apiClient.post("http://127.0.0.1:8000/api/login", form, {
-      headers: {
-      },
-    })
-     .then((response) => {
+    apiClient
+      .post("http://127.0.0.1:8000/api/login", form)
+      .then((response) => {
         if (response.data.message !== "login done") {
           setErrorMessage("Invalid email or password.");
-          return; 
+          return;
         }
-        const token = response.headers.authorization || response.data.token;
-        localStorage.setItem('token', JSON.stringify({ token: response.data.token }));
-        console.log("token is", token )
-        const userRole = response.data.user.type;
-        localStorage.setItem('userRole', JSON.stringify({ userRole: response.data.user.type }));
-        updateUser({ token: token, user: response.data.user, type: userRole });
-        //navigate('/');
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("isAuth", true);
+        localStorage.setItem("userRole", response.data.user.type);
+        dispatch(
+          update({
+            user: response.data.user,
+            isAuth: true,
+            token: response.data.token,
+            userRole: response.data.user.type,
+          })
+        );
+        navigate("/");
       })
-     .catch((error) => {
+      .catch((error) => {
         if (error.response && error.response.status === 401) {
           setErrorMessage("Invalid email or password.");
         } else {
           setErrorMessage("An error occurred. Please try again later.");
         }
       });
-      setForm("");
+    // setForm("");
   };
-  
+
   return (
     <div>
       <Container className={style.Container}>
@@ -129,11 +124,10 @@ const LogInPage = () => {
                         </Button>
                       </div>
                       {errorMessage && (
-                       <div className="alert alert-danger mt-3" role="alert">
-                            {errorMessage}
-                              </div>
-                                )}
-
+                        <div className="alert alert-danger mt-3" role="alert">
+                          {errorMessage}
+                        </div>
+                      )}
                     </Form>
                     <div className="mt-3">
                       <p className="mb-0  text-center">

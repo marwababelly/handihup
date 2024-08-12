@@ -3,31 +3,51 @@ import { Button, Form } from "react-bootstrap";
 import style from "./SIgnUpPage.module.css";
 import axios from "axios";
 import { baseURL, SignUp } from "../../API/Api";
-import { useAuth } from "../../Context/AuthContext";
+// import { useAuth } from "../../Context/AuthContext";
 import { useNavigate } from "react-router";
 import apiClient from "../../API/axios";
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../store/featuers/auth/authSlice";
 
 const SignUpPage = () => {
   const navigate = useNavigate();
+  const { token, user, isAuth, userRole } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  // const { isAuthenticated, logout, updateUser, user, userRole } = useAuth();
 
-  const { updateUser, isAuthenticated , state } = useAuth();
-
+  /**
+   * {
+    "token": "8|b7ju4MSfcA6jR5DraV8LEzmPp21AhvGZvQZRnyNr10bc9a21",
+    "user": {
+        "name": "soft",
+        "email": "marwaababell1y@gmail.com",
+        "user_name": "marwababelly1",
+        "phone_number": "1312309",
+        "address": "asdasd as",
+        "image": null,
+        "type": "owner",
+        "updated_at": "2024-08-12T11:01:29.000000Z",
+        "created_at": "2024-08-12T11:01:29.000000Z",
+        "id": 17
+    }
+}
+   */
   const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    if (!state.isAuthenticated) {
+    if (!isAuth) {
       setForm({
-        name: "" ,
-        user_name: "" ,
-        image: "" ,
-        address: "" ,
-        phone_number: "" ,
-        type: "" ,
+        name: "",
+        user_name: "",
+        image: "",
+        address: "",
+        phone_number: "",
+        type: "",
         password: "",
         email: "",
       });
     }
-  }, [state.isAuthenticated]);
+  }, [isAuth]);
   const [form, setForm] = useState({
     name: "",
     user_name: "",
@@ -53,29 +73,50 @@ const SignUpPage = () => {
   const submitFormHandler = async (event) => {
     event.preventDefault();
     try {
-      const token = localStorage.getItem('token');
-      await apiClient.post("http://127.0.0.1:8000/api/user", form,  {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then((response) => {
-        localStorage.setItem("token", token);
-        console.log("form is ", form, "response is: ", response, 'token is ', token);
-        const userRole = response.data.user.type;
-        localStorage.setItem("userRole",userRole);
-        updateUser({...response.data, type: userRole });
-        navigate('/');
-      })
-  
+      await apiClient
+        .post("http://127.0.0.1:8000/api/user", form)
+        .then((response) => {
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          localStorage.setItem("isAuth", true);
+          localStorage.setItem("userRole", response.data.user.type);
+          dispatch(
+            update({
+              user: response.data.user,
+              isAuth: true,
+              token: response.data.token,
+              userRole: response.data.user.type,
+            })
+          );
+          console.log(
+            "form is ",
+            form,
+            "response is: ",
+            response,
+            "token is ",
+            token
+          );
+          const userRole = response.data.user.type;
+          localStorage.setItem("userRole", userRole);
+
+          // updateUser({ ...response.data, type: userRole });
+          navigate("/");
+        });
     } catch (error) {
       console.log("error is ", error);
-      if (error.response && error.response.data.message === "The email has already been taken. (and 1 more error)") {
-        setErrorMessage("The email, username, or phone number has already been used.");
-      } 
+      if (
+        error.response &&
+        error.response.data.message ===
+          "The email has already been taken. (and 1 more error)"
+      ) {
+        setErrorMessage(
+          "The email, username, or phone number has already been used."
+        );
+      }
     }
     setForm("");
   };
-  
+
   console.log(form);
 
   return (
@@ -246,11 +287,10 @@ const SignUpPage = () => {
           </Button>
         </div>
         {errorMessage && (
-           <div className="alert alert-danger mt-3" role="alert">
-              {errorMessage}
-                </div>
-)}
-
+          <div className="alert alert-danger mt-3" role="alert">
+            {errorMessage}
+          </div>
+        )}
       </Form>
     </div>
   );

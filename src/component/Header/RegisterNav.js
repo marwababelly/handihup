@@ -1,25 +1,43 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
-import { useAuth } from "..//..//Context/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../store/featuers/auth/authSlice";
+import { useNavigate } from "react-router";
 
 const RegisterNav = () => {
-  const { state, logout } = useAuth();
-  console.log('RegisterNav:', state);
-
+  // const { isAuth, logout, updateUser, user, userRole } = useAuth();
+  const { token, user, userRole, isAuth } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <>
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="me-auto fs-5 ps-5">
-          {!state.isAuthenticated && (
+          {!isAuth && (
             <>
               <Nav.Link href="/SignUp">Sign up</Nav.Link>
               <Nav.Link href="/LogIn">Login</Nav.Link>
             </>
           )}
-          {state.isAuthenticated && state.user && (
-            <Nav.Link onClick={logout}>Logout</Nav.Link>
+          {isAuth && user && (
+            <Nav.Link
+              onClick={() => {
+                localStorage.clear();
+                dispatch(
+                  update({
+                    user: null,
+                    isAuth: false,
+                    token: null,
+                    userRole: null,
+                  })
+                );
+                navigate("/SignUp");
+              }}
+            >
+              Logout
+            </Nav.Link>
           )}
-          {state.isAuthenticated && state.userRole === "owner" && (
+          {isAuth && userRole === "owner" && (
             <Nav.Link href="/add-project-page">Add Project</Nav.Link>
           )}
         </Nav>

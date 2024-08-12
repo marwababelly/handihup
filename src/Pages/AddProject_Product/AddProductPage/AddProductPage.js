@@ -18,14 +18,14 @@ const AddProductPage = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...form, [e.target.name]: e.target.value, available: true });
   };
 
   const submitFormHandler = (event) => {
     event.preventDefault();
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     axios
-      .post("http://127.0.0.1:8000/api/Projects/1/product" , form, {
+      .post("http://127.0.0.1:8000/api/Projects/1/product", form, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

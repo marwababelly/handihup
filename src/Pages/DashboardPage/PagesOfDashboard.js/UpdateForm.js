@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const UpdateForm = ({ item, handleUpdate, fields }) => {
   const [formData, setFormData] = useState({ ...item });
@@ -15,8 +15,8 @@ const UpdateForm = ({ item, handleUpdate, fields }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {fields.map((field) => (
-        <div key={field.name}>
+      {fields.map((field, index) => (
+        <div key={index}>
           <label>
             {field.label}
             <input
