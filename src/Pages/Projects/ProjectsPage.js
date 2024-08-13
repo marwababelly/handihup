@@ -4,8 +4,9 @@ import fontArt from "../../assets/fontArt4.jpg";
 import skinCare from "../../assets/skinCare.jpg";
 import pottery from "../../assets/pottery3.jpg";
 import rings from "../../assets/necklace.jpg";
-import { NavLink, Dropdown } from "react-bootstrap";
+import { NavLink, Dropdown  } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
@@ -41,6 +42,68 @@ const ProjectsPage = () => {
       link: "Pottery",
     },
   ];
+    const projectsDetails = [
+      {
+        id: 1,
+        dProjectName: "Pottery",
+        dProjectImg: [pottery, skinCare, fontArt, rings],
+        dProjectDescription:
+          "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
+        dProjectContents: ["pottery", "pen", "ink", "clay"],
+        dProjectReviews: [
+          "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+          "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+        ],
+        link: "Pottery",
+        dPrice: "500$",
+        available: true,
+      },
+      {
+        id: 2,
+        dProjectName: "SkinCare",
+        dProjectImg: [pottery, skinCare, fontArt, rings],
+        dProjectDescription:
+          "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
+        dProjectContents: ["pottery", "pen", "ink", "clay"],
+        dProjectReviews: [
+          "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+          "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+        ],
+        link: "SkinCare",
+        dPrice: "500$",
+        available: false,
+      },
+      {
+        id: 3,
+        dProjectName: "FontArt",
+        dProjectImg: [pottery, skinCare, fontArt, rings],
+        dProjectDescription:
+          "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
+        dProjectContents: ["pottery", "pen", "ink", "clay"],
+        dProjectReviews: [
+          "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+          "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+        ],
+        link: "FontArt",
+        dPrice: "500$",
+        available: true,
+      },
+      {
+        id: 4,
+        dProjectName: "Accessories",
+        dProjectImg: [pottery, skinCare, fontArt, rings],
+        dProjectDescription:
+          "This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start This is your Project description. Provide a brief summary to help visitors understand the context and background of your work. Click on or double click on the text box to start.",
+        dProjectContents: ["pottery", "pen", "ink", "clay"],
+        dProjectReviews: [
+          "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+          "Nulla vitae elit libero, a pharetra augue mollis interdum Null vitae elit libero, a pharetra augue mollis interdum Nulla vitae elitlibero, a pharetra augue mollis interdum Nulla vitae elit libero, apharetra augue mollis interdum.",
+        ],
+        link: "Accessories",
+        dPrice: "500$",
+        available: false,
+      },
+    ];
 
   const projects = [
     {
@@ -108,7 +171,6 @@ const ProjectsPage = () => {
       setSelectedCategory(null);
     }
   };
-
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -221,6 +283,40 @@ const ProjectsPage = () => {
             </NavLink>
           ))
         )}
+        <div className={style.project}>
+          <img className={style.img} src={projects[0].img} alt={projects[0].projectName} />
+          <div className={style.content}>
+            <h3>{projects[0].id}</h3>
+            <h2>{projects[0].projectName}</h2>
+            <p>{projects[0].projectDescription}</p>
+          </div>
+          <div className={style.divNavLink}>
+            <NavLink to={`/Projects/${projects[0].id}/product`}  className={style.navLink}>
+              View Products
+            </NavLink>
+            <NavLink href={`/OwnerPage/${projects[0].ownerOfProject}`} className={style.navLink}>
+              View Owner Details
+            </NavLink>
+          </div>
+          <hr className={style.hr} />
+        </div>
+        <div className={style.project}>
+          <img className={style.img} src={projects[1].img} alt={projects[1].projectName} />
+          <div className={style.content}>
+            <h3>{projects[1].id}</h3>
+            <h2>{projects[1].projectName}</h2>
+            <p>{projects[1].projectDescription}</p>
+          </div>
+          <div className={style.divNavLink}>
+            <NavLink href={`/Projects/${projects[1].id}/product`} className={style.navLink}>
+              View Products
+            </NavLink>
+            <NavLink href={`/OwnerPage/${projects[1].ownerOfProject}`} className={style.navLink}>
+              View Owner Details
+            </NavLink>
+          </div>
+          <hr className={style.hr} />
+        </div>
       </div>
     </div>
   );
