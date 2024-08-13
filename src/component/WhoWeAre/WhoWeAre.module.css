@@ -62,6 +62,7 @@
 .contactButton a {
   color: #3f424b;
 }
+
 @media (max-width: 768px) {
   .imageContainer {
      width: 100%;

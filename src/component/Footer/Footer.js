@@ -7,7 +7,7 @@ import LinkedIn from "../../assets/LinkedIn.png";
 
 const Footer = () => {
   return (
-    <div className={style.endDiv}>
+    <div className={style.endDiv} id="footer">
       <div className={style.Semicircle}>
         <div className={style.h3pFooter}>
           <h3>THE BEST OF HandiHup DELIVERED TO YOUR INBOX</h3>

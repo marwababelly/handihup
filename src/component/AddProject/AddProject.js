@@ -4,7 +4,12 @@ import img2 from "../../assets/AddProjectImage.jpg";
 import { Row, Col, Button } from "react-bootstrap";
 import style from "./AddProject.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink , Nav} from "react-bootstrap";
+
 const AddProject = () => {
+  const { token, user, userRole, isAuth } = useSelector((state) => state.auth);
+
   return (
     <div className={style.container}>
       <Row className={style.Row}>
@@ -25,7 +30,16 @@ const AddProject = () => {
             accomplished.
           </p>
           <Button className={style.contactButton}>
-            <Link to="/add-project-page">Add Project</Link>
+            { !isAuth && (
+              <Link to="/signUp">Join Us!</Link>
+            ) }
+            { userRole === "user" && (
+              <Link to="/signUp">Join Us!</Link>
+            ) }
+            { isAuth && userRole === "owner" && (
+               <Nav.Link href="/add-project-page">Add Project</Nav.Link>
+            )}
+           
           </Button>
         </Col>
       </Row>

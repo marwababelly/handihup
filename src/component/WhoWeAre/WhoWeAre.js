@@ -3,8 +3,18 @@ import handMade from "../../assets/Handmade.jpg";
 import whitevases from "../../assets/white_Vases.jpg";
 import { Row, Col, Button } from "react-bootstrap";
 import style from "./WhoWeAre.module.css";
-import { Link } from "react-router-dom";
+import { Link , NavLink} from "react-router-dom";
+import { Route } from "react-router-dom";
+
 const WhoWeAre = () => {
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight, 
+      behavior: 'smooth', 
+    });
+  };
+
   return (
     <div className={style.container}>
       <Row className={style.Row}>
@@ -24,8 +34,8 @@ const WhoWeAre = () => {
             something truly special. Check out my project and see what I
             accomplished.
           </p>
-          <Button className={style.contactButton}>
-            <Link to="/add-project">Contact us</Link>
+          <Button className={style.contactButton} onClick={scrollToBottom}>
+            Contact Us
           </Button>
         </Col>
       </Row>
